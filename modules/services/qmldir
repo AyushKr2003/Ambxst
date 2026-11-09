@@ -1,0 +1,47 @@
+singleton Ai 1.0 Ai.qml
+singleton AppSearch 1.0 AppSearch.qml
+singleton Audio 1.0 Audio.qml
+singleton AxctlService 1.0 AxctlService.qml
+singleton BackendService 1.0 BackendService.qml
+singleton Battery 1.0 Battery.qml
+BluetoothDevice 1.0 BluetoothDevice.qml
+singleton BluetoothService 1.0 BluetoothService.qml
+singleton Brightness 1.0 Brightness.qml
+singleton CaffeineClient 1.0 CaffeineClient.qml
+singleton ClipboardService 1.0 ClipboardService.qml
+CompositorConfig 1.0 CompositorConfig.qml
+CompositorKeybinds 1.0 CompositorKeybinds.qml
+singleton CompositorTomlWriter 1.0 CompositorTomlWriter.qml
+singleton DesktopService 1.0 DesktopService.qml
+singleton EasyEffectsService 1.0 EasyEffectsService.qml
+FocusGrab 1.0 FocusGrab.qml
+singleton FocusGrabManager 1.0 FocusGrabManager.qml
+singleton GameModeClient 1.0 GameModeClient.qml
+singleton GlobalShortcuts 1.0 GlobalShortcuts.qml
+singleton I18n 1.0 I18n.qml
+IdleMonitor 1.0 IdleMonitor.qml
+singleton IdleService 1.0 IdleService.qml
+singleton KeyStore 1.0 KeyStore.qml
+singleton LockscreenService 1.0 LockscreenService.qml
+singleton ModsService 1.0 ModsService.qml
+singleton MprisController 1.0 MprisController.qml
+singleton NetworkService 1.0 NetworkService.qml
+singleton NightLightClient 1.0 NightLightClient.qml
+singleton Notifications 1.0 Notifications.qml
+singleton OmarchyBridge 1.0 OmarchyBridge.qml
+singleton PowerProfileClient 1.0 PowerProfileClient.qml
+singleton PresetCommandService 1.0 PresetCommandService.qml
+singleton PresetsService 1.0 PresetsService.qml
+singleton ScreenRecorder 1.0 ScreenRecorder.qml
+singleton Screenshot 1.0 Screenshot.qml
+singleton StateService 1.0 StateService.qml
+singleton SuspendManager 1.0 SuspendManager.qml
+singleton SystemResources 1.0 SystemResources.qml
+singleton TaskbarApps 1.0 TaskbarApps.qml
+singleton TerminalService 1.0 TerminalService.qml
+singleton UpdateService 1.0 UpdateService.qml
+singleton UsageTracker 1.0 UsageTracker.qml
+singleton Visibilities 1.0 Visibilities.qml
+singleton WallpaperCommandService 1.0 WallpaperCommandService.qml
+singleton WeatherService 1.0 WeatherService.qml
+WifiAccessPoint 1.0 WifiAccessPoint.qml

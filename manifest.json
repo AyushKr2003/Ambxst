@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "ambxst.bar",
+  "name": "Ambxst",
+  "version": "0.1.0",
+  "author": "AyushKr2003",
+  "license": "AGPL-3.0-or-later",
+  "description": "Ambxst, the Axtremely customizable shell, for Omarchy: its bar, notch, dock, dashboard, launcher, overview, notifications and OSD, running inside Omarchy's shell with Omarchy as the engine.",
+  "kinds": ["bar"],
+  "entryPoints": {
+    "bar": "Bar.qml"
+  }
+}

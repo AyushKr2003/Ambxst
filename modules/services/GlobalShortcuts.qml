@@ -1,0 +1,270 @@
+pragma Singleton
+pragma ComponentBehavior: Bound
+
+import QtQuick
+import "../globals"
+import "."
+import "../../config"
+
+import Quickshell.Io
+
+QtObject {
+    id: root
+
+    readonly property string appId: "ambxst"
+    // Per-user runtime dir instead of /tmp: /tmp is world-shared and its
+    // sticky bit lets a second local account permanently squat the FIFO.
+    // The shell expression keeps this working even when XDG_RUNTIME_DIR
+    // is not exported to the compositor session.
+    readonly property string ipcDir: "${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+    readonly property string ipcName: "ambxst_ipc.pipe"
+
+    // High-performance Pipe Listener (Daemon mode)
+    property Process pipeListener: Process {
+        command: ["bash", "-c", 'd="' + root.ipcDir + '"; mkdir -p "$d"; rm -f "$d/' + root.ipcName + '"; mkfifo "$d/' + root.ipcName + '"; tail -f "$d/' + root.ipcName + '"']
+        running: true
+        
+        stdout: SplitParser {
+            onRead: data => {
+                const cmd = data.trim();
+                if (cmd !== "") {
+                    root.run(cmd);
+                }
+            }
+        }
+    }
+
+    function run(command) {
+        console.log("IPC run command received:", command);
+        switch (command) {
+            // Launcher (Standalone Notch Module)
+            case "launcher": toggleLauncher(); break;
+            case "clipboard": toggleLauncherWithPrefix(1, Config.prefix.clipboard + " "); break;
+            case "emoji": toggleLauncherWithPrefix(2, Config.prefix.emoji + " "); break;
+            case "tmux": toggleLauncherWithPrefix(3, Config.prefix.tmux + " "); break;
+            case "notes": toggleLauncherWithPrefix(4, Config.prefix.notes + " "); break;
+
+            // Dashboard
+            case "dashboard": toggleDashboardTab(0); break;
+            case "wallpapers": toggleDashboardTab(1); break;
+            case "assistant": toggleAssistant(); break;
+            case "dashboard-widgets": toggleDashboardTab(0); break;
+            case "dashboard-wallpapers": toggleDashboardTab(1); break;
+            case "dashboard-kanban": toggleDashboardTab(2); break;
+            case "dashboard-assistant": toggleAssistant(); break;
+            case "dashboard-controls": toggleSettings(); break;
+
+            // System
+            case "overview":
+                if (AxctlService.nativeOverviewSupported) {
+                    AxctlService.dispatch("overview toggle");
+                } else {
+                    toggleSimpleModule("overview");
+                }
+                break;
+            case "powermenu": toggleSimpleModule("powermenu"); break;
+            case "tools": toggleSimpleModule("tools"); break;
+            case "config": toggleSettings(); break;
+            case "screenshot": Screenshot.initialize(); GlobalStates.screenshotToolVisible = true; break;
+            case "screenrecord":
+                ScreenRecorder.initialize();
+                if (ScreenRecorder.isRecording) {
+                    ScreenRecorder.toggleRecording();
+                } else {
+                    GlobalStates.screenRecordToolVisible = true;
+                }
+                break;
+            case "lens": 
+                Screenshot.initialize();
+                Screenshot.captureMode = "lens";
+                GlobalStates.screenshotToolVisible = true;
+                break;
+            case "lockscreen": LockscreenService.lock(); break; // Ambxst on Omarchy: Omarchy's lock
+            
+            // Media
+            case "media-seek-backward": seekActivePlayer(-mediaSeekStepMs); break;
+            case "media-seek-forward": seekActivePlayer(mediaSeekStepMs); break;
+            case "media-play-pause": 
+                if (MprisController.canTogglePlaying) MprisController.togglePlaying();
+                break;
+            case "media-next": MprisController.next(); break;
+            case "media-prev": MprisController.previous(); break;
+
+            // Brightness (routes through the same setBrightness path the slider uses,
+            // avoiding a per-press fork of the Go CLI + qs ipc chain).
+            case "brightness-up": Brightness.increaseAll(); break;
+            case "brightness-down": Brightness.decreaseAll(); break;
+
+            default: console.warn("Unknown IPC command:", command);
+        }
+    }
+
+    property IpcHandler ipcHandler: IpcHandler {
+        target: "ambxst"
+
+        function run(command: string): void {
+            root.run(command);
+        }
+        // Ambxst on Omarchy: what the Go daemon's `ambxst toggle` and
+        // `ambxst preset load` pushed, for the bin/ambxst wrapper.
+        function toggle(target: string): void {
+            root.toggle(target);
+        }
+        function preset(name: string): void {
+            PresetCommandService.load(name);
+        }
+        function version(): string {
+            return Config.version;
+        }
+    }
+
+    // Commands sent via `ambxst run <cmd>` go through the Go daemon now.
+    // The daemon pushes a "ui.command" event on the "ui" service stream;
+    // route it into the same runner. `ambxst toggle <target>` pushes a
+    // separate "ui.toggle" event with its own state-flipping switch.
+    Component.onCompleted: {
+        BackendService.addSubscription(["ui"], (service, data) => {
+            if (typeof data !== "string" || data === "")
+                return;
+            if (service === "ui.command") {
+                root.run(data);
+            } else if (service === "ui.toggle") {
+                root.toggle(data);
+            }
+        });
+    }
+
+    function toggle(target) {
+        console.log("IPC toggle command received:", target);
+        switch (target) {
+            case "bar": GlobalStates.barPinToggled(); break;
+
+            default: console.warn("Unknown toggle target:", target);
+        }
+    }
+
+    function toggleSettings(screenName) {
+        const willOpen = !GlobalStates.settingsWindowVisible;
+        if (willOpen) {
+            const targetMonitor = screenName ? AxctlService.monitorFor(screenName) : AxctlService.focusedMonitor;
+            GlobalStates.settingsTargetWorkspaceId = targetMonitor?.activeWorkspace?.id || AxctlService.focusedMonitor?.activeWorkspace?.id || AxctlService.focusedWorkspace?.id || 0;
+            GlobalStates.settingsTargetScreenName = targetMonitor?.name || AxctlService.focusedMonitor?.name || "";
+            if (targetMonitor && targetMonitor.id !== AxctlService.focusedMonitor?.id) {
+                AxctlService.dispatch(`focusmonitor ${targetMonitor.id}`);
+            }
+            Qt.callLater(() => Visibilities.setActiveModule(""));
+        }
+        GlobalStates.settingsWindowVisible = willOpen;
+    }
+
+    function toggleSimpleModule(moduleName) {
+        if (Visibilities.currentActiveModule === moduleName) {
+            Visibilities.setActiveModule("");
+        } else {
+            Visibilities.setActiveModule(moduleName);
+        }
+    }
+
+    function toggleLauncher() {
+        const isActive = Visibilities.currentActiveModule === "launcher";
+        if (isActive && GlobalStates.widgetsTabCurrentIndex === 0 && GlobalStates.launcherSearchText === "") {
+            Visibilities.setActiveModule("");
+        } else {
+            GlobalStates.widgetsTabCurrentIndex = 0;
+            GlobalStates.launcherSearchText = "";
+            GlobalStates.launcherSelectedIndex = -1;
+            if (!isActive) {
+                Visibilities.setActiveModule("launcher");
+            }
+        }
+    }
+
+    function toggleLauncherWithPrefix(tabIndex, prefix) {
+        const isActive = Visibilities.currentActiveModule === "launcher";
+        const currentTab = GlobalStates.widgetsTabCurrentIndex;
+        const currentText = GlobalStates.launcherSearchText;
+
+        if (isActive && currentTab === tabIndex && (currentText === prefix || currentText === "")) {
+            Visibilities.setActiveModule("");
+            GlobalStates.clearLauncherState();
+            return;
+        }
+
+        GlobalStates.widgetsTabCurrentIndex = tabIndex;
+        GlobalStates.launcherSearchText = prefix;
+        
+        if (!isActive) {
+            Visibilities.setActiveModule("launcher");
+        }
+    }
+
+    function toggleDashboardTab(tabIndex) {
+        const isActive = Visibilities.currentActiveModule === "dashboard";
+        
+        // Special handling for widgets tab (launcher)
+        if (tabIndex === 0) {
+            if (isActive && GlobalStates.dashboardCurrentTab === 0 && GlobalStates.launcherSearchText === "") {
+                // Only toggle off if we're already in launcher without prefix
+                Visibilities.setActiveModule("");
+                return;
+            }
+            
+            // Otherwise, always go to launcher (clear any prefix and ensure tab 0)
+            GlobalStates.dashboardCurrentTab = 0;
+            GlobalStates.launcherSearchText = "";
+            GlobalStates.launcherSelectedIndex = -1;
+            if (!isActive) {
+                Visibilities.setActiveModule("dashboard");
+            }
+            return;
+        }
+        
+        // For other tabs, normal toggle behavior
+        if (isActive && GlobalStates.dashboardCurrentTab === tabIndex) {
+            Visibilities.setActiveModule("");
+            return;
+        }
+
+        GlobalStates.dashboardCurrentTab = tabIndex;
+        if (!isActive) {
+            Visibilities.setActiveModule("dashboard");
+        }
+    }
+
+    function toggleDashboardWithPrefix(prefix) {
+        const isActive = Visibilities.currentActiveModule === "dashboard";
+        
+        if (isActive && GlobalStates.dashboardCurrentTab === 0 && GlobalStates.launcherSearchText === prefix) {
+            Visibilities.setActiveModule("");
+            GlobalStates.clearLauncherState();
+            return;
+        }
+
+        GlobalStates.dashboardCurrentTab = 0;
+        
+        if (!isActive) {
+            Visibilities.setActiveModule("dashboard");
+            Qt.callLater(() => {
+                GlobalStates.launcherSearchText = prefix;
+            });
+        } else {
+            GlobalStates.launcherSearchText = prefix;
+        }
+    }
+
+    function toggleAssistant() {
+        GlobalStates.toggleAssistant();
+    }
+    function seekActivePlayer(offset) {
+        const player = MprisController.activePlayer;
+        if (!player || !player.canSeek) {
+            return;
+        }
+
+        const maxLength = typeof player.length === "number" && !isNaN(player.length)
+                ? player.length
+                : Number.MAX_SAFE_INTEGER;
+        const clamped = Math.max(0, Math.min(maxLength, player.position + offset));
+        player.position = clamped;
+    }
+}

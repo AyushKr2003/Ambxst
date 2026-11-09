@@ -1,0 +1,95 @@
+#!/bin/bash
+
+# Ambxst for Omarchy: the `ambxst` command.
+#
+# Upstream Ambxst ships a Go binary that runs its own Quickshell and daemon.
+# Here Ambxst lives inside Omarchy's shell (the `ambxst.bar` plugin), so this
+# forwards the everyday subcommands to it over Omarchy's IPC and to Omarchy's
+# own commands. Keybinds written for upstream (`ambxst run launcher`, ...)
+# keep working unchanged.
+
+PLUGIN_ID="ambxst.bar"
+PLUGIN_DIR="$HOME/.config/omarchy/plugins/$PLUGIN_ID"
+
+usage() {
+  cat <<'EOF'
+Usage: ambxst <command> [args]
+
+  run <action>          Open an Ambxst surface: launcher, dashboard, clipboard,
+                        emoji, notes, tmux, wallpapers, assistant, overview,
+                        powermenu, tools, config, screenshot, screenrecord,
+                        lens, lockscreen, media-play-pause, media-next,
+                        media-prev, brightness-up, brightness-down, ...
+  toggle bar            Pin or unpin the bar
+  lock                  Lock the screen (Omarchy's lock)
+  reload                Restart Omarchy's shell, Ambxst included
+  brightness <+N|-N>    Step screen brightness (Ambxst's OSD)
+  wallpaper set <file>  Set the background (omarchy-theme-bg-set)
+  preset load <name>    Load an Ambxst preset
+  enable                Make Ambxst Omarchy's bar
+  disable               Go back to Omarchy's own bar
+  status                Show whether Ambxst is installed and active
+  version               Print the Ambxst version
+EOF
+}
+
+ipc() {
+  omarchy-shell ambxst "$@"
+}
+
+case ${1:-} in
+  run)
+    [[ -n ${2:-} ]] || { usage >&2; exit 2; }
+    ipc run "$2"
+    ;;
+  toggle)
+    ipc toggle "${2:-bar}"
+    ;;
+  lock)
+    omarchy-system-lock
+    ;;
+  reload | restart)
+    omarchy-restart-shell
+    ;;
+  brightness)
+    case ${2:-} in
+      +* | up) ipc run brightness-up ;;
+      -* | down) ipc run brightness-down ;;
+      *) echo "Usage: ambxst brightness <+N|-N>" >&2; exit 2 ;;
+    esac
+    ;;
+  wallpaper)
+    [[ ${2:-} == "set" && -n ${3:-} ]] || { echo "Usage: ambxst wallpaper set <file>" >&2; exit 2; }
+    omarchy-theme-bg-set "$3"
+    ;;
+  preset)
+    [[ ${2:-} == "load" && -n ${3:-} ]] || { echo "Usage: ambxst preset load <name>" >&2; exit 2; }
+    ipc preset "$3"
+    ;;
+  enable)
+    omarchy bar use "$PLUGIN_ID"
+    ;;
+  disable)
+    omarchy bar reset
+    ;;
+  status)
+    if [[ -d $PLUGIN_DIR ]]; then
+      echo "installed: $PLUGIN_DIR"
+    else
+      echo "not installed"
+    fi
+    active=$(omarchy-shell shell listShellConfig 2>/dev/null | jq -r '.bar.id // "omarchy.bar"' 2>/dev/null)
+    echo "active bar: ${active:-unknown}"
+    ;;
+  version | -v | --version)
+    ipc version 2>/dev/null || cat "$PLUGIN_DIR/version" 2>/dev/null
+    ;;
+  help | -h | --help | "")
+    usage
+    ;;
+  *)
+    echo "ambxst: unknown command '$1'" >&2
+    usage >&2
+    exit 2
+    ;;
+esac

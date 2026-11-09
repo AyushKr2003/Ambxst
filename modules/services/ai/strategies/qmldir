@@ -1,0 +1,8 @@
+AnthropicApiStrategy 1.0 AnthropicApiStrategy.qml
+ApiStrategy 1.0 ApiStrategy.qml
+GeminiApiStrategy 1.0 GeminiApiStrategy.qml
+GroqApiStrategy 1.0 GroqApiStrategy.qml
+MiniMaxApiStrategy 1.0 MiniMaxApiStrategy.qml
+MistralApiStrategy 1.0 MistralApiStrategy.qml
+OllamaApiStrategy 1.0 OllamaApiStrategy.qml
+OpenAiApiStrategy 1.0 OpenAiApiStrategy.qml

@@ -1,0 +1,12 @@
+.pragma library
+
+var data = {
+    "blurTransition": true,
+    "windowPreview": true,
+    "wavyLine": true,
+    "rotateCoverArt": true,
+    "pauseWallpapersOnFullscreen": true,
+    "dashboardPersistTabs": false,
+    "dashboardMaxPersistentTabs": 2,
+    "batteryLowThreshold": 20
+}
