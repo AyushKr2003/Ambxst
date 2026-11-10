@@ -121,6 +121,7 @@ Item {
         }
 
         Text {
+            renderType: Text.NativeRendering
             anchors.centerIn: parent
             text: root.getLayoutIcon(GlobalStates.compositorLayout)
             font.family: Icons.font
@@ -196,6 +197,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: root.getLayoutIcon(layoutButton.modelData)
                             font.family: Icons.font
                             font.pixelSize: 14
@@ -203,6 +205,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             id: layoutLabel
                             text: root.getLayoutDisplayName(layoutButton.modelData)
                             font.family: Styling.defaultFont

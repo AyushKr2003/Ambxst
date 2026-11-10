@@ -511,6 +511,7 @@ Rectangle {
                     anchors.margins: 8
                     spacing: 8
                     Text {
+                        renderType: Text.NativeRendering
                         width: 32
                         height: parent.height
                         text: root.clearButtonConfirmState ? Icons.xeyes : Icons.broom
@@ -522,6 +523,7 @@ Rectangle {
                         textFormat: Text.RichText
                     }
                     Text {
+                        renderType: Text.NativeRendering
                         text: I18n.t("emoji.clear_recent")
                         height: parent.height
                         font.family: Config.theme.font
@@ -708,6 +710,7 @@ Rectangle {
                                 color: "transparent"
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     anchors.centerIn: parent
                                     text: model.emojiData.emoji
                                     font.pixelSize: 24
@@ -765,6 +768,7 @@ Rectangle {
                                 radius: Styling.radius(-4)
                                 variant: isSelected && root.expandedItemIndex !== index ? "overprimary" : "common"
                                 Text {
+                                    renderType: Text.NativeRendering
                                     anchors.centerIn: parent
                                     text: emojiData.emoji
                                     font.pixelSize: 24
@@ -772,6 +776,7 @@ Rectangle {
                                 }
                             }
                             Text {
+                                renderType: Text.NativeRendering
                                 width: parent.width - 40
                                 height: parent.height
                                 text: emojiData.search
@@ -824,10 +829,12 @@ Rectangle {
                                             anchors.margins: 8
                                             spacing: 8
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 text: emojiData.emoji + modelData.modifier
                                                 font.pixelSize: 20
                                             }
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 Layout.fillWidth: true
                                                 text: modelData.name
                                                 font.family: Config.theme.font

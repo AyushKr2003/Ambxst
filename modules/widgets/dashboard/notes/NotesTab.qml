@@ -1575,6 +1575,7 @@ Item {
                                     }
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.centerIn: parent
                                         text: Icons.cancel
                                         color: parent.isHighlighted ? Colors.overErrorContainer : Colors.overError
@@ -1609,6 +1610,7 @@ Item {
                                     }
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.centerIn: parent
                                         text: Icons.accept
                                         color: parent.isHighlighted ? Colors.overErrorContainer : Colors.overError
@@ -1669,6 +1671,7 @@ Item {
                             radius: Styling.radius(-4)
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: {
                                     if (isInDeleteMode) {
@@ -1709,6 +1712,7 @@ Item {
                             Component {
                                 id: normalText
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: displayText
                                     font.family: Config.theme.font
                                     font.pixelSize: Config.theme.fontSize
@@ -1729,6 +1733,7 @@ Item {
                             Component {
                                 id: renameTextInput
                                 TextField {
+                                    renderType: Text.NativeRendering
                                     text: root.newNoteName
                                     color: Colors.overSecondary
                                     selectionColor: Colors.overSecondary
@@ -1772,6 +1777,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 Layout.fillWidth: true
                                 text: modelData.modified ? NotesUtils.formatTimestamp(modelData.modified, I18n.t) : ""
                                 font.family: Config.theme.font
@@ -1881,6 +1887,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     anchors.centerIn: parent
                                     text: Icons.cancel
                                     color: renameCancelButton.isHighlighted ? Colors.overSecondaryContainer : Colors.overSecondary
@@ -1916,6 +1923,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     anchors.centerIn: parent
                                     text: Icons.accept
                                     color: renameConfirmButton.isHighlighted ? Colors.overSecondaryContainer : Colors.overSecondary
@@ -2094,6 +2102,7 @@ Item {
                                             spacing: 8
 
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 text: modelData && modelData.icon ? modelData.icon : ""
                                                 font.family: Icons.font
                                                 font.pixelSize: 14
@@ -2116,6 +2125,7 @@ Item {
                                             }
 
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 Layout.fillWidth: true
                                                 text: modelData && modelData.text ? modelData.text : ""
                                                 font.family: Config.theme.font
@@ -2209,6 +2219,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: Icons.minus
                             font.family: Icons.font
@@ -2248,6 +2259,7 @@ Item {
                         }
 
                         TextInput {
+                            renderType: Text.NativeRendering
                             id: fontSizeField
                             anchors.centerIn: parent
                             width: parent.width - 8
@@ -2295,6 +2307,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: Icons.plus
                             font.family: Icons.font
@@ -2346,6 +2359,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: "B"
                             font.family: Config.theme.font
@@ -2386,6 +2400,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: "I"
                             font.family: Config.theme.font
@@ -2426,6 +2441,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: "U"
                             font.family: Config.theme.font
@@ -2466,6 +2482,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: "S"
                             font.family: Config.theme.font
@@ -2514,6 +2531,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: Icons.alignLeft
                             font.family: Icons.font
@@ -2556,6 +2574,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: Icons.alignCenter
                             font.family: Icons.font
@@ -2598,6 +2617,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: Icons.alignRight
                             font.family: Icons.font
@@ -2640,6 +2660,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: Icons.alignJustify
                             font.family: Icons.font
@@ -2891,6 +2912,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: Icons.minus
                             font.family: Icons.font
@@ -2925,6 +2947,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: root.mdCurrentHeading || "P"
                             font.family: Config.theme.font
@@ -2950,6 +2973,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: Icons.plus
                             font.family: Icons.font
@@ -2996,6 +3020,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: "B"
                             font.family: Config.theme.font
@@ -3035,6 +3060,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: "I"
                             font.family: Config.theme.font
@@ -3074,6 +3100,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: "U"
                             font.family: Config.theme.font
@@ -3113,6 +3140,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: "S"
                             font.family: Config.theme.font
@@ -3160,6 +3188,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: "<>"
                             font.family: "monospace"
@@ -3198,6 +3227,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: Icons.link
                             font.family: Icons.font
@@ -3410,6 +3440,7 @@ Item {
                         }
 
                         TextEdit {
+                            renderType: Text.NativeRendering
                             id: mdPreviewText
                             width: mdPreviewFlickable.width - 16
                             x: 8
@@ -3440,6 +3471,7 @@ Item {
             visible: currentNoteId === ""
 
             Text {
+                renderType: Text.NativeRendering
                 anchors.centerIn: parent
                 text: I18n.t("notes.select_or_create")
                 font.family: Config.theme.font
@@ -3457,6 +3489,7 @@ Item {
         radius: Styling.radius(4)
 
         Text {
+            renderType: Text.NativeRendering
             anchors.centerIn: parent
             text: Icons.spinnerGap
             font.family: Icons.font

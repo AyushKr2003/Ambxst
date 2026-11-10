@@ -213,6 +213,7 @@ Item {
                             visible: notificationGroup && notificationGroup.appIcon !== "" && root.validNotifications.some(n => n.image !== "")
                         }
                         Text {
+                            renderType: Text.NativeRendering
                             text: Icons.info
                             textFormat: Text.RichText
                             font.family: Icons.font
@@ -222,6 +223,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             id: appName
                             elide: Text.ElideRight
                             Layout.fillWidth: true
@@ -232,6 +234,7 @@ Item {
                             color: topRow.showAppName ? Colors.outline : Styling.srItem("overprimary")
                         }
                         Text {
+                            renderType: Text.NativeRendering
                             id: timeText
                             Layout.rightMargin: 10
                             horizontalAlignment: Text.AlignLeft

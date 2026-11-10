@@ -155,6 +155,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         anchors.centerIn: parent
                         text: Icons.image
                         textFormat: Text.RichText
@@ -291,6 +292,7 @@ Item {
                                     }
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         text: tab.linkPreviewData ? tab.linkPreviewData.site_name : ""
                                         font.family: Config.theme.font
                                         font.pixelSize: Styling.fontSize(-2)
@@ -337,6 +339,7 @@ Item {
                                             opacity: 0.9
 
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 anchors.centerIn: parent
                                                 text: Icons.play
                                                 font.family: Icons.font
@@ -355,6 +358,7 @@ Item {
                                             visible: parent.status === Image.Loading
 
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 anchors.centerIn: parent
                                                 text: Icons.spinnerGap
                                                 font.family: Icons.font
@@ -376,6 +380,7 @@ Item {
 
                                 // Title
                                 Text {
+                                    renderType: Text.NativeRendering
                                     width: parent.width
                                     text: tab.linkPreviewData && tab.linkPreviewData.title ? tab.linkPreviewData.title : ""
                                     font.family: Config.theme.font
@@ -390,6 +395,7 @@ Item {
 
                                 // Author/Description
                                 Text {
+                                    renderType: Text.NativeRendering
                                     width: parent.width
                                     text: tab.linkPreviewData && tab.linkPreviewData.description ? tab.linkPreviewData.description : ""
                                     font.family: Config.theme.font
@@ -465,6 +471,7 @@ Item {
                                         }
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             text: tab.linkPreviewData ? tab.linkPreviewData.site_name : ""
                                             font.family: Config.theme.font
                                             font.pixelSize: Styling.fontSize(-2)
@@ -477,6 +484,7 @@ Item {
 
                                     // Title
                                     Text {
+                                        renderType: Text.NativeRendering
                                         width: parent.width
                                         text: tab.linkPreviewData && tab.linkPreviewData.title ? tab.linkPreviewData.title : ""
                                         font.family: Config.theme.font
@@ -491,6 +499,7 @@ Item {
 
                                     // Description
                                     Text {
+                                        renderType: Text.NativeRendering
                                         width: parent.width
                                         text: tab.linkPreviewData && tab.linkPreviewData.description ? tab.linkPreviewData.description : ""
                                         font.family: Config.theme.font
@@ -529,6 +538,7 @@ Item {
                                             visible: parent.status === Image.Loading
 
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 anchors.centerIn: parent
                                                 text: Icons.spinnerGap
                                                 font.family: Icons.font
@@ -556,6 +566,7 @@ Item {
                                 spacing: 12
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: Icons.spinnerGap
                                     font.family: Icons.font
                                     font.pixelSize: 20
@@ -572,6 +583,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("clipboard.loading_preview")
                                     font.family: Config.theme.font
                                     font.pixelSize: Config.theme.fontSize
@@ -666,6 +678,7 @@ Item {
                                         }
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             anchors.centerIn: parent
                                             visible: !previewFavicon.visible
                                             text: Icons.globe
@@ -682,6 +695,7 @@ Item {
                                         spacing: 4
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             text: I18n.t("clipboard.link")
                                             font.family: Config.theme.font
                                             font.pixelSize: Config.theme.fontSize - 1
@@ -690,6 +704,7 @@ Item {
                                         }
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             text: {
                                                 if (!previewPanel.currentItem)
                                                     return "";
@@ -714,6 +729,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             id: previewText
                             text: tab.safeCurrentContent
                             font.family: Config.theme.font
@@ -767,6 +783,7 @@ Item {
                             anchors.horizontalCenter: parent.horizontalCenter
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: Icons.file
                                 textFormat: Text.RichText
@@ -782,6 +799,7 @@ Item {
                             anchors.horizontalCenter: parent.horizontalCenter
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: {
                                     if (!previewPanel.currentItem)
                                         return "";
@@ -804,6 +822,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: {
                                     if (!previewPanel.currentItem)
                                         return "";
@@ -874,6 +893,7 @@ Item {
                                 spacing: 2
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("clipboard.mime_type")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(-2)
@@ -882,6 +902,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: previewPanel.currentItem ? previewPanel.currentItem.mime : ""
                                     font.family: Config.theme.font
                                     font.pixelSize: Config.theme.fontSize
@@ -897,6 +918,7 @@ Item {
                                 spacing: 2
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("clipboard.size")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(-2)
@@ -905,6 +927,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: {
                                         if (!previewPanel.currentItem)
                                             return "";
@@ -933,6 +956,7 @@ Item {
                                 spacing: 2
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("clipboard.date")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(-2)
@@ -941,6 +965,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: {
                                         if (!previewPanel.currentItem || !previewPanel.currentItem.createdAt)
                                             return I18n.t("player.unknown");
@@ -972,6 +997,7 @@ Item {
                                 spacing: 2
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("clipboard.checksum")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(-2)
@@ -980,6 +1006,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: {
                                         if (!previewPanel.currentItem || !previewPanel.currentItem.hash)
                                             return "N/A";
@@ -1013,7 +1040,7 @@ Item {
                             width: height
                             height: 36
                             variant: metadataOpenButtonMouseArea.containsMouse ? "focus" : "common"
-                            color: metadataOpenButtonMouseArea.containsMouse ? Colors.surfaceBright : Colors.surface
+                            fillOverride: metadataOpenButtonMouseArea.containsMouse ? Colors.surfaceBright : Colors.surface
                             radius: Styling.radius(0)
                             visible: {
                                 if (!previewPanel.currentItem)
@@ -1044,6 +1071,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: Icons.popOpen
                                 font.family: Icons.font
@@ -1067,7 +1095,7 @@ Item {
                             width: height
                             height: 36
                             variant: metadataDragArea.containsMouse ? "focus" : "common"
-                            color: metadataDragArea.containsMouse ? Colors.surfaceBright : Colors.surface
+                            fillOverride: metadataDragArea.containsMouse ? Colors.surfaceBright : Colors.surface
                             radius: Styling.radius(0)
 
                             Behavior on color {
@@ -1114,6 +1142,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: Icons.handGrab
                                 font.family: Icons.font
@@ -1150,6 +1179,7 @@ Item {
             visible: !previewPanel.currentItem
 
             Text {
+                renderType: Text.NativeRendering
                 text: Icons.cactus
                 font.family: Icons.font
                 font.pixelSize: 48

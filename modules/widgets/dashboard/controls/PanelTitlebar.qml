@@ -32,6 +32,7 @@ RowLayout {
 
     // Title
     Text {
+        renderType: Text.NativeRendering
         text: root.title
         font.family: Config.theme.font
         font.pixelSize: Styling.fontSize(0)
@@ -41,6 +42,7 @@ RowLayout {
 
     // Status text (e.g., "Connecting...", "Bypassed")
     Text {
+        renderType: Text.NativeRendering
         visible: root.statusText !== ""
         text: root.statusText
         font.family: Config.theme.font

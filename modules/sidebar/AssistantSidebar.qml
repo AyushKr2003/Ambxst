@@ -421,6 +421,7 @@ Item {
                                 spacing: 8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("ai.chat_history")
                                     color: Colors.overSurface
                                     font.family: Config.theme.font
@@ -452,6 +453,7 @@ Item {
                                                 Layout.alignment: Qt.AlignVCenter
 
                                                 Text {
+                                                    renderType: Text.NativeRendering
                                                     text: modelData.title || "New Chat"
                                                     color: Ai.currentChatId === modelData.id ? Styling.srItem("primary") : Colors.overSurface
                                                     font.family: Config.theme.font
@@ -462,6 +464,7 @@ Item {
                                                 }
 
                                                 Text {
+                                                    renderType: Text.NativeRendering
                                                     text: {
                                                         let date = new Date(parseInt(modelData.id));
                                                         return date.toLocaleString(Qt.locale(), "MMM dd, hh:mm a");
@@ -626,6 +629,7 @@ Item {
                             spacing: 8
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("ai.hello_user", mainChatArea.username)
                                 font.family: Config.theme.font
                                 font.pixelSize: 32
@@ -645,6 +649,7 @@ Item {
                                 height: 40
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: Ai.currentModel ? Ai.currentModel.name : ""
                                     color: Colors.overBackground
                                     font.family: Config.theme.font
@@ -711,6 +716,7 @@ Item {
                                                 visible: !isUser
 
                                                 Text {
+                                                    renderType: Text.NativeRendering
                                                     anchors.centerIn: parent
                                                     text: Icons.robot
                                                     font.family: Icons.font
@@ -738,6 +744,7 @@ Item {
                                                     }
 
                                                     Text {
+                                                        renderType: Text.NativeRendering
                                                         anchors.centerIn: parent
                                                         text: Icons.user
                                                         font.family: Icons.font
@@ -916,6 +923,7 @@ Item {
                                                                 Component {
                                                                     id: textComponent
                                                                     TextEdit {
+                                                                        renderType: Text.NativeRendering
                                                                         width: bubbleContent.width
                                                                         text: segment.content
                                                                         textFormat: Text.MarkdownText
@@ -943,6 +951,7 @@ Item {
                                                     }
 
                                                     TextEdit {
+                                                        renderType: Text.NativeRendering
                                                         id: bubbleContentText
                                                         Layout.fillWidth: true
                                                         text: modelData.content || ""
@@ -969,6 +978,7 @@ Item {
                                                         }
 
                                                         Text {
+                                                            renderType: Text.NativeRendering
                                                             text: I18n.t("ai.run_command")
                                                             color: Styling.srItem("overprimary")
                                                             font.family: Config.theme.font
@@ -979,10 +989,11 @@ Item {
                                                         StyledRect {
                                                             Layout.fillWidth: true
                                                             variant: "surface"
-                                                            color: Colors.surface
+                                                            fillOverride: Colors.surface
                                                             radius: Styling.radius(4)
 
                                                             TextEdit {
+                                                                renderType: Text.NativeRendering
                                                                 padding: 8
                                                                 width: parent.width
                                                                 text: modelData.functionCall ? modelData.functionCall.args.command : ""
@@ -1042,6 +1053,7 @@ Item {
                                                         }
 
                                                         Text {
+                                                            renderType: Text.NativeRendering
                                                             visible: modelData.functionApproved === true
                                                             text: I18n.t("ai.command_approved")
                                                             color: Colors.success
@@ -1049,6 +1061,7 @@ Item {
                                                         }
 
                                                         Text {
+                                                            renderType: Text.NativeRendering
                                                             visible: modelData.functionApproved === false && !modelData.functionPending
                                                             text: I18n.t("ai.command_rejected")
                                                             color: Colors.error
@@ -1059,6 +1072,7 @@ Item {
                                             }
 
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 id: modelIndicator
                                                 visible: !isUser && !isSystem && (modelData.model ? true : false)
                                                 text: retryMode ? "Retry with another model " + Icons.caretRight : (modelData.model || "")
@@ -1348,6 +1362,7 @@ Item {
                                                 spacing: 8
 
                                                 Text {
+                                                    renderType: Text.NativeRendering
                                                     text: "/" + model.name
                                                     font.family: Config.theme.font
                                                     font.weight: Font.Bold
@@ -1355,6 +1370,7 @@ Item {
                                                 }
 
                                                 Text {
+                                                    renderType: Text.NativeRendering
                                                     text: model.description
                                                     font.family: Config.theme.font
                                                     color: highlighted ? Colors.overSurface : Colors.surfaceDim
@@ -1388,6 +1404,7 @@ Item {
                                         Layout.fillHeight: true
 
                                         TextArea {
+                                            renderType: Text.NativeRendering
                                             id: inputField
                                             focus: true
                                             activeFocusOnTab: true
@@ -1513,6 +1530,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                             anchors.top: inputContainer.bottom
                             anchors.topMargin: 8
                             anchors.horizontalCenter: inputContainer.horizontalCenter

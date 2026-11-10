@@ -105,6 +105,7 @@ StyledRect {
 
                         // Font Icon
                         Text {
+                            renderType: Text.NativeRendering
                             visible: typeof optionButton.modelData === "object" && !!optionButton.modelData.icon && !optionButton.modelData.image
                             text: visible ? optionButton.modelData.icon : ""
                             color: root.currentIndex === optionButton.index ? Styling.srItem("overprimary") : Colors.overBackground
@@ -124,6 +125,7 @@ StyledRect {
 
                         // Label
                         Text {
+                            renderType: Text.NativeRendering
                             visible: typeof optionButton.modelData !== "object" || !!optionButton.modelData.label
                             text: typeof optionButton.modelData === "object" ? (optionButton.modelData.label || "") : optionButton.modelData
                             color: root.currentIndex === optionButton.index ? Styling.srItem("overprimary") : Colors.overBackground

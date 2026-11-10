@@ -73,6 +73,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 id: userHostText
                 anchors.verticalCenter: parent.verticalCenter
                 text: `${Quickshell.env("USER")}@${hostnameCollector.text.trim()}`

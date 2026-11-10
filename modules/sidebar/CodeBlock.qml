@@ -40,6 +40,7 @@ ColumnLayout {
             spacing: 8
 
             Text {
+                renderType: Text.NativeRendering
                 text: root.language || "text"
                 color: Colors.outline
                 font.family: Config.theme.font
@@ -75,6 +76,7 @@ ColumnLayout {
                 }
 
                 Text {
+                    renderType: Text.NativeRendering
                     id: copyFeedback
                     text: I18n.t("common.copied")
                     font.family: Config.theme.font
@@ -108,6 +110,7 @@ ColumnLayout {
         // Overlap slightly to hide top radius if needed, or just keep as separate blocks
 
         TextEdit {
+            renderType: Text.NativeRendering
             id: codeText
             anchors.fill: parent
             anchors.margins: 8

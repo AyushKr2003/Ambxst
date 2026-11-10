@@ -55,6 +55,7 @@ StyledRect {
             visible: !root.compact || root.label !== ""
 
             Text {
+                renderType: Text.NativeRendering
                 text: root.label
                 font.family: Styling.defaultFont
                 font.pixelSize: Styling.fontSize(-2)
@@ -65,6 +66,7 @@ StyledRect {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 text: root.displayName
                 font.family: Styling.defaultFont
                 font.pixelSize: Styling.fontSize(0)
@@ -76,6 +78,7 @@ StyledRect {
         }
 
         Text {
+            renderType: Text.NativeRendering
             text: Icons.caretRight
             font.family: Icons.font
             font.pixelSize: root.compact ? 12 : 14

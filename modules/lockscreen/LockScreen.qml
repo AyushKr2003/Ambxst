@@ -478,6 +478,7 @@ WlSessionLockSurface {
 
                     // Fallback icon if image not found
                     Text {
+                        renderType: Text.NativeRendering
                         anchors.centerIn: parent
                         text: "👤"
                         font.pixelSize: 32
@@ -540,6 +541,7 @@ WlSessionLockSurface {
 
                         // Text field
                         TextField {
+                            renderType: Text.NativeRendering
                             id: passwordInput
                             Layout.fillWidth: true
                             Layout.alignment: Qt.AlignVCenter

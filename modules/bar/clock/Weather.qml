@@ -39,6 +39,7 @@ StyledRect {
         spacing: 8
 
         Text {
+            renderType: Text.NativeRendering
             id: symbolDisplay
             text: weatherContainer.weatherSymbol
             color: Colors.overBackground
@@ -55,6 +56,7 @@ StyledRect {
         }
 
         Text {
+            renderType: Text.NativeRendering
             id: tempDisplay
             text: weatherContainer.weatherTemp
             color: Colors.overBackground
@@ -72,6 +74,7 @@ StyledRect {
         Layout.alignment: Qt.AlignHCenter
 
         Text {
+            renderType: Text.NativeRendering
             id: symbolDisplayV
             text: weatherContainer.weatherSymbol
             color: Colors.overBackground
@@ -90,6 +93,7 @@ StyledRect {
         }
 
         Text {
+            renderType: Text.NativeRendering
             id: tempDisplayV
             text: weatherContainer.vertical && weatherContainer.weatherTemp.length > 0 ? weatherContainer.weatherTemp.slice(0, -1) : weatherContainer.weatherTemp
             color: Colors.overBackground

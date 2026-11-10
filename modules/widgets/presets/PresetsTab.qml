@@ -798,6 +798,7 @@ Item {
                                         spacing: 8
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             text: modelData && modelData.icon ? modelData.icon : ""
                                             font.family: Icons.font
                                             font.pixelSize: 14
@@ -820,6 +821,7 @@ Item {
                                         }
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             Layout.fillWidth: true
                                             text: modelData && modelData.text ? modelData.text : ""
                                             font.family: Config.theme.font
@@ -953,6 +955,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: Icons.cancel
                                 color: renameCancelButton.isHighlighted ? Colors.overSecondaryContainer : Colors.overSecondary
@@ -987,6 +990,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: Icons.accept
                                 color: renameConfirmButton.isHighlighted ? Colors.overSecondaryContainer : Colors.overSecondary
@@ -1092,6 +1096,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: Icons.cancel
                                 color: deleteCancelButton.isHighlighted ? Colors.overErrorContainer : Colors.overError
@@ -1126,6 +1131,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: Icons.accept
                                 color: deleteConfirmButton.isHighlighted ? Colors.overErrorContainer : Colors.overError
@@ -1184,6 +1190,7 @@ Item {
                         radius: Styling.radius(-4)
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: {
                                 if (isInDeleteMode)
@@ -1223,6 +1230,7 @@ Item {
                         Component {
                             id: normalText
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: {
                                         if (isInDeleteMode && !modelData.isCreateButton && !modelData.isCreateSpecificButton) {
                                             return I18n.t("presets.confirm_delete", root.presetToDelete);
@@ -1243,6 +1251,7 @@ Item {
                         Component {
                             id: renameTextInput
                             TextField {
+                                renderType: Text.NativeRendering
                                 text: root.newPresetName
                                 color: Colors.overSecondary
                                 selectionColor: Colors.overSecondary
@@ -1287,6 +1296,7 @@ Item {
 
                         // Subtitle
                         Text {
+                            renderType: Text.NativeRendering
                             visible: !isInRenameMode && !isInUpdateMode
                             text: {
                                 if (modelData.isCreateButton || modelData.isCreateSpecificButton) {
@@ -1310,6 +1320,7 @@ Item {
                             radius: 10
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: I18n.t("presets.official")
                                 font.family: Config.theme.font
@@ -1329,6 +1340,7 @@ Item {
                         radius: 10
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: I18n.t("presets.active")
                             font.family: Config.theme.font
@@ -1547,6 +1559,7 @@ Item {
                     radius: Styling.radius(-4)
 
                     Text {
+                        renderType: Text.NativeRendering
                         anchors.centerIn: parent
                         text: Icons.arrowCounterClockwise
                         font.family: Icons.font
@@ -1556,6 +1569,7 @@ Item {
                 }
 
                 Text {
+                    renderType: Text.NativeRendering
                     text: I18n.t("presets.update_title", root.presetToUpdate)
                     font.family: Config.theme.font
                     font.pixelSize: Config.theme.fontSize + 2
@@ -1566,6 +1580,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 text: I18n.t("presets.select_config_files")
                 color: Colors.outline
                 font.family: Config.theme.font
@@ -1617,6 +1632,7 @@ Item {
                                 border.color: Colors.outline
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     anchors.centerIn: parent
                                     text: Icons.accept
                                     font.family: Icons.font
@@ -1627,6 +1643,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: fileDelegate.fileName
                                 color: fileDelegate.checked ? Colors.overSurface : Colors.outline
                                 font.family: Config.theme.font
@@ -1650,6 +1667,7 @@ Item {
                     radius: 4
 
                     Text {
+                        renderType: Text.NativeRendering
                         anchors.centerIn: parent
                         text: I18n.t("common.cancel")
                         color: Colors.overSurface
@@ -1670,6 +1688,7 @@ Item {
                     opacity: root.selectedConfigFiles.length > 0 ? 1 : 0.5
 
                     Text {
+                        renderType: Text.NativeRendering
                         anchors.centerIn: parent
                         text: I18n.t("presets.update") + ` (${root.selectedConfigFiles.length})`
                         color: Styling.srItem("tertiary")

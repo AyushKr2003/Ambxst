@@ -102,6 +102,7 @@ Item {
             spacing: 8
 
             Text {
+                renderType: Text.NativeRendering
                 text: I18n.t("theme.gradient_stops") + " (" + root.stops.length + ")"
                 font.family: Config.theme.font
                 font.pixelSize: Styling.fontSize(-1)
@@ -114,6 +115,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 text: I18n.t("theme.stop_n", root.selectedStopIndex + 1)
                 font.family: Config.theme.font
                 font.pixelSize: Styling.fontSize(-1)
@@ -142,6 +144,7 @@ Item {
                 property bool isEnabled: root.stops.length < 8
 
                 Text {
+                    renderType: Text.NativeRendering
                     anchors.centerIn: parent
                     text: Icons.plus
                     font.family: Icons.font
@@ -385,6 +388,7 @@ Item {
                 opacity: resetMouseArea.containsMouse ? 0.8 : 1.0
 
                 Text {
+                    renderType: Text.NativeRendering
                     anchors.centerIn: parent
                     text: Icons.broom
                     font.family: Icons.font
@@ -461,6 +465,7 @@ Item {
 
                     // Position label
                     Text {
+                        renderType: Text.NativeRendering
                         text: I18n.t("theme.position")
                         font.family: Styling.defaultFont
                         font.pixelSize: Styling.fontSize(-2)
@@ -484,6 +489,7 @@ Item {
                             radius: Styling.radius(-3)
 
                             TextInput {
+                                renderType: Text.NativeRendering
                                 id: positionInput
                                 anchors.fill: parent
                                 anchors.margins: 4
@@ -529,6 +535,7 @@ Item {
                             property bool isEnabled: root.stops.length > 1
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: Icons.trash
                                 font.family: Icons.font

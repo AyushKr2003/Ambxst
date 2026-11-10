@@ -59,6 +59,7 @@ Button {
     contentItem: Item {
         // Text icon (single character)
         Text {
+            renderType: Text.NativeRendering
             visible: !root.isIconPath
             anchors.fill: parent
             text: root.buttonIcon

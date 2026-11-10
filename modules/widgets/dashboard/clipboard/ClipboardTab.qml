@@ -908,6 +908,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             width: 32
                             height: parent.height
                             text: root.clearButtonConfirmState ? Icons.alert : Icons.trash
@@ -920,6 +921,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             width: parent.width - 32 - parent.spacing
                             height: parent.height
                             text: I18n.t("clipboard.clear_all_confirm")
@@ -1392,6 +1394,7 @@ Item {
                                         }
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             anchors.centerIn: parent
                                             text: Icons.cancel
                                             color: cancelButton.isHighlighted ? Colors.overErrorContainer : Colors.overError
@@ -1430,6 +1433,7 @@ Item {
                                         }
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             anchors.centerIn: parent
                                             text: Icons.accept
                                             color: confirmButton.isHighlighted ? Colors.overErrorContainer : Colors.overError
@@ -1548,6 +1552,7 @@ Item {
                                         }
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             anchors.centerIn: parent
                                             text: Icons.cancel
                                             color: aliasCancelButton.isHighlighted ? Colors.overSecondaryContainer : Colors.overSecondary
@@ -1586,6 +1591,7 @@ Item {
                                         }
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             anchors.centerIn: parent
                                             text: Icons.accept
                                             color: aliasConfirmButton.isHighlighted ? Colors.overSecondaryContainer : Colors.overSecondary
@@ -1824,6 +1830,7 @@ Item {
                                                 spacing: 8
 
                                                 Text {
+                                                    renderType: Text.NativeRendering
                                                     text: modelData && modelData.icon ? modelData.icon : ""
                                                     font.family: Icons.font
                                                     font.pixelSize: 14
@@ -1846,6 +1853,7 @@ Item {
                                                 }
 
                                                 Text {
+                                                    renderType: Text.NativeRendering
                                                     Layout.fillWidth: true
                                                     text: modelData && modelData.text ? modelData.text : ""
                                                     font.family: Config.theme.font
@@ -2044,6 +2052,7 @@ Item {
                                     }
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.centerIn: parent
                                         visible: (iconBackground.iconType !== "link") || (iconBackground.iconType === "link" && !iconBackground.faviconLoaded)
                                         text: {
@@ -2123,6 +2132,7 @@ Item {
                                     color: Styling.srItem("overprimary")
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.centerIn: parent
                                         text: Icons.pin
                                         font.family: Icons.font
@@ -2151,6 +2161,7 @@ Item {
                                 Component {
                                     id: normalText
                                     Text {
+                                        renderType: Text.NativeRendering
                                         width: parent.width
                                         text: displayText
                                         color: textColor
@@ -2166,6 +2177,7 @@ Item {
                                 Component {
                                     id: aliasTextInput
                                     TextField {
+                                        renderType: Text.NativeRendering
                                         text: root.newAlias
                                         color: Colors.overSecondary
                                         selectionColor: Colors.overSecondary
@@ -2209,6 +2221,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     width: parent.width
                                     text: {
                                         if (!modelData.createdAt)
@@ -2350,6 +2363,7 @@ Item {
                     visible: ClipboardService.items.length === 0
 
                     Text {
+                        renderType: Text.NativeRendering
                         text: Icons.clipboard
                         font.family: Icons.font
                         font.pixelSize: 48
@@ -2359,6 +2373,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         text: I18n.t("clipboard.no_history")
                         font.family: Config.theme.font
                         font.pixelSize: Config.theme.fontSize
@@ -2368,6 +2383,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         text: I18n.t("clipboard.copy_to_start")
                         font.family: Config.theme.font
                         font.pixelSize: Styling.fontSize(-2)

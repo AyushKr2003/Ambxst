@@ -73,6 +73,7 @@ StyledRect {
         spacing: 12
 
         Label {
+            renderType: Text.NativeRendering
             text: I18n.t("mods.updates_title")
             font.pixelSize: Styling.fontSize(1)
             font.weight: Font.DemiBold
@@ -80,6 +81,7 @@ StyledRect {
         RowLayout {
             Layout.fillWidth: true
             Label {
+                renderType: Text.NativeRendering
                 text: I18n.t("mods.periodic_checks")
                 font.weight: Font.DemiBold
                 font.pixelSize: Styling.fontSize(-1)
@@ -92,10 +94,12 @@ StyledRect {
             }
         }
         Label {
+            renderType: Text.NativeRendering
             text: I18n.t("mods.periodic_checks_description")
             color: Colors.outline
         }
         Label {
+            renderType: Text.NativeRendering
             text: I18n.t("mods.check_frequency")
             font.weight: Font.Medium
         }
@@ -114,10 +118,12 @@ StyledRect {
             }
         }
         Label {
+            renderType: Text.NativeRendering
             text: I18n.t("mods.check_frequency_description")
             color: Colors.outline
         }
         Label {
+            renderType: Text.NativeRendering
             visible: ModsService.periodicChecks && (root.updates?.nextCheck ?? "") !== ""
                 && !ModsService.restartRequired
             text: I18n.t("mods.next_check", Qt.formatDateTime(new Date(root.updates?.nextCheck ?? ""), "dd.MM.yyyy HH:mm"))
@@ -127,6 +133,7 @@ StyledRect {
         RowLayout {
             Layout.fillWidth: true
             Label {
+                renderType: Text.NativeRendering
                 text: I18n.t("mods.auto_updates")
                 font.weight: Font.DemiBold
                 font.pixelSize: Styling.fontSize(-1)
@@ -139,10 +146,12 @@ StyledRect {
             }
         }
         Label {
+            renderType: Text.NativeRendering
             text: I18n.t("mods.auto_updates_description")
             color: Colors.outline
         }
         Label {
+            renderType: Text.NativeRendering
             visible: !ModsService.periodicChecks
             text: I18n.t("mods.schedule_paused")
             color: Colors.outline
@@ -176,21 +185,25 @@ StyledRect {
             }
         }
         Label {
+            renderType: Text.NativeRendering
             visible: root.availableCount > 0
             text: I18n.t("mods.available_update_count", root.availableCount)
             font.weight: Font.DemiBold
         }
         Label {
+            renderType: Text.NativeRendering
             visible: (root.updates?.phase ?? "") !== ""
             text: I18n.t("mods.update_phase_" + (root.updates?.phase ?? "current"))
             color: root.updates?.phase === "failed" ? Colors.error : Colors.overBackground
         }
         Label {
+            renderType: Text.NativeRendering
             visible: (root.updates?.lastAttempt ?? "") !== ""
             text: I18n.t("mods.last_check", Qt.formatDateTime(new Date(root.updates?.lastAttempt ?? ""), "dd.MM.yyyy HH:mm"))
             color: Colors.outline
         }
         Label {
+            renderType: Text.NativeRendering
             visible: (root.updates?.details ?? "") !== ""
             text: I18n.t("mods.technical_details", root.updates?.details ?? "")
             color: Colors.error
@@ -202,10 +215,12 @@ StyledRect {
             visible: root.expanded
             spacing: 16
             Label {
+                renderType: Text.NativeRendering
                 text: I18n.t("mods.update_summary", root.changedItems.length, root.currentCount)
                 font.weight: Font.DemiBold
             }
             Label {
+                renderType: Text.NativeRendering
                 text: I18n.t("mods.preview_description")
                 color: Colors.outline
             }
@@ -220,6 +235,7 @@ StyledRect {
                     Layout.topMargin: 8
                     Layout.bottomMargin: 8
                     Label {
+                        renderType: Text.NativeRendering
                         text: ((ModsService.mods ?? []).find(mod => mod.id === modelData.id)?.name ?? modelData.id)
                             + " · " + (modelData.fromVersion || "?")
                             + (modelData.toVersion && modelData.toVersion !== modelData.fromVersion ? " → " + modelData.toVersion : "")
@@ -227,16 +243,19 @@ StyledRect {
                         font.weight: Font.DemiBold
                     }
                     Label {
+                        renderType: Text.NativeRendering
                         visible: (modelData.checkedAt ?? "") !== ""
                         text: I18n.t("mods.last_check", Qt.formatDateTime(new Date(modelData.checkedAt ?? ""), "dd.MM.yyyy HH:mm"))
                         color: Colors.outline
                     }
                     Label {
+                        renderType: Text.NativeRendering
                         visible: (modelData.checkError ?? "") !== ""
                         text: I18n.t("mods.cached_check_failed")
                         color: Colors.error
                     }
                     Label {
+                        renderType: Text.NativeRendering
                         visible: modelData.state === "available" && modelData.toVersion === modelData.fromVersion
                         text: I18n.t("mods.revision_update")
                         color: Colors.outline
@@ -266,6 +285,7 @@ StyledRect {
                         }
                     }
                     Label {
+                        renderType: Text.NativeRendering
                         visible: notesExpanded
                         text: modelData.changelog ? I18n.t("mods.changelog_source", modelData.changelogFile)
                             : I18n.t("mods.changelog_missing")
@@ -278,6 +298,7 @@ StyledRect {
                         clip: true
                         contentWidth: availableWidth
                         TextArea {
+                            renderType: Text.NativeRendering
                             id: changelogText
                             width: parent.width
                             readOnly: true
@@ -293,6 +314,7 @@ StyledRect {
                         }
                     }
                     Label {
+                        renderType: Text.NativeRendering
                         visible: detailsExpanded && (modelData.revision ?? "") !== ""
                         text: I18n.t("mods.revision") + ": "
                             + (modelData.fromRevision && modelData.fromRevision !== modelData.revision
@@ -300,44 +322,53 @@ StyledRect {
                             + (modelData.revision ?? "").substring(0, 12)
                     }
                     Label {
+                        renderType: Text.NativeRendering
                         visible: (modelData.reviewReasons ?? []).length > 0
                         text: (modelData.reviewReasons ?? []).map(reason => I18n.t("mods.review_" + reason)).join("\n")
                         color: Colors.warning
                     }
                     Label {
+                        renderType: Text.NativeRendering
                         visible: !!modelData.deprecated && (modelData.deprecatedReason ?? "") !== ""
                         text: modelData.deprecatedReason ?? ""
                         color: Colors.warning
                     }
                     Label {
+                        renderType: Text.NativeRendering
                         visible: detailsExpanded && (modelData.dependencies ?? []).length > 0
                         text: I18n.t("mods.required_mods") + ": " + (modelData.dependencies ?? []).join(", ")
                     }
                     Label {
+                        renderType: Text.NativeRendering
                         visible: detailsExpanded && (modelData.permissions ?? []).length > 0
                         text: I18n.t("mods.permissions") + ": " + (modelData.permissions ?? []).join(", ")
                     }
                     Label {
+                        renderType: Text.NativeRendering
                         visible: detailsExpanded && Object.keys(modelData.dependencySources ?? {}).length > 0
                         text: Object.entries(modelData.dependencySources ?? {}).map(pair => pair[0] + ": " + pair[1]).join("\n")
                         wrapMode: Text.WrapAnywhere
                     }
                     Label {
+                        renderType: Text.NativeRendering
                         visible: detailsExpanded && (modelData.commands ?? []).length > 0
                         text: I18n.t("mods.requirements") + ": " + (modelData.commands ?? []).join(", ")
                     }
                     Label {
+                        renderType: Text.NativeRendering
                         visible: detailsExpanded && (modelData.files ?? []).length > 0
                         text: I18n.t("mods.affected_files") + ": " + (modelData.files ?? []).join("\n")
                         wrapMode: Text.WrapAnywhere
                         color: Colors.outline
                     }
                     Label {
+                        renderType: Text.NativeRendering
                         visible: (modelData.errorCode ?? "") !== ""
                         text: I18n.t("mods.error_" + (modelData.errorCode ?? "invalid_package"))
                         color: Colors.error
                     }
                     Label {
+                        renderType: Text.NativeRendering
                         visible: detailsExpanded && (modelData.details ?? "") !== ""
                         text: I18n.t("mods.technical_details", modelData.details ?? "")
                         color: Colors.error
@@ -347,6 +378,7 @@ StyledRect {
                 }
             }
             Label {
+                renderType: Text.NativeRendering
                 visible: root.updates?.restartRequired ?? false
                 text: I18n.t("mods.update_restart_notice")
             }
@@ -376,6 +408,7 @@ StyledRect {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 180
                 TextArea {
+                    renderType: Text.NativeRendering
                     id: diagnosticPreview
                     text: ModsService.diagnosticText
                     readOnly: true
@@ -427,6 +460,7 @@ StyledRect {
             }
         }
         TextField {
+            renderType: Text.NativeRendering
             id: candidatePath
             visible: root.toolsVisible
             Layout.fillWidth: true
@@ -439,6 +473,7 @@ StyledRect {
             background: StyledRect { variant: "internalbg"; enableShadow: false }
         }
         Label {
+            renderType: Text.NativeRendering
             visible: root.toolsVisible && ModsService.compatibilityReport !== null
             text: I18n.t(ModsService.compatibilityReport?.composes ? "mods.compatibility_passed" : "mods.compatibility_failed")
                 + (ModsService.compatibilityReport?.details ? "\n" + ModsService.compatibilityReport.details : "")

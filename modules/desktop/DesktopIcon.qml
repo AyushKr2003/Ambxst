@@ -120,6 +120,7 @@ Item {
         }
 
         Text {
+            renderType: Text.NativeRendering
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter
             text: root.itemName
@@ -168,6 +169,7 @@ Item {
                 radius: 4
 
                 Text {
+                    renderType: Text.NativeRendering
                     anchors.centerIn: parent
                     text: root.itemType === 'folder' ? "📁" : "📄"
                     visible: parent.parent.status === Image.Error

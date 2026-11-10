@@ -471,6 +471,7 @@ Item {
                                                         spacing: 4
 
                                                         Text {
+                                                            renderType: Text.NativeRendering
                                                             id: summaryText
                                                             property real combinedImplicitWidth: implicitWidth + (appNameText.visible ? appNameText.implicitWidth + parent.spacing : 0)
                                                             width: {
@@ -492,6 +493,7 @@ Item {
                                                         }
 
                                                         Text {
+                                                            renderType: Text.NativeRendering
                                                             id: appNameText
                                                             property real availableWidth: leftTextsContainer.width - summaryText.implicitWidth - (visible ? parent.spacing : 0)
                                                             width: {
@@ -515,6 +517,7 @@ Item {
 
                                                     // Timestamp a la derecha
                                                     Text {
+                                                        renderType: Text.NativeRendering
                                                         id: timestampText
                                                         // Usar timestampUpdateCounter para forzar re-evaluación cada minuto
                                                         text: notification ? (root.timestampUpdateCounter, NotificationUtils.getFriendlyNotifTimeString(notification.time)) : ""
@@ -528,6 +531,7 @@ Item {
                                                 }
 
                                                 Text {
+                                                    renderType: Text.NativeRendering
                                                     width: parent.width
                                                     text: notification ? processNotificationBody(notification.body, notification.appName) : ""
                                                     font.family: Config.theme.font
@@ -548,6 +552,7 @@ Item {
                                                 visible: !hovered
 
                                                 Text {
+                                                    renderType: Text.NativeRendering
                                                     id: summaryCollapsed
                                                     property real combinedImplicitWidth: implicitWidth + (bodyCollapsed.visible ? bodyCollapsed.implicitWidth + bulletCollapsed.implicitWidth + parent.spacing * 2 : 0)
                                                     width: {
@@ -568,6 +573,7 @@ Item {
                                                 }
 
                                                 Text {
+                                                    renderType: Text.NativeRendering
                                                     id: bulletCollapsed
                                                     text: "•"
                                                     font.family: Config.theme.font
@@ -579,6 +585,7 @@ Item {
                                                 }
 
                                                 Text {
+                                                    renderType: Text.NativeRendering
                                                     id: bodyCollapsed
                                                     property real availableWidth: parent.width - summaryCollapsed.implicitWidth - (visible ? bulletCollapsed.implicitWidth + parent.spacing * 2 : 0)
                                                     width: {

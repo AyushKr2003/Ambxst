@@ -153,6 +153,7 @@ Item {
 
         // Central icon (Lightning/Plug for battery, PowerProfile icon otherwise)
         Text {
+            renderType: Text.NativeRendering
             id: batteryIcon
             anchors.centerIn: parent
             text: Battery.available ? (Battery.isPluggedIn ? Icons.plug : Icons.lightning) : PowerProfileClient.getProfileIcon(PowerProfileClient.currentProfile)
@@ -225,6 +226,7 @@ Item {
                     spacing: 12
 
                     Text {
+                        renderType: Text.NativeRendering
                         Layout.alignment: Qt.AlignVCenter
                         text: Battery.getBatteryIcon()
                         font.family: Icons.font
@@ -239,6 +241,7 @@ Item {
                         spacing: 2
 
                         Text {
+                            renderType: Text.NativeRendering
                             Layout.fillWidth: true
                             text: Battery.isPluggedIn ? (Battery.isCharging ? I18n.t("battery.charging") : I18n.t("battery.full")) : I18n.t("battery.on_battery")
                             font.family: Styling.defaultFont
@@ -248,6 +251,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: Battery.isPluggedIn ? (Battery.timeToFull !== "" ? I18n.t("battery.full_in", Battery.timeToFull) : I18n.t("battery.fully_charged")) : (Battery.timeToEmpty !== "" ? I18n.t("battery.remaining", Battery.timeToEmpty) : "")
                             font.family: Styling.defaultFont
                             font.pixelSize: Styling.fontSize(-1)
@@ -260,6 +264,7 @@ Item {
 
                     // Battery percentage display
                     Text {
+                        renderType: Text.NativeRendering
                         Layout.alignment: Qt.AlignVCenter
                         text: Math.round(Battery.percentage) + "%"
                         font.family: Styling.defaultFont
@@ -306,6 +311,7 @@ Item {
                         bottomRightRadius: isSelected ? (isLast ? defaultRadius : selectedRadius) : defaultRadius
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: PowerProfileClient.getProfileIcon(profileButton.modelData)
                             font.family: Icons.font

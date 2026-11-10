@@ -95,7 +95,12 @@ ClippingRectangle {
 
     // Color priority: single-color gradient > explicit solid color > transparent (for real gradients)
     // Apply rectOpacity via alpha channel to avoid affecting children
-    color: {
+    // Set instead of `color` to override the variant's fill.
+    property var fillOverride: null
+
+    readonly property color fillColor: {
+        if (fillOverride !== null && fillOverride !== undefined)
+            return fillOverride;
         if (isSingleColorGradient && (gradientType === "linear" || gradientType === "radial")) {
             return applyOpacity(singleGradientColor, rectOpacity);
         }
@@ -104,6 +109,16 @@ ClippingRectangle {
         }
         return "transparent";
     }
+
+    // A plain fill (and its border) is drawn by smoothShape below, an SDF
+    // shader giving every edge pixel its exact coverage (rounded_rect.frag).
+    // The ClippingRectangle's own background is a Rectangle rendered into a
+    // layer, whose vertex antialiasing smears a rounded edge over 2-3px.
+    // Gradient and halftone fills still use their own shaders.
+    readonly property bool smoothFill: !needsGradientShader && gradientType !== "halftone"
+    readonly property real borderWidthPx: (enableBorder && borderData) ? (borderData[1] || 0) : 0
+
+    color: smoothFill ? "transparent" : fillColor
 
     Behavior on radius {
         enabled: root.animateRadius && Config.animDuration > 0
@@ -206,6 +221,28 @@ ClippingRectangle {
     layer.enabled: enableShadow
     layer.effect: Shadow {}
 
+    ShaderEffect {
+        id: smoothShape
+        // Parented to the ClippingRectangle itself, not its clipped
+        // content, so the clip mask doesn't cut the smooth edge back to
+        // the layered Rectangle's edge. z -1 keeps it under the content.
+        parent: root
+        z: -1
+        anchors.fill: parent
+        visible: root.smoothFill
+
+        readonly property real maxR: Math.min(width, height) / 2
+        function clampR(r) { return Math.max(0, Math.min(r, maxR)); }
+
+        property size itemSize: Qt.size(width, height)
+        property vector4d radii: Qt.vector4d(clampR(root.topLeftRadius), clampR(root.topRightRadius), clampR(root.bottomRightRadius), clampR(root.bottomLeftRadius))
+        property color fillColor: root.fillColor
+        property color borderColor: root.borderWidthPx > 0 ? Config.resolveColor(root.borderData[0]) : "transparent"
+        property real borderWidth: root.borderWidthPx
+
+        fragmentShader: "rounded_rect.frag.qsb"
+    }
+
     // Border overlay to avoid ClippingRectangle artifacts
     ClippingRectangle {
         anchors.fill: parent
@@ -217,6 +254,6 @@ ClippingRectangle {
         color: "transparent"
         border.color: Config.resolveColor(borderData[0])
         border.width: borderData[1]
-        visible: root.enableBorder
+        visible: root.enableBorder && !root.smoothFill
     }
 }

@@ -403,6 +403,7 @@ Item {
         z: 1000
 
         Text {
+            renderType: Text.NativeRendering
             id: tooltipText
             anchors.centerIn: parent
             text: `${root.windowData?.title || ""}\n[${root.windowData?.class || ""}]${root.windowData?.xwayland ? " [XWayland]" : ""}`

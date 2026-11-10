@@ -238,6 +238,7 @@ PanelWindow {
         visible: !DesktopService.initialLoadComplete
 
         Text {
+            renderType: Text.NativeRendering
             anchors.centerIn: parent
             text: I18n.t("lockscreen.loading")
             color: "white"

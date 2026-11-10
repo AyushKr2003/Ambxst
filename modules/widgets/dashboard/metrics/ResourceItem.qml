@@ -20,6 +20,7 @@ Item {
 
         // Icon
         Text {
+            renderType: Text.NativeRendering
             text: root.icon
             font.family: Icons.font
             font.pixelSize: 18
@@ -59,6 +60,7 @@ Item {
 
         // Percentage text
         Text {
+            renderType: Text.NativeRendering
             visible: false
             text: `${Math.round(root.value * 100)}%`
             font.family: Config.theme.font

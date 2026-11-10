@@ -68,6 +68,7 @@ Item {
                         radius: Styling.radius(0)
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: {
                                 var monthKeys = [
@@ -98,6 +99,7 @@ Item {
                         readonly property color buttonItem: leftMouseArea.pressed ? itemColor : Styling.srItem("overprimary")
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: Icons.caretLeft
                             font.family: Icons.font
@@ -124,6 +126,7 @@ Item {
                         readonly property color buttonItem: rightMouseArea.pressed ? itemColor : Styling.srItem("overprimary")
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: Icons.caretRight
                             font.family: Icons.font

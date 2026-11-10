@@ -465,6 +465,7 @@ Item {
                     property var mainAppIconSource: (DesktopEntries.applications.values, focusedWindow ? WindowIcon.iconSourceFor(focusedWindow) : "")
 
                     Text {
+                        renderType: Text.NativeRendering
                         opacity: Config.workspaces.alwaysShowNumbers || ((Config.workspaces.showNumbers && (!Config.workspaces.showAppIcons || !workspaceButtonBackground.focusedWindow || Config.workspaces.alwaysShowNumbers)) || (Config.workspaces.alwaysShowNumbers && !Config.workspaces.showAppIcons)) ? 1 : 0
                         z: 3
 
@@ -599,6 +600,7 @@ Item {
                     property var mainAppIconSource: (DesktopEntries.applications.values, focusedWindow ? WindowIcon.iconSourceFor(focusedWindow) : "")
 
                     Text {
+                        renderType: Text.NativeRendering
                         opacity: Config.workspaces.alwaysShowNumbers || ((Config.workspaces.showNumbers && (!Config.workspaces.showAppIcons || !workspaceButtonBackgroundVert.focusedWindow || Config.workspaces.alwaysShowNumbers)) || (Config.workspaces.alwaysShowNumbers && !Config.workspaces.showAppIcons)) ? 1 : 0
                         z: 3
 

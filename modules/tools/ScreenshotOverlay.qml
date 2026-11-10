@@ -187,6 +187,7 @@ PanelWindow {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         anchors.centerIn: parent
                         text: Icons.handGrab // Assuming this exists per user request
                         font.family: Icons.font
@@ -289,6 +290,7 @@ PanelWindow {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 anchors.centerIn: parent
                 text: btn.icon
                 font.family: Icons.font

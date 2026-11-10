@@ -251,6 +251,7 @@ Item {
                 radius: Styling.radius(-4)
                 
                 Text {
+                    renderType: Text.NativeRendering
                     anchors.centerIn: parent
                     text: root.isWorkSession ? I18n.t("pomodoro.work_session") : I18n.t("pomodoro.rest_session")
                     font.family: Config.theme.font
@@ -283,6 +284,7 @@ Item {
                 implicitWidth: 28; implicitHeight: 28
                 radius: Styling.radius(-4)
                 Text {
+                    renderType: Text.NativeRendering
                     anchors.centerIn: parent
                     text: Icons.arrowCounterClockwise
                     font.family: Icons.font; font.pixelSize: 14
@@ -325,6 +327,7 @@ Item {
                     }
                     
                     Text {
+                        renderType: Text.NativeRendering
                         text: ":"
                         font.family: Config.theme.font
                         font.pixelSize: Styling.fontSize(8)
@@ -396,6 +399,7 @@ Item {
                 radius: Styling.radius(0)
                 
                 Text {
+                    renderType: Text.NativeRendering
                     anchors.centerIn: parent
                     text: root.alarmActive ? I18n.t("pomodoro.stop_alarm") : (root.isRunning ? I18n.t("pomodoro.pause") : (root.isResuming ? I18n.t("pomodoro.resume") : (root.isWorkSession ? I18n.t("pomodoro.start_work") : I18n.t("pomodoro.start_rest"))))
                     font.family: Config.theme.font
@@ -435,6 +439,7 @@ Item {
             RowLayout {
                 spacing: 8
                 Text {
+                    renderType: Text.NativeRendering
                     text: I18n.t("common.auto")
                     font.family: Config.theme.font
                     font.pixelSize: Styling.fontSize(-1)
@@ -465,6 +470,7 @@ Item {
             RowLayout {
                 spacing: 8
                 Text {
+                    renderType: Text.NativeRendering
                     text: I18n.t("pomodoro.sync_spotify")
                     font.family: Config.theme.font
                     font.pixelSize: Styling.fontSize(-1)
@@ -550,6 +556,7 @@ Item {
         radius: Styling.radius(-4)
         
         Text {
+            renderType: Text.NativeRendering
             anchors.centerIn: parent
             text: cBtn.text
             font.family: Config.theme.font

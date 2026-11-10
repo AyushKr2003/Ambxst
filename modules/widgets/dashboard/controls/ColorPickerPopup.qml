@@ -69,6 +69,7 @@ Popup {
                 }
 
                 Text {
+                    renderType: Text.NativeRendering
                     text: "#"
                     font.family: "monospace"
                     font.pixelSize: Styling.fontSize(0)
@@ -77,6 +78,7 @@ Popup {
                 }
 
                 TextInput {
+                    renderType: Text.NativeRendering
                     id: hexInput
                     Layout.fillWidth: true
                     Layout.fillHeight: true
@@ -126,6 +128,7 @@ Popup {
                 }
 
                 Text {
+                    renderType: Text.NativeRendering
                     text: I18n.t("theme.custom")
                     font.family: Styling.defaultFont
                     font.pixelSize: Styling.fontSize(-1)
@@ -204,6 +207,7 @@ Popup {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         text: colorItem.modelData
                         font.family: Styling.defaultFont
                         font.pixelSize: Styling.fontSize(0)
@@ -212,6 +216,7 @@ Popup {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         text: Icons.accept
                         font.family: Icons.font
                         font.pixelSize: 14

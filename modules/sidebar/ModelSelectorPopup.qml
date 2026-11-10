@@ -199,6 +199,7 @@ Popup {
                         Layout.alignment: Qt.AlignVCenter
 
                         Text {
+                            renderType: Text.NativeRendering
                             id: refreshIcon
                             anchors.centerIn: parent
                             text: Ai.fetchingModels ? Icons.circleNotch : (refreshBtn.confirming ? Icons.sync : Icons.arrowCounterClockwise)
@@ -230,6 +231,7 @@ Popup {
 
                     // Text Reveal (Right)
                     Text {
+                        renderType: Text.NativeRendering
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         verticalAlignment: Text.AlignVCenter
@@ -410,6 +412,7 @@ Popup {
 
                         // Font Icon (fallback)
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: {
                                 if (iconRect.finalIconSource.length > 0)
@@ -457,6 +460,7 @@ Popup {
                         spacing: 2
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: modelData.name
                             color: delegateBtn.isSelected ? Styling.srItem("primary") : (delegateBtn.isActiveModel ? Styling.srItem("overprimary") : Colors.overBackground)
                             font.family: Config.theme.font
@@ -475,6 +479,7 @@ Popup {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             // Show provider and model ID
                             text: modelData.api_format.toUpperCase() + " • " + modelData.model
                             color: delegateBtn.isSelected ? Styling.srItem("primary") : Colors.outline
@@ -500,6 +505,7 @@ Popup {
                         Layout.alignment: Qt.AlignVCenter
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: Icons.accept
                             font.family: Icons.font

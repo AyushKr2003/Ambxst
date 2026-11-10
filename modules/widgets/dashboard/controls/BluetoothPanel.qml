@@ -102,6 +102,7 @@ Item {
 
         // Empty state
         Text {
+            renderType: Text.NativeRendering
             anchors.centerIn: parent
             visible: deviceList.count === 0 && !BluetoothService.discovering
             text: BluetoothService.enabled ? I18n.t("bluetooth.no_devices") : I18n.t("bluetooth.disabled")

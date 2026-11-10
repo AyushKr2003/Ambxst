@@ -63,6 +63,7 @@ Item {
                 enableShadow: true
 
                 Text {
+                    renderType: Text.NativeRendering
                     anchors.centerIn: parent
                     text: Icons.arrowLeft
                     font.family: Icons.font
@@ -80,6 +81,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 text: root.dialogTitle
                 font.family: Config.theme.font
                 font.pixelSize: Styling.fontSize(1)
@@ -111,6 +113,7 @@ Item {
                 }
 
                 Text {
+                    renderType: Text.NativeRendering
                     text: "#"
                     font.family: "monospace"
                     font.pixelSize: Styling.fontSize(0)
@@ -119,6 +122,7 @@ Item {
                 }
 
                 TextInput {
+                    renderType: Text.NativeRendering
                     id: hexInput
                     Layout.fillWidth: true
                     Layout.fillHeight: true
@@ -172,6 +176,7 @@ Item {
                 }
 
                 Text {
+                    renderType: Text.NativeRendering
                     text: I18n.t("color_picker.custom")
                     font.family: Styling.defaultFont
                     font.pixelSize: Styling.fontSize(-1)
@@ -188,6 +193,7 @@ Item {
                     enableShadow: true
 
                     Text {
+                        renderType: Text.NativeRendering
                         anchors.centerIn: parent
                         text: Icons.picker
                         font.family: Icons.font
@@ -263,6 +269,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: colorItem.modelData
                             font.family: Styling.defaultFont
                             font.pixelSize: Styling.fontSize(-2)

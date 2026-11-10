@@ -285,6 +285,7 @@ StyledRect {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 id: hintLabel
                 visible: root.overflowItems.length === 0
                 text: I18n.t("bar.systray.overflow_empty")

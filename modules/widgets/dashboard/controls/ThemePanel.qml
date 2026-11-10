@@ -39,6 +39,7 @@ Item {
             spacing: 16
 
             Text {
+                renderType: Text.NativeRendering
                 text: sectionBtn.text
                 font.family: Config.theme.font
                 font.pixelSize: Styling.fontSize(0)
@@ -48,6 +49,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 text: Icons.caretRight
                 font.family: Icons.font
                 font.pixelSize: 20
@@ -285,6 +287,7 @@ Item {
                             spacing: 8
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("settings.theme.general")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-1)
@@ -299,6 +302,7 @@ Item {
                                 spacing: 8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("settings.theme.wallpapers")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -313,6 +317,7 @@ Item {
                                     radius: Styling.radius(-2)
 
                                     TextInput {
+                                        renderType: Text.NativeRendering
                                         id: wallPathInput
                                         anchors.fill: parent
                                         anchors.margins: 8
@@ -325,6 +330,7 @@ Item {
 
                                         // Placeholder for default path
                                         Text {
+                                            renderType: Text.NativeRendering
                                             anchors.fill: parent
                                             verticalAlignment: Text.AlignVCenter
                                             text: I18n.t("common.default")
@@ -352,6 +358,7 @@ Item {
                                 spacing: 8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("settings.theme.tint_icons")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -421,6 +428,7 @@ Item {
                                 spacing: 8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("settings.theme.enable_corners")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -490,6 +498,7 @@ Item {
                                 spacing: 8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("settings.theme.animation")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -527,6 +536,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: Config.theme.animDuration + "ms"
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -541,6 +551,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("settings.theme.fonts")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-1)
@@ -555,6 +566,7 @@ Item {
                                 spacing: 8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("settings.theme.ui_font")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -569,6 +581,7 @@ Item {
                                     radius: Styling.radius(-2)
 
                                     TextInput {
+                                        renderType: Text.NativeRendering
                                         id: fontInput
                                         anchors.fill: parent
                                         anchors.margins: 8
@@ -605,6 +618,7 @@ Item {
                                     radius: Styling.radius(-2)
 
                                     TextInput {
+                                        renderType: Text.NativeRendering
                                         id: fontSizeInput
                                         anchors.fill: parent
                                         anchors.margins: 8
@@ -641,6 +655,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: "px"
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -654,6 +669,7 @@ Item {
                                 spacing: 8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("settings.theme.mono_font")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -668,6 +684,7 @@ Item {
                                     radius: Styling.radius(-2)
 
                                     TextInput {
+                                        renderType: Text.NativeRendering
                                         id: monoFontInput
                                         anchors.fill: parent
                                         anchors.margins: 8
@@ -704,6 +721,7 @@ Item {
                                     radius: Styling.radius(-2)
 
                                     TextInput {
+                                        renderType: Text.NativeRendering
                                         id: monoFontSizeInput
                                         anchors.fill: parent
                                         anchors.margins: 8
@@ -740,6 +758,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: "px"
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -752,6 +771,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("settings.theme.roundness")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-1)
@@ -796,6 +816,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: Math.round(roundnessSlider.value * 20)
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -821,6 +842,7 @@ Item {
                             spacing: 8
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("settings.theme.shadow")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-1)
@@ -835,6 +857,7 @@ Item {
                                 spacing: 8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("theme.shadow.opacity")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -871,6 +894,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: Math.round(shadowOpacitySlider.value * 100) + "%"
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -886,6 +910,7 @@ Item {
                                 spacing: 8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("theme.shadow.blur")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -923,6 +948,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: Config.theme.shadowBlur.toFixed(1)
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -938,6 +964,7 @@ Item {
                                 spacing: 8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("theme.shadow.offset_x")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -975,6 +1002,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: Config.theme.shadowXOffset
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -989,6 +1017,7 @@ Item {
                                 spacing: 8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("theme.shadow.offset_y")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -1026,6 +1055,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: Config.theme.shadowYOffset
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -1041,6 +1071,7 @@ Item {
                                 spacing: 8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("theme.shadow.color")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -1073,6 +1104,7 @@ Item {
                                         }
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             Layout.fillWidth: true
                                             text: Config.theme.shadowColor
                                             font.family: Config.theme.font
@@ -1142,6 +1174,7 @@ Item {
                             spacing: 8
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("settings.theme.variant")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-1)
@@ -1214,6 +1247,7 @@ Item {
                                                                 clip: true
 
                                                                 Text {
+                                                                    renderType: Text.NativeRendering
                                                                     id: checkIconRow
                                                                     text: Icons.accept
                                                                     font.family: Icons.font
@@ -1241,6 +1275,7 @@ Item {
                                                             }
 
                                                             Text {
+                                                                renderType: Text.NativeRendering
                                                                 id: tagContentRow
                                                                 text: variantTagRow.modelData.label
                                                                 font.family: Config.theme.font
@@ -1370,6 +1405,7 @@ Item {
                                                         clip: true
 
                                                         Text {
+                                                            renderType: Text.NativeRendering
                                                             id: checkIcon
                                                             text: Icons.accept
                                                             font.family: Icons.font
@@ -1397,6 +1433,7 @@ Item {
                                                     }
 
                                                     Text {
+                                                        renderType: Text.NativeRendering
                                                         id: tagContent
                                                         text: variantTag.modelData.label
                                                         font.family: Config.theme.font
@@ -1457,6 +1494,7 @@ Item {
                                     property bool isHovered: false
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.centerIn: parent
                                         text: variantSelectorPane.variantExpanded ? Icons.caretUp : Icons.caretDown
                                         font.family: Icons.font
@@ -1494,6 +1532,7 @@ Item {
                             spacing: 8
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("theme.editor_label").replace("%1", root.getVariantLabel(root.selectedVariant))
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-1)

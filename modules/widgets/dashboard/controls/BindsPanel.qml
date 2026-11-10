@@ -635,6 +635,7 @@ Item {
                             spacing: 6
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: categoryTag.modelData.icon
                                 font.family: Icons.font
                                 font.pixelSize: 14
@@ -643,6 +644,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: categoryTag.modelData.label
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(0)
@@ -797,6 +799,7 @@ Item {
 
             // Empty state
             Text {
+                renderType: Text.NativeRendering
                 Layout.alignment: Qt.AlignHCenter
                 Layout.topMargin: 20
                 visible: (root.currentCategory === "ambxst" && ambxstRepeater.count === 0) || (root.currentCategory === "custom" && customRepeater.count === 0)
@@ -883,6 +886,7 @@ Item {
                             radius: Styling.radius(-2)
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: Icons.caretLeft
                                 font.family: Icons.font
@@ -901,6 +905,7 @@ Item {
 
                         // Title
                         Text {
+                            renderType: Text.NativeRendering
                             text: root.isCreatingNew ? "New Keybind" : "Edit Keybind"
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(0)
@@ -919,6 +924,7 @@ Item {
                             radius: Styling.radius(-2)
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: Icons.trash
                                 font.family: Icons.font
@@ -955,6 +961,7 @@ Item {
                                 spacing: 6
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: Icons.arrowCounterClockwise
                                     font.family: Icons.font
                                     font.pixelSize: 14
@@ -963,6 +970,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("common.reset_default")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -1020,6 +1028,7 @@ Item {
                                 spacing: 6
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: Icons.accept
                                     font.family: Icons.font
                                     font.pixelSize: 14
@@ -1028,6 +1037,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("common.save")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(0)
@@ -1066,6 +1076,7 @@ Item {
                             visible: !root.isEditingAmbxst
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("binds.name_optional")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-1)
@@ -1080,6 +1091,7 @@ Item {
                                 radius: Styling.radius(-2)
 
                                 TextInput {
+                                    renderType: Text.NativeRendering
                                     id: nameInput
                                     anchors.fill: parent
                                     anchors.margins: 12
@@ -1096,6 +1108,7 @@ Item {
                                     }
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.verticalCenter: parent.verticalCenter
                                         visible: !nameInput.text && !nameInput.activeFocus
                                         text: I18n.t("binds.keybind_name_placeholder")
@@ -1108,6 +1121,7 @@ Item {
 
                         // Bind name/info (for ambxst binds only)
                         Text {
+                            renderType: Text.NativeRendering
                             visible: root.isEditingAmbxst && root.editingBind !== null
                             text: root.editingBind ? (root.editingBind.name || "") : ""
                             font.family: Config.theme.font
@@ -1124,6 +1138,7 @@ Item {
                             radius: Styling.radius(-2)
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: {
                                     if (root.editKeys.length === 0)
@@ -1160,6 +1175,7 @@ Item {
                                 spacing: 8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("binds.key_combination")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(-1)
@@ -1170,6 +1186,7 @@ Item {
 
                                 // Page indicator
                                 Text {
+                                    renderType: Text.NativeRendering
                                     visible: root.editKeys.length > 1
                                     text: (root.currentKeyPage + 1) + " / " + root.editKeys.length
                                     font.family: Config.theme.font
@@ -1187,6 +1204,7 @@ Item {
                                     radius: Styling.radius(-4)
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.centerIn: parent
                                         text: Icons.trash
                                         font.family: Icons.font
@@ -1219,6 +1237,7 @@ Item {
                                     opacity: root.currentKeyPage > 0 ? 1 : 0.3
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.centerIn: parent
                                         text: Icons.caretLeft
                                         font.family: Icons.font
@@ -1250,6 +1269,7 @@ Item {
                                     opacity: root.currentKeyPage < root.editKeys.length - 1 ? 1 : 0.3
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.centerIn: parent
                                         text: Icons.caretRight
                                         font.family: Icons.font
@@ -1280,6 +1300,7 @@ Item {
                                     radius: Styling.radius(-4)
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.centerIn: parent
                                         text: Icons.plus
                                         font.family: Icons.font
@@ -1324,6 +1345,7 @@ Item {
                                         radius: Styling.radius(-2)
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             id: modLabel
                                             anchors.centerIn: parent
                                             text: modTag.modelData
@@ -1353,6 +1375,7 @@ Item {
                                 radius: Styling.radius(-2)
 
                                 TextInput {
+                                    renderType: Text.NativeRendering
                                     id: keyInput
                                     anchors.fill: parent
                                     anchors.margins: 12
@@ -1373,6 +1396,7 @@ Item {
                                     }
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.verticalCenter: parent.verticalCenter
                                         visible: !keyInput.text && !keyInput.activeFocus
                                         text: I18n.t("binds.key_placeholder")
@@ -1397,6 +1421,7 @@ Item {
                                 spacing: 8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("binds.action")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(-1)
@@ -1407,6 +1432,7 @@ Item {
 
                                 // Page indicator
                                 Text {
+                                    renderType: Text.NativeRendering
                                     visible: root.editActions.length > 1 && !root.isEditingAmbxst
                                     text: (root.currentActionPage + 1) + " / " + root.editActions.length
                                     font.family: Config.theme.font
@@ -1424,6 +1450,7 @@ Item {
                                     radius: Styling.radius(-4)
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.centerIn: parent
                                         text: Icons.trash
                                         font.family: Icons.font
@@ -1456,6 +1483,7 @@ Item {
                                     opacity: root.currentActionPage > 0 ? 1 : 0.3
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.centerIn: parent
                                         text: Icons.caretLeft
                                         font.family: Icons.font
@@ -1487,6 +1515,7 @@ Item {
                                     opacity: root.currentActionPage < root.editActions.length - 1 ? 1 : 0.3
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.centerIn: parent
                                         text: Icons.caretRight
                                         font.family: Icons.font
@@ -1517,6 +1546,7 @@ Item {
                                     radius: Styling.radius(-4)
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.centerIn: parent
                                         text: Icons.plus
                                         font.family: Icons.font
@@ -1540,6 +1570,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("binds.action")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-1)
@@ -1560,6 +1591,7 @@ Item {
                                     spacing: 8
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         text: root.getActionLabel(root.editActionId)
                                         font.family: Config.theme.font
                                         font.pixelSize: Styling.fontSize(0)
@@ -1570,6 +1602,7 @@ Item {
                                     }
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         text: Icons.caretDown
                                         font.family: Icons.font
                                         font.pixelSize: 14
@@ -1648,6 +1681,7 @@ Item {
                                     spacing: 6
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         text: modelData.label
                                         font.family: Config.theme.font
                                         font.pixelSize: Styling.fontSize(-1)
@@ -1662,6 +1696,7 @@ Item {
                                         radius: Styling.radius(-2)
 
                                         TextInput {
+                                            renderType: Text.NativeRendering
                                             id: fieldInput
                                             anchors.fill: parent
                                             anchors.margins: 12
@@ -1676,6 +1711,7 @@ Item {
                                             }
 
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 anchors.verticalCenter: parent.verticalCenter
                                                 visible: !fieldInput.text && !fieldInput.activeFocus
                                                 text: modelData.placeholder
@@ -1691,6 +1727,7 @@ Item {
                             // LAYOUT SELECTOR (for AxctlService)
                             // =====================
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("binds.layouts_axctl")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-1)
@@ -1700,6 +1737,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("binds.layouts_hint")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-2)
@@ -1745,6 +1783,7 @@ Item {
                                                 clip: true
 
                                                 Text {
+                                                    renderType: Text.NativeRendering
                                                     id: layoutCheckIcon
                                                     text: Icons.accept
                                                     font.family: Icons.font
@@ -1772,6 +1811,7 @@ Item {
                                             }
 
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 id: layoutContent
                                                 text: layoutTag.modelData.charAt(0).toUpperCase() + layoutTag.modelData.slice(1)
                                                 font.family: Config.theme.font
@@ -1818,6 +1858,7 @@ Item {
             spacing: 8
 
             Text {
+                renderType: Text.NativeRendering
                 text: actionItem.actionLabel
                 font.family: Config.theme.font
                 font.pixelSize: Styling.fontSize(0)
@@ -1828,6 +1869,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 text: actionItem.actionCategory
                 font.family: Config.theme.font
                 font.pixelSize: Styling.fontSize(-2)
@@ -1947,6 +1989,7 @@ Item {
                 spacing: 2
 
                 Text {
+                    renderType: Text.NativeRendering
                     text: bindItem.displayName
                     font.family: Config.theme.font
                     font.pixelSize: Styling.fontSize(0)
@@ -1961,6 +2004,7 @@ Item {
                     spacing: 6
 
                     Text {
+                        renderType: Text.NativeRendering
                         text: bindItem.displaySubtitle
                         font.family: Config.theme.font
                         font.pixelSize: Styling.fontSize(-2)
@@ -1990,6 +2034,7 @@ Item {
                                 opacity: isHovered ? 1.0 : 0.8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     id: layoutBadgeText
                                     anchors.centerIn: parent
                                     text: layoutBadge.modelData.charAt(0).toUpperCase()
@@ -2024,6 +2069,7 @@ Item {
                 radius: Styling.radius(-4)
 
                 Text {
+                    renderType: Text.NativeRendering
                     id: keybindLabel
                     anchors.centerIn: parent
                     text: bindItem.keybindText

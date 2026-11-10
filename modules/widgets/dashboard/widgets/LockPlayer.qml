@@ -209,6 +209,7 @@ StyledRect {
 
             // Botón de play/pause superpuesto (visible solo en hover)
             Text {
+                renderType: Text.NativeRendering
                 anchors.centerIn: parent
                 text: lockPlayer.isPlaying ? Icons.pause : Icons.play
                 textFormat: Text.RichText
@@ -251,6 +252,7 @@ StyledRect {
                 spacing: 0
 
                 Text {
+                    renderType: Text.NativeRendering
                     Layout.fillWidth: true
                     text: MprisController.activePlayer?.trackTitle ?? "No hay reproducción activa"
                     textFormat: Text.PlainText
@@ -264,6 +266,7 @@ StyledRect {
                 }
 
                 Text {
+                    renderType: Text.NativeRendering
                     Layout.fillWidth: true
                     text: MprisController.activePlayer?.trackArtist ?? ""
                     textFormat: Text.PlainText
@@ -284,6 +287,7 @@ StyledRect {
                 spacing: 8
 
                 Text {
+                    renderType: Text.NativeRendering
                     id: previousBtn
                     text: Icons.previous
                     textFormat: Text.RichText
@@ -324,6 +328,7 @@ StyledRect {
                 }
 
                 Text {
+                    renderType: Text.NativeRendering
                     id: nextBtn
                     text: Icons.next
                     textFormat: Text.RichText
@@ -353,6 +358,7 @@ StyledRect {
                 }
 
                 Text {
+                    renderType: Text.NativeRendering
                     id: modeBtn
                     text: {
                         if (MprisController.hasShuffle)
@@ -410,6 +416,7 @@ StyledRect {
                 }
 
                 Text {
+                    renderType: Text.NativeRendering
                     id: playerIcon
                     text: {
                         if (!MprisController.activePlayer)

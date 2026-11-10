@@ -373,6 +373,7 @@ StyledRect {
             spacing: 2
 
             Text {
+                renderType: Text.NativeRendering
                 Layout.fillWidth: true
                 Layout.preferredHeight: visible ? implicitHeight : 0
                 text: player.hasActivePlayer ? (MprisController.activePlayer?.trackTitle ?? "") : I18n.t("player.nothing_playing")
@@ -387,6 +388,7 @@ StyledRect {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 Layout.fillWidth: true
                 Layout.preferredHeight: visible ? implicitHeight : 0
                 text: player.hasActivePlayer ? (MprisController.activePlayer?.trackAlbum ?? "") : I18n.t("player.enjoy_silence")
@@ -401,6 +403,7 @@ StyledRect {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 Layout.fillWidth: true
                 Layout.preferredHeight: visible ? implicitHeight : 0
                 text: player.hasActivePlayer ? (MprisController.activePlayer?.trackArtist ?? "") : "¯\\_(ツ)_/¯"
@@ -479,6 +482,7 @@ StyledRect {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 anchors.centerIn: parent
                 text: !player.hasActivePlayer ? Icons.stop : (player.isPlaying ? Icons.pause : Icons.play)
                 font.family: Icons.font
@@ -531,6 +535,7 @@ StyledRect {
 
         // Duration Area
         Text {
+            renderType: Text.NativeRendering
             Layout.alignment: Qt.AlignHCenter
             text: player.hasActivePlayer ? (player.formatTime(player.position) + " / " + player.formatTime(player.length)) : "--:-- / --:--"
             color: Colors.overBackground
@@ -594,6 +599,7 @@ StyledRect {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: player.getPlayerIcon(modelData)
                             font.family: Icons.font
                             font.pixelSize: 18
@@ -601,6 +607,7 @@ StyledRect {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             Layout.fillWidth: true
                             text: (modelData?.trackTitle || modelData?.identity || I18n.t("player.unknown_player"))
                             color: Colors.overBackground

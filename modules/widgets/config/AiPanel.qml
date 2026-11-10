@@ -28,6 +28,7 @@ Item {
             spacing: 24
 
             Text {
+                renderType: Text.NativeRendering
                 text: I18n.t("ai.panel_title")
                 font.family: Config.theme.font
                 font.pixelSize: 24
@@ -58,6 +59,7 @@ Item {
                         RowLayout {
                             Layout.fillWidth: true
                             Text {
+                                renderType: Text.NativeRendering
                                 text: modelData.charAt(0).toUpperCase() + modelData.slice(1)
                                 font.family: Config.theme.font
                                 font.pixelSize: 16
@@ -66,6 +68,7 @@ Item {
                                 Layout.fillWidth: true
                             }
                             Text {
+                                renderType: Text.NativeRendering
                                 text: KeyStore.hasKey(modelData) ? I18n.t("binds.key_configured") : I18n.t("binds.not_configured")
                                 font.family: Config.theme.font
                                 font.pixelSize: 12
@@ -78,6 +81,7 @@ Item {
                             spacing: 12
 
                             TextField {
+                                renderType: Text.NativeRendering
                                 visible: modelData !== "ollama"
                                 id: keyInput
                                 Layout.fillWidth: true
@@ -125,6 +129,7 @@ Item {
                                     implicitHeight: saveButtonLabel.implicitHeight + saveButton.topPadding + saveButton.bottomPadding
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         id: saveButtonLabel
                                         text: saveButton.text
                                         color: Colors.overPrimary
@@ -157,6 +162,7 @@ Item {
                                     implicitHeight: clearButtonLabel.implicitHeight + clearButton.topPadding + clearButton.bottomPadding
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         id: clearButtonLabel
                                         text: clearButton.text
                                         color: Colors.overError
@@ -178,6 +184,7 @@ Item {
             
             // Custom Provider
             Text {
+                renderType: Text.NativeRendering
                 text: I18n.t("ai.custom_provider")
                 font.family: Config.theme.font
                 font.pixelSize: 20
@@ -203,6 +210,7 @@ Item {
                     RowLayout {
                         Layout.fillWidth: true
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("ai.custom_provider_key")
                             font.family: Config.theme.font
                             font.pixelSize: 14
@@ -211,6 +219,7 @@ Item {
                             Layout.fillWidth: true
                         }
                         Text {
+                            renderType: Text.NativeRendering
                             text: KeyStore.hasKey("custom") ? I18n.t("binds.key_configured") : I18n.t("binds.not_configured")
                             font.family: Config.theme.font
                             font.pixelSize: 12
@@ -223,6 +232,7 @@ Item {
                         spacing: 12
 
                         TextField {
+                            renderType: Text.NativeRendering
                             id: customKeyInput
                             Layout.fillWidth: true
                             placeholderText: I18n.t("ai.enter_api_key")
@@ -266,6 +276,7 @@ Item {
                                 implicitHeight: customSaveButtonLabel.implicitHeight + customSaveButton.topPadding + customSaveButton.bottomPadding
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     id: customSaveButtonLabel
                                     text: customSaveButton.text
                                     color: Colors.overPrimary
@@ -298,6 +309,7 @@ Item {
                                 implicitHeight: customClearButtonLabel.implicitHeight + customClearButton.topPadding + customClearButton.bottomPadding
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     id: customClearButtonLabel
                                     text: customClearButton.text
                                     color: Colors.overError
@@ -324,6 +336,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         text: I18n.t("ai.custom_endpoint")
                         font.family: Config.theme.font
                         font.pixelSize: 14
@@ -331,6 +344,7 @@ Item {
                     }
                     
                     TextField {
+                        renderType: Text.NativeRendering
                         id: endpointInput
                         Layout.fillWidth: true
                         text: Config.ai.customEndpoint !== undefined ? Config.ai.customEndpoint : ""
@@ -359,6 +373,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         text: I18n.t("ai.custom_curl")
                         font.family: Config.theme.font
                         font.pixelSize: 14
@@ -367,6 +382,7 @@ Item {
                     }
                     
                     Text {
+                        renderType: Text.NativeRendering
                         text: I18n.t("ai.curl_placeholders")
                         font.family: Config.theme.font
                         font.pixelSize: 12
@@ -374,6 +390,7 @@ Item {
                     }
                     
                     TextField {
+                        renderType: Text.NativeRendering
                         id: curlInput
                         Layout.fillWidth: true
                         text: Config.ai.customCurlTemplate !== undefined ? Config.ai.customCurlTemplate : ""

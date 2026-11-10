@@ -84,6 +84,7 @@ Item {
 
                     // Not available state
                     Text {
+                        renderType: Text.NativeRendering
                         visible: !EasyEffectsService.available
                         text: I18n.t("effects.not_installed")
                         font.family: Config.theme.font
@@ -100,6 +101,7 @@ Item {
                         visible: EasyEffectsService.available && EasyEffectsService.outputPresets.length > 0
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("effects.output_presets")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -157,6 +159,7 @@ Item {
                                             }
 
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 id: presetIcon
                                                 text: Icons.sparkle
                                                 font.family: Icons.font
@@ -175,6 +178,7 @@ Item {
                                         }
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             text: presetButton.modelData
                                             font.family: Config.theme.font
                                             font.pixelSize: Styling.fontSize(-1)
@@ -197,6 +201,7 @@ Item {
                         visible: EasyEffectsService.available && EasyEffectsService.inputPresets.length > 0
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("effects.input_presets")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -254,6 +259,7 @@ Item {
                                             }
 
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 id: inputPresetIcon
                                                 text: Icons.sparkle
                                                 font.family: Icons.font
@@ -272,6 +278,7 @@ Item {
                                         }
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             text: inputPresetButton.modelData
                                             font.family: Config.theme.font
                                             font.pixelSize: Styling.fontSize(-1)
@@ -289,6 +296,7 @@ Item {
 
                     // Empty state
                     Text {
+                        renderType: Text.NativeRendering
                         visible: EasyEffectsService.available && EasyEffectsService.outputPresets.length === 0 && EasyEffectsService.inputPresets.length === 0
                         text: I18n.t("presets.no_presets")
                         font.family: Config.theme.font
@@ -306,6 +314,7 @@ Item {
                         visible: EasyEffectsService.available && (EasyEffectsService.activeOutputPreset || EasyEffectsService.activeInputPreset)
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("common.active")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -318,12 +327,14 @@ Item {
                             visible: EasyEffectsService.activeOutputPreset
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: Icons.speakerHigh
                                 font.family: Icons.font
                                 font.pixelSize: 14
                                 color: Styling.srItem("overprimary")
                             }
                             Text {
+                                renderType: Text.NativeRendering
                                 text: EasyEffectsService.activeOutputPreset
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-1)
@@ -336,12 +347,14 @@ Item {
                             visible: EasyEffectsService.activeInputPreset
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: Icons.mic
                                 font.family: Icons.font
                                 font.pixelSize: 14
                                 color: Styling.srItem("overprimary")
                             }
                             Text {
+                                renderType: Text.NativeRendering
                                 text: EasyEffectsService.activeInputPreset
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-1)

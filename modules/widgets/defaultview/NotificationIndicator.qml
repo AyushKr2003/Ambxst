@@ -58,6 +58,7 @@ Item {
         }
 
         Text {
+            renderType: Text.NativeRendering
             id: iconText
             anchors.centerIn: parent
             text: Notifications.silent ? Icons.bellZ : (Notifications.list.length > 0 ? Icons.bellRinging : Icons.bell)

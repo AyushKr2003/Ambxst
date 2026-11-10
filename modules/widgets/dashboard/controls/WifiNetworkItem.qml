@@ -60,6 +60,7 @@ Item {
                 height: 24
 
                 Text {
+                    renderType: Text.NativeRendering
                     anchors.centerIn: parent
                     text: {
                         const strength = root.network?.strength ?? 0;
@@ -78,6 +79,7 @@ Item {
 
                 // Lock icon for secure networks
                 Text {
+                    renderType: Text.NativeRendering
                     anchors.right: parent.right
                     anchors.bottom: parent.bottom
                     anchors.margins: -2
@@ -95,6 +97,7 @@ Item {
                 spacing: 0
 
                 Text {
+                    renderType: Text.NativeRendering
                     Layout.fillWidth: true
                     text: root.network?.ssid ?? "Unknown"
                     font.family: Config.theme.font
@@ -105,6 +108,7 @@ Item {
                 }
 
                 Text {
+                    renderType: Text.NativeRendering
                     Layout.fillWidth: true
                     visible: root.network?.active || root.expanded
                     text: {
@@ -137,6 +141,7 @@ Item {
                 radius: Styling.radius(-4)
 
                 Text {
+                    renderType: Text.NativeRendering
                     anchors.centerIn: parent
                     text: I18n.t("wifi.band_5g")
                     font.family: Config.theme.font

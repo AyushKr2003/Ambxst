@@ -212,6 +212,7 @@ Rectangle {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: Icons.user
                             font.family: Icons.font
@@ -252,6 +253,7 @@ Rectangle {
                             spacing: 4
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: Icons.user
                                 font.family: Icons.font
                                 font.pixelSize: Config.theme.fontSize + 2
@@ -259,6 +261,7 @@ Rectangle {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 Layout.fillWidth: true
                                 text: {
                                     const user = Quickshell.env("USER") || "user";
@@ -278,6 +281,7 @@ Rectangle {
                             spacing: 4
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: Icons.at
                                 font.family: Icons.font
                                 font.pixelSize: Config.theme.fontSize + 2
@@ -285,6 +289,7 @@ Rectangle {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 Layout.fillWidth: true
                                 text: {
                                     if (!root.hostname)
@@ -306,6 +311,7 @@ Rectangle {
                             spacing: 4
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: root.osIcon || (root.linuxLogos ? (root.linuxLogos["Linux"] || "") : "")
                                 font.family: "Symbols Nerd Font Mono"
                                 font.pixelSize: Config.theme.fontSize + 2
@@ -313,6 +319,7 @@ Rectangle {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 Layout.fillWidth: true
                                 text: root.osName || "Linux"
                                 font.family: Config.theme.font
@@ -338,6 +345,7 @@ Rectangle {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         text: I18n.t("settings.system")
                         font.family: Config.theme.font
                         font.pixelSize: Styling.fontSize(-2)
@@ -382,6 +390,7 @@ Rectangle {
                                 spacing: 4
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: SystemResources.cpuModel || "CPU"
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(-2)
@@ -395,6 +404,7 @@ Rectangle {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: `${Math.round(SystemResources.cpuUsage)}%`
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(-2)
@@ -403,6 +413,7 @@ Rectangle {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     visible: SystemResources.cpuTemp >= 0
                                     text: Icons.temperature
                                     font.family: Icons.font
@@ -411,6 +422,7 @@ Rectangle {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     visible: SystemResources.cpuTemp >= 0
                                     text: `${SystemResources.cpuTemp}°`
                                     font.family: Config.theme.font
@@ -439,6 +451,7 @@ Rectangle {
                                 spacing: 4
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: {
                                         const usedGB = (SystemResources.ramUsed / 1024 / 1024).toFixed(1);
                                         const totalGB = (SystemResources.ramTotal / 1024 / 1024).toFixed(1);
@@ -456,6 +469,7 @@ Rectangle {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: `${Math.round(SystemResources.ramUsage)}%`
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(-2)
@@ -511,6 +525,7 @@ Rectangle {
                                     spacing: 4
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         text: {
                                             const name = SystemResources.gpuNames[index] || "";
                                             return name || "GPU";
@@ -527,6 +542,7 @@ Rectangle {
                                     }
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         text: `${Math.round(SystemResources.gpuUsages[index] || 0)}%`
                                         font.family: Config.theme.font
                                         font.pixelSize: Styling.fontSize(-2)
@@ -535,6 +551,7 @@ Rectangle {
                                     }
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         visible: (SystemResources.gpuTemps[index] ?? -1) >= 0
                                         text: Icons.temperature
                                         font.family: Icons.font
@@ -555,6 +572,7 @@ Rectangle {
                                     }
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         visible: (SystemResources.gpuTemps[index] ?? -1) >= 0
                                         text: `${SystemResources.gpuTemps[index]}°`
                                         font.family: Config.theme.font
@@ -599,6 +617,7 @@ Rectangle {
                                     spacing: 4
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         text: modelData
                                         font.family: Config.theme.font
                                         font.pixelSize: Styling.fontSize(-2)
@@ -612,6 +631,7 @@ Rectangle {
                                     }
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         text: `${Math.round((SystemResources.diskUsage[modelData] || 0))}%`
                                         font.family: Config.theme.font
                                         font.pixelSize: Styling.fontSize(-2)
@@ -842,6 +862,7 @@ Rectangle {
                             color: "transparent"
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: Icons.glassMinus
                                 font.family: Icons.font
@@ -880,6 +901,7 @@ Rectangle {
                             color: "transparent"
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: Icons.glassPlus
                                 font.family: Icons.font
@@ -906,6 +928,7 @@ Rectangle {
                             variant: decreaseIntervalMa.containsMouse ? "focus" : "pane"
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: Icons.minus
                                 font.family: Icons.font
@@ -936,6 +959,7 @@ Rectangle {
 
                         // Interval display
                         Text {
+                            renderType: Text.NativeRendering
                             text: `${SystemResources.updateInterval}ms`
                             font.family: Config.theme.font
                             font.pixelSize: Config.theme.fontSize
@@ -952,6 +976,7 @@ Rectangle {
                             variant: increaseIntervalMa.containsMouse ? "focus" : "pane"
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: Icons.plus
                                 font.family: Icons.font

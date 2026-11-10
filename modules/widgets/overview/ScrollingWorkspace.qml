@@ -719,6 +719,7 @@ Item {
                         z: 1000
 
                         Text {
+                            renderType: Text.NativeRendering
                             id: tooltipText
                             anchors.centerIn: parent
                             text: `${(windowDelegate.windowData && windowDelegate.windowData.title !== undefined ? windowDelegate.windowData.title : "") || ""}\n[${(windowDelegate.windowData && windowDelegate.windowData.class !== undefined ? windowDelegate.windowData.class : "") || ""}]${(windowDelegate.windowData && windowDelegate.windowData.xwayland !== undefined ? windowDelegate.windowData.xwayland : false) ? " [XWayland]" : ""}`

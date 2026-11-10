@@ -234,6 +234,7 @@ Menu {
                         Component {
                             id: fontIconComponent
                             Text {
+                                renderType: Text.NativeRendering
                                 text: iconLoader.iconSource
                                 color: {
                                     if (root.hoveredIndex === menuItem.itemIndex) {
@@ -279,6 +280,7 @@ Menu {
 
                     // Texto
                     Text {
+                        renderType: Text.NativeRendering
                         text: menuItem.itemData.text || ""
                         color: {
                             if (root.hoveredIndex === menuItem.itemIndex) {

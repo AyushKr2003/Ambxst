@@ -41,6 +41,7 @@ Item {
             visible: (root.image == "" && root.appIcon == "") || (appIconLoader.active && appIconLoader.item && appIconLoader.item.status === Image.Error)
 
             Text {
+                renderType: Text.NativeRendering
                 anchors.centerIn: parent
                 text: {
                     if (root.urgency == NotificationUrgency.Critical) return Icons.alert;

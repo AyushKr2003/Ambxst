@@ -131,6 +131,7 @@ Item {
         radius: Styling.radius(-4)
 
         Text {
+            renderType: Text.NativeRendering
             id: mediaTitle
             anchors.centerIn: parent
             width: parent.width - 32
@@ -543,6 +544,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 id: playerIcon
                 text: compactPlayer.getPlayerIcon(compactPlayer.player)
                 textFormat: Text.RichText
@@ -639,6 +641,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: compactPlayer.getPlayerIcon(playerItem.modelData)
                             font.family: Icons.font
                             font.pixelSize: 16
@@ -646,6 +649,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: playerItem.modelData.trackTitle || playerItem.modelData.identity || I18n.t("player.unknown_player")
                             font.family: Styling.defaultFont
                             font.pixelSize: Styling.fontSize(0)

@@ -87,11 +87,13 @@ Popup {
         id: content
         spacing: 12
         Label {
+            renderType: Text.NativeRendering
             text: I18n.t("mods.update_mod_title", (ModsService.mods ?? []).find(mod => mod.id === root.modId)?.name ?? root.modId)
             font.pixelSize: Styling.fontSize(2)
             font.weight: Font.DemiBold
         }
         Label {
+            renderType: Text.NativeRendering
             text: root.working ? I18n.t("mods.working") : root.ready
                 ? (root.item.fromVersion === root.item.toVersion
                     ? root.item.toVersion + " · " + I18n.t("mods.revision_update_short")
@@ -111,47 +113,57 @@ Popup {
                 width: reviewScroll.availableWidth
                 spacing: 12
                 Label {
+                    renderType: Text.NativeRendering
                     visible: root.ready
                     text: I18n.t("mods.single_update_notice")
                 }
                 Label {
+                    renderType: Text.NativeRendering
                     visible: root.ready && (root.item?.reviewReasons ?? []).length > 0
                     text: (root.item?.reviewReasons ?? []).map(reason => I18n.t("mods.review_" + reason)).join("\n")
                     color: Colors.warning
                 }
                 Label {
+                    renderType: Text.NativeRendering
                     visible: root.ready && !!root.item?.deprecated
                     text: root.item?.deprecatedReason ?? ""
                     color: Colors.warning
                 }
                 Label {
+                    renderType: Text.NativeRendering
                     visible: root.ready
                     text: I18n.t("mods.whats_new")
                     font.weight: Font.DemiBold
                 }
                 Label {
+                    renderType: Text.NativeRendering
                     visible: root.ready
                     text: root.item?.changelog || I18n.t("mods.changelog_missing")
                 }
                 Label {
+                    renderType: Text.NativeRendering
                     visible: root.ready && (root.item?.permissions ?? []).length > 0
                     text: I18n.t("mods.permissions") + ":\n" + (root.item?.permissions ?? []).join("\n")
                 }
                 Label {
+                    renderType: Text.NativeRendering
                     visible: root.ready && (root.item?.commands ?? []).length > 0
                     text: I18n.t("mods.requirements") + ": " + (root.item?.commands ?? []).join(", ")
                 }
                 Label {
+                    renderType: Text.NativeRendering
                     visible: root.ready && (root.item?.dependencies ?? []).length > 0
                     text: I18n.t("mods.required_mods") + ": " + (root.item?.dependencies ?? []).join(", ")
                 }
                 Label {
+                    renderType: Text.NativeRendering
                     visible: root.ready && (root.item?.files ?? []).length > 0
                     text: I18n.t("mods.affected_files") + ":\n" + (root.item?.files ?? []).join("\n")
                     wrapMode: Text.WrapAnywhere
                     color: Colors.outline
                 }
                 Label {
+                    renderType: Text.NativeRendering
                     visible: !root.working && (!root.ready || ModsService.errorDetails !== "")
                     text: ModsService.errorDetails || root.item?.details || ModsService.updates?.details || I18n.t("mods.check_again_notice")
                     color: Colors.warning
@@ -159,6 +171,7 @@ Popup {
             }
         }
         Label {
+            renderType: Text.NativeRendering
             visible: root.ready
             text: I18n.t(ModsService.restartRequired ? "mods.restart_before_update" : "mods.update_restart_notice")
             color: Colors.outline

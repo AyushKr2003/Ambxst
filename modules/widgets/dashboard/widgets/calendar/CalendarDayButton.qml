@@ -28,6 +28,7 @@ Rectangle {
         radius: parent.radius
 
         Text {
+            renderType: Text.NativeRendering
             anchors.fill: parent
             text: day
             horizontalAlignment: Text.AlignHCenter

@@ -199,6 +199,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 text: Config.bar.use12hFormat ? Qt.formatTime(clockContainer.currentTime, "ap").toLowerCase() : ""
                 visible: Config.bar.use12hFormat
                 font.family: "League Gothic"
@@ -301,6 +302,7 @@ Item {
         // Omarchy's failure text (wrong password, faillock countdown,
         // fingerprint notices) under the pill.
         Text {
+            renderType: Text.NativeRendering
             id: statusText
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: passwordContainer.isTopPosition ? undefined : passwordInputBox.top
@@ -376,6 +378,7 @@ Item {
                         visible: userAvatar.status !== Image.Ready
                         radius: Config.roundness > 0 ? (height / 2) * (Config.roundness / 16) : 0
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.centerIn: parent
                             text: Icons.user
                             font.family: Icons.font
@@ -400,6 +403,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             id: userIcon
                             text: root.authenticating ? Icons.circleNotch : Icons.lock
                             font.family: Icons.font
@@ -418,6 +422,7 @@ Item {
                         }
 
                         TextField {
+                            renderType: Text.NativeRendering
                             id: passwordInput
                             Layout.fillWidth: true
                             Layout.alignment: Qt.AlignVCenter

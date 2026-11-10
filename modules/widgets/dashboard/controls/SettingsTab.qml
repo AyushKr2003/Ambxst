@@ -442,6 +442,7 @@ Rectangle {
 
                                     // Icon on the left (font icon)
                                     Text {
+                                        renderType: Text.NativeRendering
                                         id: iconText
                                         text: sidebarButton.modelData.isIcon ? sidebarButton.modelData.icon : ""
                                         font.family: Icons.font
@@ -492,6 +493,7 @@ Rectangle {
                                         anchors.verticalCenter: parent.verticalCenter
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             text: sidebarButton.modelData.label
                                             font.family: Config.theme.font
                                             font.pixelSize: Styling.fontSize(0)
@@ -508,6 +510,7 @@ Rectangle {
                                         }
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             visible: !!sidebarButton.modelData.subLabel
                                             text: sidebarButton.modelData.subLabel || ""
                                             font.family: Config.theme.font

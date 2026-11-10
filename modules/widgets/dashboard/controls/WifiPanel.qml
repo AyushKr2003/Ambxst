@@ -104,6 +104,7 @@ Item {
 
         // Empty state
         Text {
+            renderType: Text.NativeRendering
             anchors.centerIn: parent
             visible: networkList.count === 0 && !NetworkService.wifiScanning
             text: NetworkService.wifiEnabled ? I18n.t("wifi.no_networks") : I18n.t("wifi.disabled")

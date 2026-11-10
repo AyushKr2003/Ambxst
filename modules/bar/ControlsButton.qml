@@ -64,6 +64,7 @@ Item {
         }
 
         Text {
+            renderType: Text.NativeRendering
             anchors.centerIn: parent
             text: Icons.faders
             font.family: Icons.font

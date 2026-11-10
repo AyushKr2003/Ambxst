@@ -81,6 +81,7 @@ Item {
                                 spacing: 8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: Icons.speakerHigh
                                     font.family: Icons.font
                                     font.pixelSize: 14
@@ -89,6 +90,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("mixer.output")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(-1)
@@ -125,6 +127,7 @@ Item {
                                 spacing: 8
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: Icons.mic
                                     font.family: Icons.font
                                     font.pixelSize: 14
@@ -133,6 +136,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: I18n.t("mixer.input")
                                     font.family: Config.theme.font
                                     font.pixelSize: Styling.fontSize(-1)
@@ -168,6 +172,7 @@ Item {
 
                     // Section: Devices
                     Text {
+                        renderType: Text.NativeRendering
                         text: root.showOutput ? I18n.t("mixer.output_device") : I18n.t("mixer.input_device")
                         font.family: Config.theme.font
                         font.pixelSize: Styling.fontSize(-1)
@@ -203,6 +208,7 @@ Item {
 
                     // Section: Volume Mixer
                     Text {
+                        renderType: Text.NativeRendering
                         text: I18n.t("mixer.volume_mixer")
                         font.family: Config.theme.font
                         font.pixelSize: Styling.fontSize(-1)
@@ -232,6 +238,7 @@ Item {
 
                     // Empty state for apps
                     Text {
+                        renderType: Text.NativeRendering
                         visible: (root.showOutput ? Audio.outputAppNodes : Audio.inputAppNodes).length === 0
                         text: I18n.t("mixer.no_apps")
                         font.family: Config.theme.font

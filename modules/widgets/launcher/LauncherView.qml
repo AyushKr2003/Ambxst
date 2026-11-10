@@ -776,6 +776,7 @@ Rectangle {
                             spacing: 0
 
                             Text {
+                                renderType: Text.NativeRendering
                                 width: parent.width
                                 text: appName
                                 color: {
@@ -802,6 +803,7 @@ Rectangle {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 width: parent.width
                                 text: appComment || ""
                                 color: {
@@ -944,6 +946,7 @@ Rectangle {
                                             spacing: 8
 
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 text: modelData && modelData.icon ? modelData.icon : ""
                                                 font.family: Icons.font
                                                 font.pixelSize: 14
@@ -966,6 +969,7 @@ Rectangle {
                                             }
 
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 Layout.fillWidth: true
                                                 text: modelData && modelData.text ? modelData.text : ""
                                                 font.family: Config.theme.font

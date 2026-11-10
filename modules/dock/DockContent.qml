@@ -270,6 +270,20 @@ Item {
                 }
             }
 
+            // The dock is a raised surface: an analytic shadow under its body
+            // (not the concave corners of the attached theme, and running
+            // past the screen edge so only the free sides cast).
+            Elevation {
+                readonly property real dockCorner: root.isDefault ? dockContainer.cornerSize : 0
+                readonly property real dockRadius: Styling.radius(4)
+                readonly property real edgeRun: root.isDefault ? dockRadius : 0
+                x: root.isVertical ? (root.isLeft ? -edgeRun : 0) : dockCorner
+                y: root.isVertical ? dockCorner : 0
+                width: root.isVertical ? dockContainer.width + edgeRun : dockContainer.width - 2 * dockCorner
+                height: root.isVertical ? dockContainer.height - 2 * dockCorner : dockContainer.height + (root.isBottom ? edgeRun : 0)
+                radius: Math.min(dockRadius, width / 2, height / 2)
+            }
+
             // Full background container with masking (default theme)
             Item {
                 id: dockFullBgContainer

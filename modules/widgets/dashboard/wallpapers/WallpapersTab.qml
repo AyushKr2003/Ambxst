@@ -375,6 +375,7 @@ FocusScope {
                             radius: Styling.radius(0)
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.fill: parent
                                 text: currentScreenName // Get the monitor name!
                                 color: Colors.overSurface
@@ -518,6 +519,7 @@ FocusScope {
                             radius: Styling.radius(0)
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.fill: parent
                                 text: I18n.t("wallpapers.oled")
                                 color: Colors.overSurface
@@ -665,6 +667,7 @@ FocusScope {
                             radius: Styling.radius(0)
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.fill: parent
                                 text: I18n.t("wallpapers.tint")
                                 color: Colors.overSurface
@@ -967,6 +970,7 @@ FocusScope {
                                     clip: true
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         id: labelText
                                         anchors.verticalCenter: parent.verticalCenter
                                         anchors.horizontalCenter: needsScroll ? undefined : parent.horizontalCenter

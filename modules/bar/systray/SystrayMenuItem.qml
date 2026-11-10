@@ -81,6 +81,7 @@ Button {
                 border.width: 1.5
 
                 Text {
+                    renderType: Text.NativeRendering
                     anchors.centerIn: parent
                     visible: root.checkState !== Qt.Unchecked
                     text: root.checkState === Qt.PartiallyChecked ? "\u2212" : "\u2713"
@@ -122,6 +123,7 @@ Button {
             Component {
                 id: fontIcon
                 Text {
+                    renderType: Text.NativeRendering
                     text: root.iconSource
                     font.family: Icons.font
                     font.pixelSize: 14
@@ -143,6 +145,7 @@ Button {
 
         // Text
         Text {
+            renderType: Text.NativeRendering
             Layout.fillWidth: true
             text: root.cleanText
             color: root.hovered ? Colors.overPrimary : Colors.overBackground
@@ -154,6 +157,7 @@ Button {
 
         // Submenu chevron
         Text {
+            renderType: Text.NativeRendering
             visible: root.hasSubmenu
             text: root.expanded ? "\u25BE" : "\u25B8"
             color: root.hovered ? Colors.overPrimary : Colors.overBackground

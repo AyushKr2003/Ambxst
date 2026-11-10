@@ -50,6 +50,7 @@ Item {
 
             // Cube icon
             Text {
+                renderType: Text.NativeRendering
                 anchors.centerIn: parent
                 text: Icons.cube
                 font.family: Icons.font
@@ -86,6 +87,7 @@ Item {
 
         // Label
         Text {
+            renderType: Text.NativeRendering
             text: root.variantLabel
             font.family: Styling.defaultFont
             font.pixelSize: Styling.fontSize(0)

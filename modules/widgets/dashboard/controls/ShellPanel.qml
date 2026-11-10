@@ -68,6 +68,7 @@ Item {
             spacing: 16
 
             Text {
+                renderType: Text.NativeRendering
                 text: sectionBtn.text
                 font.family: Config.theme.font
                 font.pixelSize: Styling.fontSize(0)
@@ -77,6 +78,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 text: Icons.caretRight
                 font.family: Icons.font
                 font.pixelSize: 20
@@ -113,6 +115,7 @@ Item {
             spacing: 16
 
             Text {
+                renderType: Text.NativeRendering
                 text: actionBtn.icon
                 font.family: Icons.font
                 font.pixelSize: 20
@@ -121,6 +124,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 text: actionBtn.text
                 font.family: Config.theme.font
                 font.pixelSize: Styling.fontSize(0)
@@ -130,6 +134,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 text: Icons.arrowSquareOut
                 font.family: Icons.font
                 font.pixelSize: 18
@@ -169,6 +174,7 @@ Item {
         spacing: 8
 
         Text {
+            renderType: Text.NativeRendering
             text: toggleRowRoot.label
             font.family: Config.theme.font
             font.pixelSize: Styling.fontSize(0)
@@ -240,6 +246,7 @@ Item {
         spacing: 8
 
         Text {
+            renderType: Text.NativeRendering
             text: numberInputRowRoot.label
             font.family: Config.theme.font
             font.pixelSize: Styling.fontSize(0)
@@ -254,6 +261,7 @@ Item {
             radius: Styling.radius(-2)
 
             TextInput {
+                renderType: Text.NativeRendering
                 id: numberTextInput
                 anchors.fill: parent
                 anchors.margins: 8
@@ -289,6 +297,7 @@ Item {
         }
 
         Text {
+            renderType: Text.NativeRendering
             text: numberInputRowRoot.suffix
             font.family: Config.theme.font
             font.pixelSize: Styling.fontSize(0)
@@ -309,6 +318,7 @@ Item {
         spacing: 8
 
         Text {
+            renderType: Text.NativeRendering
             text: textInputRowRoot.label
             font.family: Config.theme.font
             font.pixelSize: Styling.fontSize(0)
@@ -323,6 +333,7 @@ Item {
             radius: Styling.radius(-2)
 
             TextInput {
+                renderType: Text.NativeRendering
                 id: textInputField
                 anchors.fill: parent
                 anchors.margins: 8
@@ -343,6 +354,7 @@ Item {
                 Component.onCompleted: text = configValue
 
                 Text {
+                    renderType: Text.NativeRendering
                     anchors.fill: parent
                     verticalAlignment: Text.AlignVCenter
                     text: textInputRowRoot.placeholder
@@ -379,6 +391,7 @@ Item {
         spacing: 4
 
         Text {
+            renderType: Text.NativeRendering
             text: selectorRowRoot.label
             font.family: Config.theme.font
             font.pixelSize: Styling.fontSize(-1)
@@ -409,6 +422,7 @@ Item {
                     radius: isSelected ? Styling.radius(0) / 2 : Styling.radius(0)
 
                     Text {
+                        renderType: Text.NativeRendering
                         id: optionIcon
                         anchors.left: parent.left
                         anchors.leftMargin: 12
@@ -421,6 +435,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         anchors.centerIn: parent
                         text: optionButton.modelData.label
                         font.family: Config.theme.font
@@ -455,6 +470,7 @@ Item {
         spacing: 4
 
         Text {
+            renderType: Text.NativeRendering
             text: screenListRowRoot.label
             font.family: Config.theme.font
             font.pixelSize: Styling.fontSize(-1)
@@ -463,6 +479,7 @@ Item {
         }
 
         Text {
+            renderType: Text.NativeRendering
             text: I18n.t("shell.screens_empty")
             font.family: Config.theme.font
             font.pixelSize: Styling.fontSize(-2)
@@ -495,6 +512,7 @@ Item {
                     radius: Styling.radius(-2)
 
                     Text {
+                        renderType: Text.NativeRendering
                         id: screenLabel
                         anchors.centerIn: parent
                         text: screenButton.screenName
@@ -684,6 +702,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("settings.shell.bar")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -821,6 +840,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("shell.autohide")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -906,6 +926,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("settings.shell.frame")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -989,6 +1010,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("settings.shell.notch")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -1082,6 +1104,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("shell.no_media_display")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -1146,6 +1169,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("settings.shell.workspaces")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -1229,6 +1253,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("settings.shell.overview")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -1268,6 +1293,7 @@ Item {
                             spacing: 8
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("shell.overview.scale")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(0)
@@ -1305,6 +1331,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: ((Config.overview.scale ?? 0.15)).toFixed(2)
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(0)
@@ -1343,6 +1370,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("settings.shell.dock")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -1604,6 +1632,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("settings.shell.lockscreen")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -1650,6 +1679,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("settings.shell.desktop")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -1703,6 +1733,7 @@ Item {
                             spacing: 8
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("shell.desktop.text_color")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(0)
@@ -1745,6 +1776,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("settings.shell.system")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -1784,6 +1816,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("shell.system.ocr_languages")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-2)
@@ -1890,6 +1923,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("settings.shell.sidebar")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)

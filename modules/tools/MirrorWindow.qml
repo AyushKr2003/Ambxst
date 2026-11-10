@@ -127,6 +127,7 @@ PanelWindow {
                     color: Colors.surface
 
                     Text {
+                        renderType: Text.NativeRendering
                         anchors.centerIn: parent
                         text: root.isSquare ? Icons.arrowsOut : Icons.crop
                         font.family: Icons.font
@@ -159,6 +160,7 @@ PanelWindow {
                     color: Colors.surface
 
                     Text {
+                        renderType: Text.NativeRendering
                         anchors.centerIn: parent
                         text: Icons.flipX
                         font.family: Icons.font
@@ -181,6 +183,7 @@ PanelWindow {
                     variant: "error"
 
                     Text {
+                        renderType: Text.NativeRendering
                         anchors.centerIn: parent
                         text: Icons.cancel
                         font.family: Icons.font

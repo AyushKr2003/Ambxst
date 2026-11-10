@@ -263,6 +263,7 @@ FocusScope {
                                 clip: true
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     id: filterIcon
                                     text: Icons.accept
                                     font.family: Icons.font
@@ -290,6 +291,7 @@ FocusScope {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 id: filterText
                                 text: type === "image" ? I18n.t("wallpapers.filter_images") : type === "video" ? I18n.t("wallpapers.filter_videos") : label
                                 font.family: Config.theme.font

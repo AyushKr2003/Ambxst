@@ -14,6 +14,7 @@ PositionSlider 1.0 PositionSlider.qml
 SearchInput 1.0 SearchInput.qml
 SegmentedSwitch 1.0 SegmentedSwitch.qml
 Separator 1.0 Separator.qml
+Elevation 1.0 Elevation.qml
 Shadow 1.0 Shadow.qml
 StyledRect 1.0 StyledRect.qml
 StyledSlider 1.0 StyledSlider.qml

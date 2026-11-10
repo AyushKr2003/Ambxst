@@ -183,12 +183,15 @@ PanelWindow {
     // VISUAL CONTENT
     // ═══════════════════════════════════════════════════════════════
 
+    // No shadow over the whole panel. It was one MultiEffect blur on a
+    // full-screen layer, redrawn on every animation frame (the notch and
+    // dock ran at ~30 fps under it), and it put a soft dark halo round every
+    // bar shape and a band between the island pills. As in Omacale, the bar
+    // sits flat and only raised surfaces (the open notch, the dock) carry
+    // their own RectangularShadow.
     Item {
         id: visualContent
         anchors.fill: parent
-
-        layer.enabled: true
-        layer.effect: Shadow {}
 
         ScreenFrameContent {
             id: frameContent

@@ -37,6 +37,7 @@ Item {
             spacing: 16
 
             Text {
+                renderType: Text.NativeRendering
                 text: sectionBtn.text
                 font.family: Config.theme.font
                 font.pixelSize: Styling.fontSize(0)
@@ -46,6 +47,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 text: Icons.caretRight
                 font.family: Icons.font
                 font.pixelSize: 20
@@ -168,6 +170,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("settings.system.prefixes")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -177,6 +180,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("system.prefixes.description")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-2)
@@ -245,6 +249,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("settings.system.weather")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -259,6 +264,7 @@ Item {
                             spacing: 8
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("weather.location")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(0)
@@ -273,6 +279,7 @@ Item {
                                 radius: Styling.radius(-2)
 
                                 TextInput {
+                                    renderType: Text.NativeRendering
                                     id: locationInput
                                     anchors.fill: parent
                                     anchors.margins: 8
@@ -300,6 +307,7 @@ Item {
                                     }
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.verticalCenter: parent.verticalCenter
                                         visible: !locationInput.text && !locationInput.activeFocus
                                         text: I18n.t("weather.location_placeholder")
@@ -316,6 +324,7 @@ Item {
                             spacing: 8
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("weather.unit")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(0)
@@ -352,6 +361,7 @@ Item {
                                         radius: Styling.radius(-2)
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             id: unitLabel
                                             anchors.centerIn: parent
                                             text: unitButton.modelData.label
@@ -385,6 +395,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("settings.system.language")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -408,6 +419,7 @@ Item {
                                 radius: Styling.radius(-2)
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     id: autoLangLabel
                                     anchors.centerIn: parent
                                     text: {
@@ -447,6 +459,7 @@ Item {
                                     radius: Styling.radius(-2)
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         id: langLabel
                                         anchors.centerIn: parent
                                         text: I18n.availableLanguages[langButton.modelData] ?? langButton.modelData
@@ -479,6 +492,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("settings.system.performance")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -488,6 +502,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("system.performance.description")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-2)
@@ -507,6 +522,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("system.performance.battery_low_threshold_desc")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-2)
@@ -580,6 +596,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("settings.system.resources")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -589,6 +606,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("system.resources.description")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-2)
@@ -620,6 +638,7 @@ Item {
                                         radius: Styling.radius(-2)
 
                                         TextInput {
+                                            renderType: Text.NativeRendering
                                             id: diskInput
                                             anchors.fill: parent
                                             anchors.margins: 8
@@ -640,6 +659,7 @@ Item {
                                             }
 
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 anchors.verticalCenter: parent.verticalCenter
                                                 visible: !diskInput.text && !diskInput.activeFocus
                                                 text: I18n.t("system.disk_path_placeholder")
@@ -659,6 +679,7 @@ Item {
                                         visible: disksRepeater.count > 1
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             anchors.centerIn: parent
                                             text: Icons.trash
                                             font.family: Icons.font
@@ -700,6 +721,7 @@ Item {
                                     spacing: 6
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         text: Icons.plus
                                         font.family: Icons.font
                                         font.pixelSize: 14
@@ -708,6 +730,7 @@ Item {
                                     }
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         text: I18n.t("system.add_disk")
                                         font.family: Config.theme.font
                                         font.pixelSize: Styling.fontSize(0)
@@ -741,6 +764,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("settings.system.idle")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -786,6 +810,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("idle.listeners")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(0)
@@ -814,6 +839,7 @@ Item {
                                 RowLayout {
                                     Layout.fillWidth: true
                                     Text {
+                                        renderType: Text.NativeRendering
                                         text: I18n.t("idle.listener_n").replace("%1", index + 1)
                                         font.family: Config.theme.font
                                         font.pixelSize: Styling.fontSize(-1)
@@ -832,6 +858,7 @@ Item {
                                         radius: Styling.radius(-2)
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             anchors.centerIn: parent
                                             text: Icons.trash
                                             font.family: Icons.font
@@ -905,6 +932,7 @@ Item {
                             radius: Styling.radius(-2)
 
                             Text {
+                                renderType: Text.NativeRendering
                                 anchors.centerIn: parent
                                 text: I18n.t("idle.add_listener")
                                 font.family: Config.theme.font
@@ -944,6 +972,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: "Terminal"
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -953,6 +982,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: "Atoll uses your terminal to launch the tmux manager and to show update progress."
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-2)
@@ -1004,6 +1034,7 @@ Item {
                                     spacing: 8
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         text: "$TERMINAL is replaced by the value above. $COMMAND is the full bash command Atoll wants to run."
                                         font.family: Config.theme.font
                                         font.pixelSize: Styling.fontSize(-2)
@@ -1026,6 +1057,7 @@ Item {
                                     }
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         text: "Examples: \"$TERMINAL -e $COMMAND\" · \"gnome-terminal -- $COMMAND\" · \"konsole -e $COMMAND\""
                                         font.family: Config.theme.font
                                         font.pixelSize: Styling.fontSize(-3)
@@ -1049,6 +1081,7 @@ Item {
                         spacing: 8
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: "Clipboard"
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -1058,6 +1091,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: "History is capped at 50 items and stored encrypted. Images are kept inside the database."
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-2)
@@ -1130,6 +1164,7 @@ Item {
         spacing: 8
 
         Text {
+            renderType: Text.NativeRendering
             text: numberInputRowRoot.label
             font.family: Config.theme.font
             font.pixelSize: Styling.fontSize(0)
@@ -1144,6 +1179,7 @@ Item {
             radius: Styling.radius(-2)
 
             TextInput {
+                renderType: Text.NativeRendering
                 id: numberTextInput
                 anchors.fill: parent
                 anchors.margins: 8
@@ -1179,6 +1215,7 @@ Item {
         }
 
         Text {
+            renderType: Text.NativeRendering
             text: numberInputRowRoot.suffix
             font.family: Config.theme.font
             font.pixelSize: Styling.fontSize(0)
@@ -1200,6 +1237,7 @@ Item {
         spacing: 8
 
         Text {
+            renderType: Text.NativeRendering
             text: textInputRowRoot.label
             font.family: Config.theme.font
             font.pixelSize: Styling.fontSize(0)
@@ -1214,6 +1252,7 @@ Item {
             radius: Styling.radius(-2)
 
             TextInput {
+                renderType: Text.NativeRendering
                 id: textInputField
                 anchors.fill: parent
                 anchors.margins: 8
@@ -1234,6 +1273,7 @@ Item {
                 Component.onCompleted: text = configValue
 
                 Text {
+                    renderType: Text.NativeRendering
                     anchors.fill: parent
                     verticalAlignment: Text.AlignVCenter
                     text: textInputRowRoot.placeholder
@@ -1260,6 +1300,7 @@ Item {
         spacing: 8
 
         Text {
+            renderType: Text.NativeRendering
             text: prefixRow.label
             font.family: Config.theme.font
             font.pixelSize: Styling.fontSize(0)
@@ -1274,6 +1315,7 @@ Item {
             radius: Styling.radius(-2)
 
             TextInput {
+                renderType: Text.NativeRendering
                 id: prefixInput
                 anchors.fill: parent
                 anchors.margins: 8
@@ -1314,6 +1356,7 @@ Item {
             spacing: 2
 
             Text {
+                renderType: Text.NativeRendering
                 text: label
                 font.family: Config.theme.font
                 font.pixelSize: Styling.fontSize(0)
@@ -1321,6 +1364,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 visible: description !== ""
                 text: description
                 font.family: Config.theme.font

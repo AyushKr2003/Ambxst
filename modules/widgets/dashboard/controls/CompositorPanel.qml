@@ -38,6 +38,7 @@ Item {
             spacing: 16
 
             Text {
+                renderType: Text.NativeRendering
                 text: sectionBtn.text
                 font.family: Config.theme.font
                 font.pixelSize: Styling.fontSize(0)
@@ -47,6 +48,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 text: Icons.caretRight
                 font.family: Icons.font
                 font.pixelSize: 20
@@ -119,6 +121,7 @@ Item {
         spacing: 8
 
         Text {
+            renderType: Text.NativeRendering
             text: toggleRowRoot.label
             font.family: Config.theme.font
             font.pixelSize: Styling.fontSize(0)
@@ -188,6 +191,7 @@ Item {
         opacity: enabled ? 1.0 : 0.5
 
         Text {
+            renderType: Text.NativeRendering
             text: numberInputRowRoot.label
             font.family: Config.theme.font
             font.pixelSize: Styling.fontSize(0)
@@ -202,6 +206,7 @@ Item {
             radius: Styling.radius(-2)
 
             TextInput {
+                renderType: Text.NativeRendering
                 id: numberTextInput
                 anchors.fill: parent
                 anchors.margins: 8
@@ -237,6 +242,7 @@ Item {
         }
 
         Text {
+            renderType: Text.NativeRendering
             text: numberInputRowRoot.suffix
             font.family: Config.theme.font
             font.pixelSize: Styling.fontSize(0)
@@ -260,6 +266,7 @@ Item {
         opacity: enabled ? 1.0 : 0.5
 
         Text {
+            renderType: Text.NativeRendering
             text: decimalInputRowRoot.label
             font.family: Config.theme.font
             font.pixelSize: Styling.fontSize(0)
@@ -274,6 +281,7 @@ Item {
             radius: Styling.radius(-2)
 
             TextInput {
+                renderType: Text.NativeRendering
                 id: decimalTextInput
                 anchors.fill: parent
                 anchors.margins: 8
@@ -312,6 +320,7 @@ Item {
         }
 
         Text {
+            renderType: Text.NativeRendering
             text: decimalInputRowRoot.suffix
             font.family: Config.theme.font
             font.pixelSize: Styling.fontSize(0)
@@ -337,6 +346,7 @@ Item {
         RowLayout {
             Layout.fillWidth: true
             Text {
+                renderType: Text.NativeRendering
                 text: gradientRow.label
                 font.family: Config.theme.font
                 font.pixelSize: Styling.fontSize(0)
@@ -344,6 +354,7 @@ Item {
                 Layout.fillWidth: true
             }
             Text {
+                renderType: Text.NativeRendering
                 text: I18n.t("compositor.right_click_remove")
                 font.family: Config.theme.font
                 font.pixelSize: Styling.fontSize(-2)
@@ -420,11 +431,12 @@ Item {
                 height: 32
                 radius: 16
                 variant: "common"
-                color: mouseAreaAdd.containsMouse ? Colors.surfaceBright : Colors.surface
+                fillOverride: mouseAreaAdd.containsMouse ? Colors.surfaceBright : Colors.surface
                 border.width: 1
                 border.color: Colors.outline
 
                 Text {
+                    renderType: Text.NativeRendering
                     anchors.centerIn: parent
                     text: Icons.plus
                     font.family: Icons.font
@@ -494,6 +506,7 @@ Item {
 
             // Font Icon
             Text {
+                renderType: Text.NativeRendering
                 visible: tabBtn.icon !== "" && tabBtn.image === ""
                 text: tabBtn.icon
                 font.family: Icons.font
@@ -503,6 +516,7 @@ Item {
 
             // Label
             Text {
+                renderType: Text.NativeRendering
                 text: tabBtn.label
                 font.family: Config.theme.font
                 font.pixelSize: Styling.fontSize(0)
@@ -675,6 +689,7 @@ Item {
                             spacing: 8
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("compositor.general")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-1)
@@ -788,6 +803,7 @@ Item {
                             spacing: 8
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("compositor.colors")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-1)
@@ -841,6 +857,7 @@ Item {
                             spacing: 8
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("compositor.shadows")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-1)
@@ -981,6 +998,7 @@ Item {
                             spacing: 8
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("compositor.blur")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-1)
@@ -1133,6 +1151,7 @@ Item {
                             spacing: 16
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: Icons.clock
                                 font.family: Icons.font
                                 font.pixelSize: 64
@@ -1141,6 +1160,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("common.coming_soon")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(2)
@@ -1150,6 +1170,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: I18n.t("compositor.coming_soon_text")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(0)

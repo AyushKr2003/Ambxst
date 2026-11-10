@@ -101,6 +101,7 @@ PanelWindow {
                         spacing: 0
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: {
                                 if (GlobalStates.osdIndicator === "volume")
                                     return I18n.t("osd.volume");
@@ -122,6 +123,7 @@ PanelWindow {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: Math.round(root.osdValue * 100)
                             font.family: Config.theme.font
                             font.pixelSize: 15

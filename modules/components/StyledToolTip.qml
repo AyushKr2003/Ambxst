@@ -26,6 +26,7 @@ ToolTip {
         spacing: 0
 
         Text {
+            renderType: Text.NativeRendering
             text: root.tooltipText
             color: Colors.overBackground
             font.pixelSize: Config.theme.fontSize
@@ -34,6 +35,7 @@ ToolTip {
         }
 
         Text {
+            renderType: Text.NativeRendering
             text: root.desciription
             visible: root.desciription.length > 0
             color: Colors.overBackground

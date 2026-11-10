@@ -90,6 +90,7 @@ Item {
                     radius: isSelected ? Styling.radius(0) / 2 : Styling.radius(0)
 
                     Text {
+                        renderType: Text.NativeRendering
                         id: typeIcon
                         anchors.left: parent.left
                         anchors.leftMargin: 12
@@ -112,6 +113,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         anchors.centerIn: parent
                         text: typeButton.modelData.charAt(0).toUpperCase() + typeButton.modelData.slice(1)
                         font.family: Styling.defaultFont
@@ -192,6 +194,7 @@ Item {
                             spacing: 2
 
                             Text {
+                                renderType: Text.NativeRendering
                                 Layout.fillWidth: true
                                 text: I18n.t("theme.opacity")
                                 font.family: Styling.defaultFont
@@ -202,6 +205,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 Layout.fillWidth: true
                                 text: root.variantConfig ? (root.variantConfig.opacity * 100).toFixed(0) + "%" : "100%"
                                 font.family: Styling.defaultFont
@@ -277,6 +281,7 @@ Item {
                             spacing: 2
 
                             Text {
+                                renderType: Text.NativeRendering
                                 Layout.fillWidth: true
                                 text: I18n.t("theme.border")
                                 font.family: Styling.defaultFont
@@ -287,6 +292,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 Layout.fillWidth: true
                                 text: root.variantConfig ? root.variantConfig.border[1] + "px" : "0px"
                                 font.family: Styling.defaultFont
@@ -346,6 +352,7 @@ Item {
                     spacing: 2
 
                     Text {
+                        renderType: Text.NativeRendering
                         text: I18n.t("theme.angle")
                         font.family: Styling.defaultFont
                         font.pixelSize: Styling.fontSize(-2)
@@ -355,6 +362,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         text: root.variantConfig ? root.variantConfig.gradientAngle + "°" : "0°"
                         font.family: Styling.defaultFont
                         font.pixelSize: Styling.fontSize(1)
@@ -408,6 +416,7 @@ Item {
                     spacing: 12
 
                     Text {
+                        renderType: Text.NativeRendering
                         text: "X"
                         font.family: Styling.defaultFont
                         font.pixelSize: Styling.fontSize(0)
@@ -438,6 +447,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         text: root.variantConfig ? (root.variantConfig.gradientCenterX * 100).toFixed(0) + "%" : "50%"
                         font.family: Styling.defaultFont
                         font.pixelSize: Styling.fontSize(0)
@@ -454,6 +464,7 @@ Item {
                     spacing: 12
 
                     Text {
+                        renderType: Text.NativeRendering
                         text: "Y"
                         font.family: Styling.defaultFont
                         font.pixelSize: Styling.fontSize(0)
@@ -484,6 +495,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         text: root.variantConfig ? (root.variantConfig.gradientCenterY * 100).toFixed(0) + "%" : "50%"
                         font.family: Styling.defaultFont
                         font.pixelSize: Styling.fontSize(0)
@@ -579,6 +591,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("theme.angle")
                             font.family: Styling.defaultFont
                             font.pixelSize: Styling.fontSize(0)
@@ -611,6 +624,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: root.variantConfig ? root.variantConfig.gradientAngle + "°" : "0°"
                             font.family: Styling.defaultFont
                             font.pixelSize: Styling.fontSize(0)
@@ -627,6 +641,7 @@ Item {
                         spacing: 12
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: Icons.circle
                             font.family: Icons.font
                             font.pixelSize: 18
@@ -635,6 +650,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("theme.size")
                             font.family: Styling.defaultFont
                             font.pixelSize: Styling.fontSize(0)
@@ -644,6 +660,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: root.variantConfig ? root.variantConfig.halftoneDotMin.toFixed(1) : "2.0"
                             font.family: Styling.defaultFont
                             font.pixelSize: Styling.fontSize(-1)
@@ -675,6 +692,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: "-"
                             font.family: Styling.defaultFont
                             font.pixelSize: Styling.fontSize(0)
@@ -706,6 +724,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: root.variantConfig ? root.variantConfig.halftoneDotMax.toFixed(1) : "8.0"
                             font.family: Styling.defaultFont
                             font.pixelSize: Styling.fontSize(-1)
@@ -720,6 +739,7 @@ Item {
                         spacing: 12
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: Icons.range
                             font.family: Icons.font
                             font.pixelSize: 18
@@ -728,6 +748,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: I18n.t("theme.range")
                             font.family: Styling.defaultFont
                             font.pixelSize: Styling.fontSize(0)
@@ -737,6 +758,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: root.variantConfig ? (root.variantConfig.halftoneStart * 100).toFixed(0) + "%" : "0%"
                             font.family: Styling.defaultFont
                             font.pixelSize: Styling.fontSize(-1)
@@ -765,6 +787,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: "-"
                             font.family: Styling.defaultFont
                             font.pixelSize: Styling.fontSize(0)
@@ -793,6 +816,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: root.variantConfig ? (root.variantConfig.halftoneEnd * 100).toFixed(0) + "%" : "100%"
                             font.family: Styling.defaultFont
                             font.pixelSize: Styling.fontSize(-1)

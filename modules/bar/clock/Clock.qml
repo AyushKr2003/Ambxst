@@ -73,6 +73,7 @@ Item {
             spacing: 8
 
             Text {
+                renderType: Text.NativeRendering
                 id: dayDisplay
                 text: root.weatherAvailable ? WeatherService.weatherSymbol : root.currentDayAbbrev
                 color: root.popupOpen ? buttonBg.item : Colors.overBackground
@@ -89,6 +90,7 @@ Item {
             Text {
                 id: timeDisplay
                 text: root.currentTime
+                renderType: Text.NativeRendering
                 color: root.popupOpen ? buttonBg.item : Colors.overBackground
                 font.pixelSize: Config.theme.fontSize
                 font.family: Config.theme.font
@@ -104,6 +106,7 @@ Item {
             Layout.alignment: Qt.AlignHCenter
 
             Text {
+                renderType: Text.NativeRendering
                 id: dayDisplayV
                 text: root.weatherAvailable ? WeatherService.weatherSymbol : root.currentDayAbbrev
                 color: root.popupOpen ? buttonBg.item : Colors.overBackground
@@ -122,6 +125,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 id: hoursDisplayV
                 text: root.currentHours
                 color: root.popupOpen ? buttonBg.item : Colors.overBackground
@@ -134,6 +138,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 id: minutesDisplayV
                 text: root.currentMinutes
                 color: root.popupOpen ? buttonBg.item : Colors.overBackground
@@ -232,6 +237,7 @@ Item {
                         height: monthText.height
 
                         Text {
+                            renderType: Text.NativeRendering
                             id: monthText
                             anchors.left: parent.left
                             anchors.leftMargin: 4
@@ -244,6 +250,7 @@ Item {
 
                         // Placeholder for events count (future feature)
                         Text {
+                            renderType: Text.NativeRendering
                             anchors.right: parent.right
                             anchors.rightMargin: 4
                             text: ""
@@ -277,6 +284,7 @@ Item {
                                 property bool isToday: index === calendarWrapper.currentDayOfWeek
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     anchors.horizontalCenter: parent.horizontalCenter
                                     text: {
                                         var keys = [
@@ -309,6 +317,7 @@ Item {
                                     }
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         anchors.centerIn: parent
                                         text: dayColumn.dayDate.getDate()
                                         color: dayColumn.isToday ? Colors.background : Colors.overBackground
@@ -383,6 +392,7 @@ Item {
 
                                             // Day name
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 anchors.horizontalCenter: parent.horizontalCenter
                                                 text: forecastDayRow.modelData.dayName
                                                 color: Colors.overBackground
@@ -393,6 +403,7 @@ Item {
 
                                             // Weather emoji
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 anchors.horizontalCenter: parent.horizontalCenter
                                                 text: forecastDayRow.modelData.emoji
                                                 font.pixelSize: Styling.fontSize(4)
@@ -400,6 +411,7 @@ Item {
 
                                             // Max temperature
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 anchors.horizontalCenter: parent.horizontalCenter
                                                 text: (Math.round(forecastDayRow.modelData.maxTemp) >= 0 ? "+" : "") + Math.round(forecastDayRow.modelData.maxTemp) + "\u00B0"
                                                 color: Colors.overBackground
@@ -410,6 +422,7 @@ Item {
 
                                             // Min temperature
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 anchors.horizontalCenter: parent.horizontalCenter
                                                 text: (Math.round(forecastDayRow.modelData.minTemp) >= 0 ? "+" : "") + Math.round(forecastDayRow.modelData.minTemp) + "\u00B0"
                                                 color: Colors.outline
@@ -584,6 +597,7 @@ Item {
                                             bottomRightRadius: isSelected ? (isLastCol && isLastRow ? defaultRadius : selectedRadius) : defaultRadius
 
                                             Text {
+                                                renderType: Text.NativeRendering
                                                 anchors.centerIn: parent
                                                 text: weatherBtn.modelData.icon
                                                 font.pixelSize: 14

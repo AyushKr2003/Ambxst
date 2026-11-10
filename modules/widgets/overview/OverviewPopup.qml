@@ -143,6 +143,7 @@ PanelWindow {
                     color: "transparent"
 
                     Text {
+                        renderType: Text.NativeRendering
                         anchors.centerIn: parent
                         text: Icons.overview
                         font.family: Icons.font
@@ -165,6 +166,7 @@ PanelWindow {
 
                     // Match counter suffix
                     Text {
+                        renderType: Text.NativeRendering
                         id: matchCounter
                         visible: overviewLoader.item && overviewLoader.item.searchQuery.length > 0
                         anchors.right: parent.right

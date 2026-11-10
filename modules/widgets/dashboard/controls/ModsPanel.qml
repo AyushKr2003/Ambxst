@@ -411,6 +411,7 @@ Item {
         spacing: 10
 
         Text {
+            renderType: Text.NativeRendering
             Layout.preferredWidth: 118
             Layout.alignment: Qt.AlignTop
             text: meta.label
@@ -421,6 +422,7 @@ Item {
         }
 
         Text {
+            renderType: Text.NativeRendering
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignVCenter
             visible: meta.value !== ""
@@ -489,6 +491,7 @@ Item {
                     spacing: 8
 
                     Text {
+                        renderType: Text.NativeRendering
                         text: root.tr("mods.package_source")
                         font.family: Config.theme.font
                         font.pixelSize: Styling.fontSize(-1)
@@ -501,6 +504,7 @@ Item {
                         spacing: 8
 
                         TextField {
+                            renderType: Text.NativeRendering
                             id: sourceInput
                             Layout.fillWidth: true
                             implicitHeight: 38
@@ -566,6 +570,7 @@ Item {
                             spacing: 10
 
                             Text {
+                                renderType: Text.NativeRendering
                                 text: Icons.file
                                 font.family: Icons.font
                                 font.pixelSize: Styling.fontSize(4)
@@ -577,6 +582,7 @@ Item {
                                 spacing: 2
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     Layout.fillWidth: true
                                     text: root.tr("mods.archive_drop")
                                     font.family: Config.theme.font
@@ -587,6 +593,7 @@ Item {
                                 }
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     Layout.fillWidth: true
                                     text: root.tr("mods.archive_drop_hint")
                                     font.family: Config.theme.font
@@ -605,6 +612,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         Layout.fillWidth: true
                         visible: root.archiveError !== ""
                         text: root.archiveError
@@ -615,6 +623,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         Layout.fillWidth: true
                         text: root.tr("mods.trust_warning")
                         font.family: Config.theme.font
@@ -644,6 +653,7 @@ Item {
                         spacing: 2
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: root.tr("mods.toggle_title")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -652,6 +662,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             Layout.fillWidth: true
                             text: root.tr("mods.toggle_description")
                             font.family: Config.theme.font
@@ -689,6 +700,7 @@ Item {
                         spacing: 2
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: root.tr("mods.bypass_title")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -697,6 +709,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             Layout.fillWidth: true
                             text: root.tr("mods.bypass_description")
                             font.family: Config.theme.font
@@ -716,6 +729,7 @@ Item {
             }
 
             Text {
+                renderType: Text.NativeRendering
                 Layout.fillWidth: true
                 visible: ModsService.errorDetails !== ""
                 text: root.tr("mods.technical_details", ModsService.errorDetails)
@@ -743,6 +757,7 @@ Item {
                     spacing: 10
 
                     Text {
+                        renderType: Text.NativeRendering
                         Layout.alignment: Qt.AlignVCenter
                         text: ModsService.errorMessage !== "" || !ModsService.generationCurrent
                             ? Icons.alert : (ModsService.restartRequired ? Icons.arrowCounterClockwise : Icons.accept)
@@ -752,6 +767,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignVCenter
                         text: ModsService.errorMessage !== "" ? ModsService.errorMessage
@@ -787,6 +803,7 @@ Item {
                 spacing: 8
 
                 Text {
+                    renderType: Text.NativeRendering
                     text: root.tr("mods.installed_count", String((ModsService.mods ?? []).length))
                     font.family: Config.theme.font
                     font.pixelSize: Styling.fontSize(-1)
@@ -831,6 +848,7 @@ Item {
                     spacing: 10
 
                     Text {
+                        renderType: Text.NativeRendering
                         Layout.alignment: Qt.AlignHCenter
                         text: Icons.puzzlePiece
                         font.family: Icons.font
@@ -839,6 +857,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         Layout.fillWidth: true
                         text: (ModsService.mods ?? []).length === 0
                             ? root.tr("mods.empty")
@@ -907,6 +926,7 @@ Item {
                                     spacing: 1
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         Layout.fillWidth: true
                                         text: modRow.modelData.name
                                         font.family: Config.theme.font
@@ -917,6 +937,7 @@ Item {
                                     }
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         Layout.fillWidth: true
                                         text: (modRow.modelData.version || root.tr("mods.unknown_version"))
                                             + " · " + root.stateLabel(modRow.modelData)
@@ -927,6 +948,7 @@ Item {
                                         elide: Text.ElideRight
                                     }
                                     Text {
+                                        renderType: Text.NativeRendering
                                         Layout.fillWidth: true
                                         visible: modRow.modelData.deprecated ?? false
                                         text: root.tr("mods.deprecated_short")
@@ -947,6 +969,7 @@ Item {
                                                 : root.tr("mods.update_item_available") + " · " + (update?.toVersion ?? ""))
                                             : root.tr("mods.update_item_failed")
                                         Text {
+                                            renderType: Text.NativeRendering
                                             Layout.fillWidth: true
                                             Layout.alignment: Qt.AlignVCenter
                                             text: updateStatus.text
@@ -963,6 +986,7 @@ Item {
                                     spacing: 10
 
                                     Text {
+                                        renderType: Text.NativeRendering
                                         visible: updateStatus.update?.state === "available"
                                         text: Icons.sync
                                         font.family: Icons.font
@@ -971,6 +995,7 @@ Item {
                                         Accessible.ignored: true
                                     }
                                     Text {
+                                        renderType: Text.NativeRendering
                                         visible: !modRow.modelData.valid || !modRow.modelData.compatible
                                             || (modRow.modelData.deprecated ?? false) || updateStatus.update?.state === "failed"
                                         text: Icons.alert
@@ -980,6 +1005,7 @@ Item {
                                         Accessible.ignored: true
                                     }
                                     Text {
+                                        renderType: Text.NativeRendering
                                         text: modRow.modelData.enabled ? Icons.accept : Icons.pause
                                         font.family: Icons.font
                                         font.pixelSize: Styling.fontSize(1)
@@ -1019,6 +1045,7 @@ Item {
                             spacing: 2
 
                             Text {
+                                renderType: Text.NativeRendering
                                 Layout.fillWidth: true
                                 text: root.selectedMod?.name ?? ""
                                 font.family: Config.theme.font
@@ -1029,6 +1056,7 @@ Item {
                             }
 
                             Text {
+                                renderType: Text.NativeRendering
                                 Layout.fillWidth: true
                                 text: (root.selectedMod?.id ?? "") + " · " + (root.selectedMod?.version ?? "")
                                 font.family: Config.theme.monoFont
@@ -1055,6 +1083,7 @@ Item {
                             enableShadow: false
 
                             Text {
+                                renderType: Text.NativeRendering
                                 id: stateChip
                                 anchors.centerIn: parent
                                 text: root.stateLabel(root.selectedMod)
@@ -1105,6 +1134,7 @@ Item {
                         clip: true
                         contentWidth: availableWidth
                         TextArea {
+                            renderType: Text.NativeRendering
                             id: selectedChangelogText
                             width: selectedChangelogView.availableWidth
                             readOnly: true
@@ -1121,6 +1151,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         Layout.fillWidth: true
                         visible: (root.selectedUpdate?.checkedAt ?? "") !== ""
                         text: root.tr("mods.last_check", Qt.formatDateTime(new Date(root.selectedUpdate?.checkedAt ?? ""), "dd.MM.yyyy HH:mm"))
@@ -1131,6 +1162,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         Layout.fillWidth: true
                         visible: (root.selectedUpdate?.checkError ?? "") !== ""
                         text: root.tr("mods.cached_check_failed")
@@ -1141,6 +1173,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         Layout.fillWidth: true
                         visible: root.selectedUpdate?.state === "available" && ModsService.restartRequired
                         text: root.tr("mods.restart_before_update")
@@ -1151,6 +1184,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         Layout.fillWidth: true
                         visible: root.selectedMod?.deprecated ?? false
                         text: root.tr("mods.deprecated_notice")
@@ -1162,6 +1196,7 @@ Item {
                         wrapMode: Text.Wrap
                     }
                     Text {
+                        renderType: Text.NativeRendering
                         Layout.fillWidth: true
                         visible: (root.selectedMod?.description ?? "") !== ""
                         text: root.selectedMod?.description ?? ""
@@ -1172,6 +1207,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         visible: (root.selectedMod?.error ?? "") !== ""
                             || (root.selectedMod?.compatibilityError ?? "") !== ""
                         Layout.fillWidth: true
@@ -1184,6 +1220,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         visible: (root.selectedMod?.untestedMessage ?? "") !== ""
                         Layout.fillWidth: true
                         text: root.tr("mods.untested_base", root.selectedMod?.untestedMessage ?? "")
@@ -1194,6 +1231,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         visible: (root.selectedMod?.unknownFields ?? []).length > 0
                         Layout.fillWidth: true
                         text: root.tr("mods.unknown_fields", (root.selectedMod?.unknownFields ?? []).join(", "))
@@ -1211,6 +1249,7 @@ Item {
                         Layout.bottomMargin: 4
                         spacing: 10
                         Text {
+                            renderType: Text.NativeRendering
                             Layout.alignment: Qt.AlignTop
                             text: Icons.globe
                             font.family: Icons.font
@@ -1222,6 +1261,7 @@ Item {
                             Layout.fillWidth: true
                             spacing: 4
                             Text {
+                                renderType: Text.NativeRendering
                                 text: root.tr("mods.interface_languages")
                                 font.family: Config.theme.font
                                 font.pixelSize: Styling.fontSize(-1)
@@ -1229,6 +1269,7 @@ Item {
                                 color: Colors.overBackground
                             }
                             Text {
+                                renderType: Text.NativeRendering
                                 Layout.fillWidth: true
                                 text: {
                                     const revision = I18n.revision;
@@ -1251,6 +1292,7 @@ Item {
                                 wrapMode: Text.Wrap
                             }
                             Text {
+                                renderType: Text.NativeRendering
                                 Layout.fillWidth: true
                                 visible: !root.selectedMod?.localization
                                 text: root.tr("mods.language_missing_description")
@@ -1266,6 +1308,7 @@ Item {
                         Layout.fillWidth: true
                         spacing: 6
                         Text {
+                            renderType: Text.NativeRendering
                             Layout.fillWidth: true
                             text: root.tr("mods.auto_updates") + " · "
                                 + root.tr(root.selectedMod?.autoUpdateEffective ? "common.on" : "common.off")
@@ -1290,6 +1333,7 @@ Item {
                             }
                         }
                         Text {
+                            renderType: Text.NativeRendering
                             Layout.fillWidth: true
                             visible: !(root.selectedMod?.autoUpdateAvailable ?? false)
                             text: root.tr("mods.manual_source")
@@ -1299,6 +1343,7 @@ Item {
                             wrapMode: Text.Wrap
                         }
                         Text {
+                            renderType: Text.NativeRendering
                             Layout.fillWidth: true
                             visible: !ModsService.periodicChecks && !!root.selectedMod?.autoUpdateAvailable
                             text: root.tr("mods.schedule_paused_short")
@@ -1487,6 +1532,7 @@ Item {
                                 mono: true
 
                                 Text {
+                                    renderType: Text.NativeRendering
                                     text: modelData.enabled ? root.tr("mods.dependency_ready")
                                         : modelData.installed ? root.tr("mods.dependency_disabled")
                                         : root.tr("mods.dependency_missing")
@@ -1561,6 +1607,7 @@ Item {
                         Separator { Layout.fillWidth: true }
 
                         Text {
+                            renderType: Text.NativeRendering
                             text: root.tr("mods.settings")
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-1)
@@ -1569,6 +1616,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             visible: ModsService.settingsBusy
                             text: root.tr("mods.loading_settings")
                             font.family: Config.theme.font
@@ -1607,6 +1655,7 @@ Item {
                                         spacing: 1
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             Layout.fillWidth: true
                                             text: settingRow.modelData.label
                                             font.family: Config.theme.font
@@ -1617,6 +1666,7 @@ Item {
                                         }
 
                                         Text {
+                                            renderType: Text.NativeRendering
                                             visible: (settingRow.modelData.description ?? "") !== ""
                                             Layout.fillWidth: true
                                             text: settingRow.modelData.description ?? ""
@@ -1669,6 +1719,7 @@ Item {
                                     spacing: 6
 
                                     TextField {
+                                        renderType: Text.NativeRendering
                                         id: settingInput
                                         Layout.fillWidth: true
                                         implicitHeight: 34
@@ -1712,6 +1763,7 @@ Item {
                 spacing: 8
 
                 Text {
+                    renderType: Text.NativeRendering
                     Layout.fillWidth: true
                     text: root.tr("mods.base") + " " + (ModsService.baseVersion || root.tr("mods.unknown"))
                         + (ModsService.baseRevision ? " · " + ModsService.baseRevision.substring(0, 12) : "")
@@ -1741,12 +1793,14 @@ Item {
                     anchors.margins: 8
                     spacing: 8
                     Text {
+                        renderType: Text.NativeRendering
                         text: Icons.info
                         font.family: Icons.font
                         font.pixelSize: Styling.fontSize(3)
                         color: Colors.primary
                     }
                     Text {
+                        renderType: Text.NativeRendering
                         Layout.fillWidth: true
                         text: root.tr("mods.docs_hint")
                         font.family: Config.theme.font
@@ -1818,6 +1872,7 @@ Item {
                     spacing: 8
 
                     Text {
+                        renderType: Text.NativeRendering
                         visible: root.confirmKind === "installArchive" || root.confirmKind === "menuIndex"
                         text: Icons.alert
                         font.family: Icons.font
@@ -1826,6 +1881,7 @@ Item {
                     }
 
                     Text {
+                        renderType: Text.NativeRendering
                         Layout.fillWidth: true
                         text: root.confirmKind === "enable"
                             ? root.tr("mods.confirm_enable_title")
@@ -1843,6 +1899,7 @@ Item {
                 }
 
                 Text {
+                    renderType: Text.NativeRendering
                     Layout.fillWidth: true
                     text: root.confirmKind === "enable"
                         ? root.tr("mods.confirm_enable_body")

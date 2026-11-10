@@ -56,6 +56,7 @@ StyledRect {
         spacing: 8
 
         Text {
+            renderType: Text.NativeRendering
             text: root.iconText
             font.family: Icons.font
             font.pixelSize: 20
@@ -72,6 +73,7 @@ StyledRect {
             visible: root.prefixText.length > 0 || root.prefixIcon.length > 0
 
             Text {
+                renderType: Text.NativeRendering
                 id: prefixLabel
                 anchors.centerIn: parent
                 text: root.prefixIcon.length > 0 ? root.prefixIcon : root.prefixText.trim()
@@ -83,6 +85,7 @@ StyledRect {
         }
 
         TextField {
+            renderType: Text.NativeRendering
             id: textField
             Layout.fillWidth: true
             placeholderTextColor: Colors.outline

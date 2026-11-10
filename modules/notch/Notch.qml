@@ -54,7 +54,7 @@ Item {
     readonly property int cornerSize: Config.roundness > 0 ? Config.roundness + 4 : 0
     readonly property int totalCornerWidth: Config.notchTheme === "default" ? cornerSize * 2 : 0
 
-    implicitWidth: screenNotchOpen ? Math.max(stackContainer.width + totalCornerWidth, 290) : stackContainer.width + totalCornerWidth
+    implicitWidth: Math.ceil(screenNotchOpen ? Math.max(stackContainer.width + totalCornerWidth, 290) : stackContainer.width + totalCornerWidth) // whole px, so both sides land on the grid
     implicitHeight: Config.notchTheme === "default" ? defaultHeight : (Config.notchTheme === "island" ? islandHeight : defaultHeight)
 
     // Animate only around open/close transitions. While idle the background
@@ -84,11 +84,34 @@ Item {
         }
     }
 
+    // Raised only while open (launcher, dashboard, ...), like a drawer; shut,
+    // the notch sits flat in the bar with a crisp edge. Covers the body
+    // (not the concave corners) and runs past the screen edge so only the
+    // free sides cast.
+    Elevation {
+        id: notchElevation
+        readonly property bool atTop: notchContainer.position !== "bottom"
+        readonly property real sideInset: Config.notchTheme === "default" ? notchContainer.cornerSize : 0
+        readonly property real bodyRadius: atTop ? notchRect.bottomLeftRadius : notchRect.topLeftRadius
+        x: (notchContainer.width - notchContainer.implicitWidth) / 2 + sideInset
+        width: notchContainer.implicitWidth - 2 * sideInset
+        y: (notchContainer.height - notchContainer.implicitHeight) / 2 - (atTop ? bodyRadius : 0)
+        height: notchContainer.implicitHeight + bodyRadius
+        radius: Math.min(bodyRadius, width / 2, height / 2)
+        strength: screenNotchOpen ? 1 : 0
+        Behavior on strength {
+            enabled: Config.animDuration > 0
+            NumberAnimation { duration: Config.animDuration / 2; easing.type: Easing.OutCubic }
+        }
+    }
+
     // StyledRect extendido que cubre todo (notch + corners) para usar como máscara
     StyledRect {
         id: notchFullBackground
         variant: "bg"
-        visible: Config.notchTheme === "default"
+        // With a plain-colour background, notchShape below draws the
+        // silhouette and this item only supplies the resolved colour.
+        visible: Config.notchTheme === "default" && !notchContainer.useShapeFill
         anchors.centerIn: parent
         width: parent.implicitWidth
         height: parent.implicitHeight
@@ -139,7 +162,7 @@ Item {
             }
         }
 
-        layer.enabled: true
+        layer.enabled: visible
         layer.smooth: true
         layer.effect: MultiEffect {
             maskEnabled: true
@@ -148,6 +171,36 @@ Item {
             maskThresholdMax: 1.0
             maskSpreadAtMin: 1.0
         }
+    }
+
+    // The default notch drawn in one pass from its signed distance
+    // (notch_shape.frag): concave top corners, the body and its rounded
+    // bottom corners, every edge pixel at its exact coverage, the way
+    // Omacale's blob.frag shades its drawers. Masking a StyledRect with
+    // Canvas-painted corners rasterised the outline three times (canvas,
+    // mask layer, threshold) and left it stepped and kinked. Gradient and
+    // halftone backgrounds still need the masked StyledRect.
+    readonly property bool useShapeFill: Config.notchTheme === "default"
+        && !notchFullBackground.needsGradientShader
+        && notchFullBackground.gradientType !== "halftone"
+
+    ShaderEffect {
+        id: notchShape
+        visible: notchContainer.useShapeFill
+        anchors.centerIn: parent
+        width: parent.implicitWidth
+        height: parent.implicitHeight
+
+        property size itemSize: Qt.size(width, height)
+        property real earSize: Math.max(0, Math.min(notchContainer.cornerSize, height, width / 2))
+        property real bodyRadius: {
+            const want = notchContainer.position === "bottom" ? notchFullBackground.topLeftRadius : notchFullBackground.bottomLeftRadius;
+            return Math.max(0, Math.min(want, height, (width - 2 * earSize) / 2));
+        }
+        property real flip: notchContainer.position === "bottom" ? 1 : 0
+        property color fillColor: notchFullBackground.fillColor
+
+        fragmentShader: "notch_shape.frag.qsb"
     }
 
     // Máscara completa para el notch + corners

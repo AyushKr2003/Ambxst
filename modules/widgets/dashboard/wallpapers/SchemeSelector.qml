@@ -293,6 +293,7 @@ Item {
                         color: Colors.background
 
                         Text {
+                            renderType: Text.NativeRendering
                             z: 1
                             anchors.left: parent.left
                             anchors.leftMargin: 10
@@ -304,6 +305,7 @@ Item {
                         }
 
                         Text {
+                            renderType: Text.NativeRendering
                             z: 1
                             anchors.right: parent.right
                             anchors.rightMargin: 8
