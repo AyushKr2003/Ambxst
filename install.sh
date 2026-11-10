@@ -126,6 +126,7 @@ OFFICIAL=(
   gst-plugins-bad
   qt6-imageformats             # webp/avif thumbnails
   qt6-svg
+  syntax-highlighting          # org.kde.syntaxhighlighting (assistant code blocks); without it the bar fails to load
   ttf-nerd-fonts-symbols-mono  # "Symbols Nerd Font Mono" glyphs
   tesseract-data-spa           # Atoll's default OCR languages: eng + spa
   libnotify

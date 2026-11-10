@@ -7,6 +7,7 @@ import "../../../theme"
 import "../../../components"
 import "../../../services"
 import "../../../../config"
+import "../../../globals"
 
 StyledRect {
     id: lockPlayer

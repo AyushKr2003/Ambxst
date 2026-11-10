@@ -58,7 +58,7 @@ Item {
     readonly property real targetWindowWidth: Math.round((windowData?.size[0] || 100) * scale)
     readonly property real targetWindowHeight: Math.round((windowData?.size[1] || 100) * scale)
     readonly property bool compactMode: targetWindowHeight < 60 || targetWindowWidth < 60
-    readonly property string iconPath: AppSearch.guessIcon(windowData?.class || "")
+    readonly property string iconPath: (DesktopEntries.applications.values, WindowIcon.iconNameFor(windowData))
     readonly property int calculatedRadius: Styling.radius(-2)
 
     signal dragStarted
@@ -172,7 +172,7 @@ Item {
         anchors.centerIn: parent
         width: iconSize
         height: iconSize
-        source: Quickshell.iconPath(root.iconPath, "image-missing")
+        source: WindowIcon.sourceFor(root.iconPath)
         sourceSize: Qt.size(iconSize, iconSize)
         asynchronous: true
         visible: !windowPreview.hasContent || !Config.performance.windowPreview
@@ -220,7 +220,7 @@ Item {
         anchors.margins: 4
         width: 16
         height: 16
-        source: Quickshell.iconPath(root.iconPath, "image-missing")
+        source: WindowIcon.sourceFor(root.iconPath)
         sourceSize: Qt.size(16, 16)
         asynchronous: true
         opacity: 0.8

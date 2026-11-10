@@ -91,7 +91,7 @@ Button {
                         if (root.desktopEntry && root.desktopEntry.icon) {
                             return root.desktopEntry.icon;
                         }
-                        return AppSearch.guessIcon(root.appToplevel?.appId ?? "");
+                        return WindowIcon.iconNameFor({ class: root.appToplevel?.appId ?? "", title: root.appToplevel?.title ?? "" }) || AppSearch.guessIcon(root.appToplevel?.appId ?? "");
                     }
 
                     Image {

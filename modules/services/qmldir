@@ -45,3 +45,4 @@ singleton Visibilities 1.0 Visibilities.qml
 singleton WallpaperCommandService 1.0 WallpaperCommandService.qml
 singleton WeatherService 1.0 WeatherService.qml
 WifiAccessPoint 1.0 WifiAccessPoint.qml
+singleton WindowIcon 1.0 WindowIcon.qml

@@ -357,7 +357,7 @@ Singleton {
             "notify.cacheImage": (p, reply) => root.cacheImage(String(p.url || ""), reply),
 
             // ---- clipboard: Omarchy's clipboard history ----------------------
-            "clipboard.list": (p, reply) => reply(root.clipboardItems(), null),
+            "clipboard.list": (p, reply) => reply(root.clipItems(), null),
             "clipboard.getContent": (p, reply) => {
                 const e = root.clipEntry(p.id);
                 reply(e ? {

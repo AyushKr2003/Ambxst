@@ -11,6 +11,7 @@ import "../../bar/workspaces"
 import "../../services"
 import "../../components"
 import "../../../config"
+import "../../globals"
 
 Item {
     id: compactPlayer
@@ -232,6 +233,7 @@ Item {
                 Layout.preferredHeight: 24
                 visible: compactPlayer.notchHovered
                 ClippingRectangle {
+                    id: artworkClip
                     anchors.fill: parent
                     radius: compactPlayer.isPlaying ? Styling.radius(-8) : Styling.radius(-4)
                     color: "transparent"
@@ -266,7 +268,7 @@ Item {
                         anchors.fill: parent
                         variant: "internalbg"
                         opacity: ((hasArtwork || wallpaperPath !== "") && compactPlayer.notchHovered) ? 0.5 : 0.0
-                        radius: parent.radius
+                        radius: artworkClip.radius
                         Behavior on opacity {
                             enabled: Config.animDuration > 0
                             NumberAnimation {

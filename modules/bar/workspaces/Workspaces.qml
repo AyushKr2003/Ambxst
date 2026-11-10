@@ -459,24 +459,10 @@ Item {
                     id: workspaceButtonBackground
                     implicitWidth: workspaceButtonWidth
                     implicitHeight: workspaceButtonWidth
-                    property var focusedWindow: {
-                        const windowsInThisWorkspace = CompositorData.workspaceWindowsMap[button.workspaceValue] || [];
-                        if (windowsInThisWorkspace.length === 0)
-                            return null;
-                        // Get the window with the lowest focusHistoryID (most recently focused)
-                        return windowsInThisWorkspace.reduce((best, win) => {
-                            const bestFocus = (best && best.focusHistoryID !== undefined ? best.focusHistoryID : Infinity);
-                            const winFocus = (win && win.focusHistoryID !== undefined ? win.focusHistoryID : Infinity);
-                            return winFocus < bestFocus ? win : best;
-                        }, null);
-                    }
-                    readonly property var focusedDesktopEntry: focusedWindow ? DesktopEntries.heuristicLookup(focusedWindow.class) : null
-                    property var mainAppIconSource: {
-                        if (focusedDesktopEntry && focusedDesktopEntry.icon) {
-                            return Quickshell.iconPath(focusedDesktopEntry.icon, "image-missing");
-                        }
-                        return Quickshell.iconPath(AppSearch.getCachedIcon(focusedWindow ? focusedWindow.class : undefined), "image-missing");
-                    }
+                    property var focusedWindow: WindowIcon.representativeWindow(CompositorData.workspaceWindowsMap[button.workspaceValue] || [])
+                    // omarchy-overview's layered lookup (services/WindowIcon.qml); reading
+                    // DesktopEntries re-runs it when the app index changes.
+                    property var mainAppIconSource: (DesktopEntries.applications.values, focusedWindow ? WindowIcon.iconSourceFor(focusedWindow) : "")
 
                     Text {
                         opacity: Config.workspaces.alwaysShowNumbers || ((Config.workspaces.showNumbers && (!Config.workspaces.showAppIcons || !workspaceButtonBackground.focusedWindow || Config.workspaces.alwaysShowNumbers)) || (Config.workspaces.alwaysShowNumbers && !Config.workspaces.showAppIcons)) ? 1 : 0
@@ -522,8 +508,19 @@ Item {
                         height: workspaceButtonWidth
                         opacity: !Config.workspaces.showAppIcons ? 0 : (workspaceButtonBackground.focusedWindow && !Config.workspaces.alwaysShowNumbers && Config.workspaces.showAppIcons) ? 1 : workspaceButtonBackground.focusedWindow ? workspaceIconOpacityShrinked : 0
                         visible: opacity > 0
-                        IconImage {
+                        // A plain Image asking for a 64px icon: an IconImage asks the
+                        // theme for the drawn size (~16px), and themes ship simplified
+                        // glyphs there (Papirus' 16px kitty is a bare ">_" tile).
+                        Image {
                             id: mainAppIcon
+                            property real implicitSize
+                            width: implicitSize
+                            height: implicitSize
+                            sourceSize: Qt.size(64, 64)
+                            fillMode: Image.PreserveAspectFit
+                            smooth: true
+                            mipmap: true
+                            asynchronous: true
                             anchors.bottom: parent.bottom
                             anchors.right: parent.right
                             anchors.bottomMargin: (!Config.workspaces.alwaysShowNumbers && Config.workspaces.showAppIcons) ? Math.round((workspaceButtonWidth - workspaceIconSize) / 2) : workspaceIconMarginShrinked
@@ -596,24 +593,10 @@ Item {
                     id: workspaceButtonBackgroundVert
                     implicitWidth: workspaceButtonWidth
                     implicitHeight: workspaceButtonWidth
-                    property var focusedWindow: {
-                        const windowsInThisWorkspace = CompositorData.workspaceWindowsMap[buttonVert.workspaceValue] || [];
-                        if (windowsInThisWorkspace.length === 0)
-                            return null;
-                        // Get the window with the lowest focusHistoryID (most recently focused)
-                        return windowsInThisWorkspace.reduce((best, win) => {
-                            const bestFocus = (best && best.focusHistoryID !== undefined ? best.focusHistoryID : Infinity);
-                            const winFocus = (win && win.focusHistoryID !== undefined ? win.focusHistoryID : Infinity);
-                            return winFocus < bestFocus ? win : best;
-                        }, null);
-                    }
-                    readonly property var focusedDesktopEntry: focusedWindow ? DesktopEntries.heuristicLookup(focusedWindow.class) : null
-                    property var mainAppIconSource: {
-                        if (focusedDesktopEntry && focusedDesktopEntry.icon) {
-                            return Quickshell.iconPath(focusedDesktopEntry.icon, "image-missing");
-                        }
-                        return Quickshell.iconPath(AppSearch.getCachedIcon(focusedWindow ? focusedWindow.class : undefined), "image-missing");
-                    }
+                    property var focusedWindow: WindowIcon.representativeWindow(CompositorData.workspaceWindowsMap[buttonVert.workspaceValue] || [])
+                    // omarchy-overview's layered lookup (services/WindowIcon.qml); reading
+                    // DesktopEntries re-runs it when the app index changes.
+                    property var mainAppIconSource: (DesktopEntries.applications.values, focusedWindow ? WindowIcon.iconSourceFor(focusedWindow) : "")
 
                     Text {
                         opacity: Config.workspaces.alwaysShowNumbers || ((Config.workspaces.showNumbers && (!Config.workspaces.showAppIcons || !workspaceButtonBackgroundVert.focusedWindow || Config.workspaces.alwaysShowNumbers)) || (Config.workspaces.alwaysShowNumbers && !Config.workspaces.showAppIcons)) ? 1 : 0
@@ -659,8 +642,19 @@ Item {
                         height: workspaceButtonWidth
                         opacity: !Config.workspaces.showAppIcons ? 0 : (workspaceButtonBackgroundVert.focusedWindow && !Config.workspaces.alwaysShowNumbers && Config.workspaces.showAppIcons) ? 1 : workspaceButtonBackgroundVert.focusedWindow ? workspaceIconOpacityShrinked : 0
                         visible: opacity > 0
-                        IconImage {
+                        // A plain Image asking for a 64px icon: an IconImage asks the
+                        // theme for the drawn size (~16px), and themes ship simplified
+                        // glyphs there (Papirus' 16px kitty is a bare ">_" tile).
+                        Image {
                             id: mainAppIconVert
+                            property real implicitSize
+                            width: implicitSize
+                            height: implicitSize
+                            sourceSize: Qt.size(64, 64)
+                            fillMode: Image.PreserveAspectFit
+                            smooth: true
+                            mipmap: true
+                            asynchronous: true
                             anchors.bottom: parent.bottom
                             anchors.right: parent.right
                             anchors.bottomMargin: (!Config.workspaces.alwaysShowNumbers && Config.workspaces.showAppIcons) ? Math.round((workspaceButtonWidth - workspaceIconSize) / 2) : workspaceIconMarginShrinked

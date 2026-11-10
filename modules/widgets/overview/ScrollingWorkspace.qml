@@ -313,7 +313,7 @@ Item {
                     readonly property real targetWidth: Math.round(((windowData && windowData.size && windowData.size[0] !== undefined ? windowData.size[0] : 100) || 100) * scale_)
                     readonly property real targetHeight: Math.round(((windowData && windowData.size && windowData.size[1] !== undefined ? windowData.size[1] : 100) || 100) * scale_)
                     readonly property bool compactMode: targetHeight < 60 || targetWidth < 60
-                    readonly property string iconPath: AppSearch.guessIcon((windowData && windowData.class !== undefined ? windowData.class : "") || "")
+                    readonly property string iconPath: (DesktopEntries.applications.values, WindowIcon.iconNameFor(windowData))
                     readonly property int calculatedRadius: Styling.radius(-2)
                     readonly property bool isMatched: root.checkWindowMatched((windowData && windowData.address !== undefined ? windowData.address : undefined))
                     readonly property bool isSelected: root.checkWindowSelected((windowData && windowData.address !== undefined ? windowData.address : undefined))
@@ -411,7 +411,7 @@ Item {
                         anchors.centerIn: parent
                         width: iconSize
                         height: iconSize
-                        source: Quickshell.iconPath(windowDelegate.iconPath, "image-missing")
+                        source: WindowIcon.sourceFor(windowDelegate.iconPath)
                         sourceSize: Qt.size(iconSize, iconSize)
                         asynchronous: true
                         visible: !Config.performance.windowPreview
@@ -439,7 +439,7 @@ Item {
                         anchors.margins: 4
                         width: 16
                         height: 16
-                        source: Quickshell.iconPath(windowDelegate.iconPath, "image-missing")
+                        source: WindowIcon.sourceFor(windowDelegate.iconPath)
                         sourceSize: Qt.size(16, 16)
                         asynchronous: true
                         opacity: 0.8

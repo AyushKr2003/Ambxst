@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+# Atoll for Omarchy: hand Omarchy's lock screen to Atoll's look, and back.
+#
+#   lock-handover install   build/refresh `atoll.lock` and enable it
+#   lock-handover remove    remove it; omarchy.lock draws the lock again
+#   lock-handover status    installed | none
+#
+# `atoll.lock` is a clone of omarchy.lock (`omarchy.clonedFrom`), so the shell
+# routes the `lock` IPC to it and keeps omarchy.lock off while it is enabled.
+# Every stock file is copied in untouched -- Service.qml included, so PAM,
+# fingerprint, idle/suspend locking and stranded-lock recovery stay Omarchy's
+# -- the stock view is kept as StockLockView.qml, and LockView.qml becomes
+# assets/lock/LockView.qml, which draws modules/lockscreen/LockUi.qml and
+# falls back to the stock view if Atoll can't load.
+set -euo pipefail
+
+SOURCE_ID="omarchy.lock"
+CLONE_ID="atoll.lock"
+ATOLL="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
+PLUGINS="$HOME/.config/omarchy/plugins"
+TARGET="$PLUGINS/$CLONE_ID"
+
+say() { printf '\e[1;35m::\e[0m %s\n' "$*"; }
+die() { printf '\e[1;31mxx\e[0m %s\n' "$*" >&2; exit 1; }
+
+stock_dir() {
+  omarchy-plugin-catalog | jq -r --arg id "$SOURCE_ID" '.[] | select(.id == $id and .firstParty) | .sourceDir' | head -1
+}
+
+# The clone's contents, built in a hidden staging dir (the host ignores
+# hidden entries) so the shell never compiles a half-written clone.
+build() {
+  local stock="$1" out="$2"
+  cp -aL "$stock/." "$out/"
+  mv "$out/LockView.qml" "$out/StockLockView.qml"
+  install -m 644 "$ATOLL/assets/lock/LockView.qml" "$out/LockView.qml"
+  jq --arg id "$CLONE_ID" --arg src "$SOURCE_ID" '
+      .id = $id | .name = "Atoll Lock Screen"
+      | .description = "Omarchy'"'"'s lock service drawn with Atoll'"'"'s lock screen."
+      | .omarchy = ((.omarchy // {}) + {clonedFrom: $src}) | del(.omarchy.clonePaths)
+    ' "$stock/manifest.json" >"$out/manifest.json"
+}
+
+is_enabled() {
+  omarchy-shell shell listPlugins 2>/dev/null | jq -e --arg id "$1" '.[] | select(.id == $id) | .enabled' >/dev/null 2>&1
+}
+
+install_clone() {
+  local stock stage
+  stock="$(stock_dir)"
+  [[ -n $stock && -f $stock/Service.qml && -f $stock/LockView.qml ]] || die "Omarchy's lock plugin was not found"
+  [[ -f $ATOLL/modules/lockscreen/LockUi.qml ]] || die "Atoll's LockUi.qml is missing"
+
+  # Another clone of omarchy.lock (Omacale's, Hanko's) owns the lock: two
+  # session locks can't coexist, so refuse rather than fight over it.
+  local other
+  for other in "$PLUGINS"/*/manifest.json; do
+    [[ -f $other ]] || continue
+    [[ $(dirname "$other") == "$TARGET" ]] && continue
+    if [[ $(jq -r '.omarchy.clonedFrom // ""' "$other" 2>/dev/null) == "$SOURCE_ID" ]]; then
+      die "$(basename "$(dirname "$other")") already replaces Omarchy's lock; remove it first"
+    fi
+  done
+
+  stage="$(mktemp -d "$PLUGINS/.atoll-lock.XXXXXX")"
+  trap 'rm -rf "$stage"' EXIT
+  build "$stock" "$stage"
+
+  if [[ -d $TARGET ]] && diff -rq "$stage" "$TARGET" >/dev/null 2>&1; then
+    say "atoll.lock is up to date"
+  else
+    # Never touch a lock plugin while the screen is locked.
+    if omarchy-shell lock isLocked 2>/dev/null | grep -q true; then
+      die "the screen is locked; try again after unlocking"
+    fi
+    chmod 755 "$stage"
+    if [[ -d $TARGET ]]; then
+      mv "$TARGET" "$PLUGINS/.atoll-lock-old"
+      mv "$stage" "$TARGET"
+      rm -rf "$PLUGINS/.atoll-lock-old"
+    else
+      mv "$stage" "$TARGET"
+    fi
+    say "atoll.lock written"
+  fi
+  trap - EXIT
+  rm -rf "$stage"
+
+  omarchy-shell -q shell rescanPlugins >/dev/null 2>&1 || true
+  if ! is_enabled "$CLONE_ID"; then
+    local i
+    for i in {1..40}; do
+      omarchy-shell shell listPlugins 2>/dev/null | jq -e --arg id "$CLONE_ID" 'any(.[]; .id == $id)' >/dev/null && break
+      sleep 0.1
+    done
+    omarchy plugin enable "$CLONE_ID" >/dev/null || die "could not enable $CLONE_ID"
+  fi
+  rm -rf "$PLUGINS"/."$CLONE_ID".bak.* 2>/dev/null || true
+  say "Atoll draws the lock screen (Omarchy's lock service underneath)"
+}
+
+remove_clone() {
+  if [[ ! -d $TARGET ]]; then
+    echo "nothing to remove"
+    return 0
+  fi
+  omarchy-plugin-remove "$CLONE_ID" --yes >/dev/null || die "could not remove $CLONE_ID"
+  # omarchy-plugin-remove keeps a backup; it's rebuilt from Atoll anyway.
+  rm -rf "$PLUGINS"/."$CLONE_ID".bak.* 2>/dev/null || true
+  say "removed atoll.lock; Omarchy draws the lock screen again"
+}
+
+case "${1:-}" in
+  install) install_clone ;;
+  remove) remove_clone ;;
+  status) [[ -d $TARGET ]] && echo installed || echo none ;;
+  *) echo "usage: lock-handover install|remove|status" >&2; exit 2 ;;
+esac
