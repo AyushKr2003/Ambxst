@@ -1,8 +1,9 @@
 #version 440
 // The default notch's silhouette from its signed distance: a body with
 // rounded free corners, joined to the screen edge by two concave "ears"
-// (a strip minus two circles). Same exact one-pixel edge coverage as
-// components/rounded_rect.frag. Drawn for a top notch; flip mirrors it.
+// (a strip minus two circles). Edged like components/rounded_rect.frag,
+// with Omacale blob.frag's smoothstep(-fwidth, fwidth). Drawn for a top
+// notch; flip mirrors it.
 layout(location = 0) in vec2 qt_TexCoord0;
 layout(location = 0) out vec4 fragColor;
 
@@ -47,7 +48,7 @@ void main() {
         d = min(d, max(strip, max(-holeL, -holeR)));
     }
 
-    float px = max(length(vec2(dFdx(d), dFdy(d))), 1e-4);
-    float a = clamp(0.5 - d / px, 0.0, 1.0);
+    float fw = max(fwidth(d), 1e-4);
+    float a = 1.0 - smoothstep(-fw, fw, d);
     fragColor = vec4(fillColor.rgb * fillColor.a, fillColor.a) * a * qt_Opacity;
 }

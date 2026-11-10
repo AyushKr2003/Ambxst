@@ -128,7 +128,7 @@ Item {
     StyledRect {
         variant: "common"
         anchors.fill: parent
-        radius: Styling.radius(-4)
+        radius: Styling.fullRadius
 
         Text {
             renderType: Text.NativeRendering
@@ -157,7 +157,7 @@ Item {
 
         ClippingRectangle {
             anchors.fill: parent
-            radius: Styling.radius(-4)
+            radius: Styling.fullRadius
             color: "transparent"
 
             Image {
@@ -193,7 +193,7 @@ Item {
                 anchors.fill: parent
                 variant: "internalbg"
                 opacity: (hasArtwork || wallpaperPath !== "") ? 0.5 : 0.0
-                radius: Styling.radius(-4)
+                radius: Styling.fullRadius
                 Behavior on opacity {
                     enabled: Config.animDuration > 0
                     NumberAnimation {

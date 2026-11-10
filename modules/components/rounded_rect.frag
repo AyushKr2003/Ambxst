@@ -1,9 +1,7 @@
 #version 440
 // Rounded rectangle (per-corner radii) with an optional inside border,
-// drawn from its signed distance. Each edge pixel gets its exact coverage,
-// clamp(0.5 - d, 0, 1) with d in pixels, a one-pixel ramp centred on the
-// true edge, the way Omacale's blob.frag shades its drawers. Smoother on
-// round ends than Rectangle's vertex antialiasing or CurveRenderer.
+// drawn from its signed distance, edged the way Omacale's blob.frag shades
+// its drawers: smoothstep(-fwidth, fwidth) centred on the true edge.
 layout(location = 0) in vec2 qt_TexCoord0;
 layout(location = 0) out vec4 fragColor;
 
@@ -28,10 +26,12 @@ void main() {
                         : (p.y < 0.0 ? radii.y : radii.z);
     float d = sdRoundBox(p, itemSize * 0.5, r);
 
-    // Distance per screen pixel (1 unless the item is scaled).
-    float px = max(length(vec2(dFdx(d), dFdy(d))), 1e-4);
-    float outer = clamp(0.5 - d / px, 0.0, 1.0);
-    float inner = borderWidth > 0.0 ? clamp(0.5 - (d + borderWidth) / px, 0.0, 1.0) : outer;
+    // Omacale's blob.frag edge: smoothstep across +-fwidth, a ramp about
+    // two pixels wide (wider on diagonals), instead of a hard one-pixel
+    // linear ramp that stair-steps on small curves.
+    float fw = max(fwidth(d), 1e-4);
+    float outer = 1.0 - smoothstep(-fw, fw, d);
+    float inner = borderWidth > 0.0 ? 1.0 - smoothstep(-fw, fw, d + borderWidth) : outer;
 
     vec4 f = vec4(fillColor.rgb * fillColor.a, fillColor.a);
     vec4 b = vec4(borderColor.rgb * borderColor.a, borderColor.a);

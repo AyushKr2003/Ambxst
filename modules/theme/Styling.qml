@@ -9,6 +9,13 @@ QtObject {
         return Config.roundness > 0 ? Math.max(Config.roundness + offset, 0) : 0;
     }
 
+    // Omacale's Tk.rounding.full: a radius far past any control's size, so
+    // Rectangle and the SDF shaders clamp it to half the short side and
+    // buttons and pills come out as true circles and stadiums. Using the
+    // theme's roundness on a control about twice its size left a rounded
+    // square whose flat runs read as dents. Roundness 0 keeps squares.
+    readonly property real fullRadius: Config.roundness > 0 ? 1000 : 0
+
     function fontSize(offset) {
         return Math.max(Config.theme.fontSize + offset, 8);
     }

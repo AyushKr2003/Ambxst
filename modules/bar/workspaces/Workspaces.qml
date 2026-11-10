@@ -28,7 +28,7 @@ Item {
     property var dynamicWorkspaceIds: []
     property int effectiveWorkspaceCount: dynamicMode ? Math.max(dynamicWorkspaceIds.length, workspaceIndexInGroup + 1) : Config.workspaces.shown
     property int widgetPadding: 4
-    property real radius: Styling.radius(0)
+    property real radius: Styling.fullRadius
     property real startRadius: radius
     property real endRadius: radius
     

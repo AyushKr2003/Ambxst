@@ -101,9 +101,10 @@ Item {
     readonly property var screenVisibilities: Visibilities.getForScreen(screen.name)
     readonly property bool notchOpen: screenVisibilities ? (screenVisibilities.launcher || screenVisibilities.dashboard || screenVisibilities.powermenu || screenVisibilities.tools) : false
 
-    // Radius logic for "Squished" style
-    readonly property real outerRadius: Styling.radius(0)
-    readonly property real innerRadius: (Config.bar && Config.bar.pillStyle === "squished") ? Styling.radius(0) / 2 : Styling.radius(0)
+    // Bar pills are fully round (Styling.fullRadius); the "squished" style
+    // keeps a small radius where neighbouring pills meet.
+    readonly property real outerRadius: Styling.fullRadius
+    readonly property real innerRadius: (Config.bar && Config.bar.pillStyle === "squished") ? Styling.radius(0) / 2 : Styling.fullRadius
     readonly property bool pinButtonVisible: (Config.bar && Config.bar.showPinButton !== undefined ? Config.bar.showPinButton : true)
 
     // Reveal logic
