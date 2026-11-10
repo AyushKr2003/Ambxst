@@ -215,7 +215,7 @@ QtObject {
         });
     }
 
-    // Ambxst on Omarchy: monitors and windows come from the Hyprland model
+    // Atoll: monitors and windows come from the Hyprland model
     // AxctlService already keeps, in the shapes the axctl lists had.
     function fetchWindows() {
         var normalized = (AxctlService.monitors.values || []).map(m => ({

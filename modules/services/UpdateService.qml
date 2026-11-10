@@ -10,10 +10,10 @@ Singleton {
     id: root
 
     readonly property string currentVersion: Config.version
-    readonly property string repoUrl: "https://api.github.com/repos/Axenide/Ambxst/tags"
-    readonly property string changelogUrl: "https://axeni.de/ambxst/changelog"
-    // QUICKSHELL-GIT: readonly property string cacheFile: (Quickshell.env("HOME") + "/.cache/ambxst/update_check.json")
-    readonly property string cacheFile: Quickshell.env("HOME") + "/.cache/ambxst/update_check.json"
+    readonly property string repoUrl: "https://api.github.com/repos/AyushKr2003/Ambxst/tags"
+    readonly property string changelogUrl: "https://github.com/AyushKr2003/Ambxst/commits"
+    // QUICKSHELL-GIT: readonly property string cacheFile: (Quickshell.env("HOME") + "/.cache/atoll/update_check.json")
+    readonly property string cacheFile: Quickshell.env("HOME") + "/.cache/atoll/update_check.json"
 
     property string lastDetectedVersion: ""
     property double lastCheckTime: 0
@@ -125,7 +125,7 @@ Singleton {
         if (typeof Notifications === "undefined" || !Notifications.list) return false;
         for (let i = 0; i < Notifications.list.length; i++) {
             const notif = Notifications.list[i];
-            if (notif && notif.appName === "Ambxst Update") {
+            if (notif && notif.appName === "Atoll Update") {
                 return true;
             }
         }
@@ -133,7 +133,7 @@ Singleton {
     }
 
     function sendUpdateNotification(newVersion) {
-        const summary = "Ambxst update available!";
+        const summary = "Atoll update available!";
         const body = newVersion + " available! (Installed " + root.currentVersion + ")";
 
         // Routed through Ambxst's Notifications service so it can be
@@ -144,10 +144,10 @@ Singleton {
         Notifications.notifyInternal({
             summary: summary,
             body: body,
-            appName: "Ambxst Update",
+            appName: "Atoll Update",
             appIcon: "system-software-update",
             urgency: "normal",
-            replaceKey: "ambxst-update-available",
+            replaceKey: "atoll-update-available",
             actions: [
                 { identifier: "changelog", text: "Changelog" },
                 { identifier: "later",     text: "Maybe later" },
@@ -162,7 +162,7 @@ Singleton {
                     root.saveCache();
                 },
                 "update": function () {
-                    TerminalService.execDetached("ambxst update; exec $SHELL");
+                    TerminalService.execDetached("atoll update; exec $SHELL");
                 }
             }
         });

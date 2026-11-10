@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Ambxst on Omarchy: the weather half of Ambxst's Go backend
+# Atoll: the weather half of Ambxst's Go backend
 # (backend/pkg/svc/weather). Omarchy's weather widget keeps its data to
-# itself, so this asks open-meteo for the payload Ambxst's WeatherService
+# itself, so this asks open-meteo for the payload Atoll's WeatherService
 # reads: {current_weather, daily} or {error}.
 #
 #   weather.sh [location]   location: "" (from IP), "lat,lon", or a city name

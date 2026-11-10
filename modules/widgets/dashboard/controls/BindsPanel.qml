@@ -446,7 +446,7 @@ Item {
         for (const key of coreKeys) {
             if (ambxst[key]) {
                 binds.push({
-                    category: "Ambxst",
+                    category: "Atoll",
                     name: key.charAt(0).toUpperCase() + key.slice(1),
                     path: "ambxst." + key,
                     bind: ambxst[key]
@@ -800,7 +800,7 @@ Item {
                 Layout.alignment: Qt.AlignHCenter
                 Layout.topMargin: 20
                 visible: (root.currentCategory === "ambxst" && ambxstRepeater.count === 0) || (root.currentCategory === "custom" && customRepeater.count === 0)
-                text: root.currentCategory === "ambxst" ? "No Ambxst binds configured" : "No custom binds configured"
+                text: root.currentCategory === "ambxst" ? "No Atoll binds configured" : "No custom binds configured"
                 font.family: Config.theme.font
                 font.pixelSize: Styling.fontSize(0)
                 color: Colors.overSurfaceVariant

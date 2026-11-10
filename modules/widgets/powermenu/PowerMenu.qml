@@ -27,7 +27,7 @@ ActionGrid {
         {
             icon: Icons.lock,
             tooltip: I18n.t("powermenu.lock_session"),
-            command: "omarchy-system-lock" // Ambxst on Omarchy: Omarchy's System menu actions
+            command: "omarchy-system-lock" // Atoll: Omarchy's System menu actions
         },
         {
             icon: Icons.suspend,

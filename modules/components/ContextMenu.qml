@@ -48,7 +48,7 @@ PanelWindow {
     Process {
         id: cursorPos
         running: false
-        command: ["hyprctl", "cursorpos"] // Ambxst on Omarchy: was axctl
+        command: ["hyprctl", "cursorpos"] // Atoll: was axctl
         
         stdout: StdioCollector {
             onStreamFinished: {

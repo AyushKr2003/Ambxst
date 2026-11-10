@@ -7,8 +7,8 @@ import "../services"
 
 FileView {
     id: colors
-    // QUICKSHELL-GIT: path: (Quickshell.env("HOME") + "/.cache/ambxst/colors.json")
-    path: Quickshell.env("HOME") + "/.cache/ambxst/colors.json"
+    // QUICKSHELL-GIT: path: (Quickshell.env("HOME") + "/.cache/atoll/colors.json")
+    path: Quickshell.env("HOME") + "/.cache/atoll/colors.json"
     preload: true
     watchChanges: true
     onFileChanged: {
@@ -67,7 +67,7 @@ FileView {
         interval: 100
         repeat: false
         onTriggered: {
-            // Ambxst on Omarchy: app theming (GTK, terminals, editors, Qt) is
+            // Atoll: app theming (GTK, terminals, editors, Qt) is
             // `omarchy theme set`'s job; Ambxst only writes it when its own
             // colour source is in charge.
             if (OmarchyBridge.colorSource === "omarchy")

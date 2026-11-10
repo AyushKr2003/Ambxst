@@ -99,8 +99,8 @@ QtObject {
 
         writer.text = conf;
 
-        // QUICKSHELL-GIT: const kittyConfPath = (Quickshell.env("HOME") + "/.cache/ambxst/kitty.conf");
-        const kittyConfPath = Quickshell.env("HOME") + "/.cache/ambxst/kitty.conf";
+        // QUICKSHELL-GIT: const kittyConfPath = (Quickshell.env("HOME") + "/.cache/atoll/kitty.conf");
+        const kittyConfPath = Quickshell.env("HOME") + "/.cache/atoll/kitty.conf";
 
         // Ensure directory exists and write file
         const cmd = `

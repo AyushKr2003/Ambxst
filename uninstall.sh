@@ -1,26 +1,26 @@
 #!/bin/bash
 
-# Ambxst for Omarchy — uninstaller.
+# Atoll for Omarchy — uninstaller.
 #
 # Restores what install.sh changed, from its record in
-# ~/.local/state/ambxst/omarchy-install.json: the bar that was in use, the
-# Omarchy services Ambxst took over, the keybinds block in bindings.lua,
-# the `ambxst` command and the plugin folder. Ambxst's settings
-# (~/.config/ambxst) are kept unless --purge is given.
+# ~/.local/state/atoll/omarchy-install.json: the bar that was in use, the
+# Omarchy services Atoll took over, the keybinds block in bindings.lua,
+# the `atoll` command and the plugin folder. Atoll's settings
+# (~/.config/atoll) are kept unless --purge is given.
 #
 #   ./uninstall.sh [--purge] [--dry-run]
 
 set -euo pipefail
 
-PLUGIN_ID="ambxst.bar"
+PLUGIN_ID="atoll.bar"
 DEST="$HOME/.config/omarchy/plugins/$PLUGIN_ID"
-STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/ambxst"
+STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/atoll"
 STATE_FILE="$STATE_DIR/omarchy-install.json"
 SHELL_JSON="$HOME/.config/omarchy/shell.json"
 BINDINGS="$HOME/.config/hypr/bindings.lua"
-BIN="$HOME/.local/bin/ambxst"
-MARK_BEGIN="-- >>> ambxst.bar keybinds (managed by Ambxst's installer)"
-MARK_END="-- <<< ambxst.bar keybinds"
+BIN="$HOME/.local/bin/atoll"
+MARK_BEGIN="-- >>> atoll.bar keybinds (managed by Atoll's installer)"
+MARK_END="-- <<< atoll.bar keybinds"
 
 PURGE=false
 DRY=false
@@ -56,7 +56,7 @@ prior_bar="omarchy.bar"
 disabled=()
 if [[ -f $STATE_FILE ]]; then
   prior_bar=$(jq -r '.priorBar // "omarchy.bar"' "$STATE_FILE")
-  mapfile -t disabled < <(jq -r '.disabledByAmbxst[]?' "$STATE_FILE")
+  mapfile -t disabled < <(jq -r '.disabledByAtoll[]?' "$STATE_FILE")
 else
   warn "No install record at $STATE_FILE; restoring Omarchy's defaults."
 fi
@@ -79,7 +79,7 @@ for id in "${disabled[@]}"; do
 done
 
 if [[ -f $BINDINGS ]] && grep -qF -- "$MARK_BEGIN" "$BINDINGS"; then
-  say "Removing Ambxst's keybinds from $BINDINGS"
+  say "Removing Atoll's keybinds from $BINDINGS"
   if [[ $DRY == "false" ]]; then
     tmp=$(mktemp)
     awk -v b="$MARK_BEGIN" -v e="$MARK_END" '
@@ -91,7 +91,7 @@ if [[ -f $BINDINGS ]] && grep -qF -- "$MARK_BEGIN" "$BINDINGS"; then
   fi
 fi
 
-if [[ -f $BIN ]] && grep -q "Ambxst for Omarchy" "$BIN"; then
+if [[ -f $BIN ]] && grep -q "Atoll for Omarchy" "$BIN"; then
   run rm -f "$BIN"
 fi
 
@@ -108,8 +108,8 @@ fi
 run rm -f "$STATE_FILE"
 
 if [[ $PURGE == "true" ]]; then
-  say "Removing Ambxst's settings and caches"
-  run rm -rf "$HOME/.config/ambxst" "$HOME/.cache/ambxst" "$STATE_DIR" "${XDG_DATA_HOME:-$HOME/.local/share}/ambxst"
+  say "Removing Atoll's settings and caches"
+  run rm -rf "$HOME/.config/atoll" "$HOME/.cache/atoll" "$STATE_DIR" "${XDG_DATA_HOME:-$HOME/.local/share}/atoll"
 fi
 
-say "Ambxst is uninstalled."
+say "Atoll is uninstalled."

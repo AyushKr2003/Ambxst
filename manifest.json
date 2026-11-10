@@ -1,12 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "ambxst.bar",
-  "name": "Ambxst",
+  "id": "atoll.bar",
+  "name": "Atoll",
   "version": "0.1.0",
   "author": "AyushKr2003",
   "license": "AGPL-3.0-or-later",
-  "description": "Ambxst, the Axtremely customizable shell, for Omarchy: its bar, notch, dock, dashboard, launcher, overview, notifications and OSD, running inside Omarchy's shell with Omarchy as the engine.",
-  "kinds": ["bar"],
+  "description": "Atoll, a desktop shell for Omarchy based on Ambxst: one bar, a notch that grows into the launcher, dashboard and notifications, and a dock, drawn as a single shape. Runs inside Omarchy's shell with Omarchy as the engine.",
+  "kinds": [
+    "bar"
+  ],
   "entryPoints": {
     "bar": "Bar.qml"
   }

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Ambxst on Omarchy: the network half of Ambxst's Go backend
+# Atoll: the network half of Ambxst's Go backend
 # (backend/pkg/svc/network), as nmcli calls. Omarchy runs NetworkManager but
 # has no command that prints this state as JSON, so the shell asks here.
 #

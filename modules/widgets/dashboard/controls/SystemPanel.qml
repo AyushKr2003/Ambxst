@@ -953,7 +953,7 @@ Item {
                         }
 
                         Text {
-                            text: "Ambxst uses your terminal to launch the tmux manager and to show update progress."
+                            text: "Atoll uses your terminal to launch the tmux manager and to show update progress."
                             font.family: Config.theme.font
                             font.pixelSize: Styling.fontSize(-2)
                             color: Colors.overSurfaceVariant
@@ -1004,7 +1004,7 @@ Item {
                                     spacing: 8
 
                                     Text {
-                                        text: "$TERMINAL is replaced by the value above. $COMMAND is the full bash command Ambxst wants to run."
+                                        text: "$TERMINAL is replaced by the value above. $COMMAND is the full bash command Atoll wants to run."
                                         font.family: Config.theme.font
                                         font.pixelSize: Styling.fontSize(-2)
                                         color: Colors.overSurfaceVariant

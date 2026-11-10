@@ -28,8 +28,8 @@ Item {
 
         if (videoExts.includes(ext) || imageExts.includes(ext)) {
             const fileName = itemPath.substring(itemPath.lastIndexOf('/') + 1);
-            // QUICKSHELL-GIT: return (Quickshell.env("HOME") + "/.cache/ambxst") + "/desktop_thumbnails/" + fileName + ".jpg";
-            return Quickshell.env("HOME") + "/.cache/ambxst" + "/desktop_thumbnails/" + fileName + ".jpg";
+            // QUICKSHELL-GIT: return (Quickshell.env("HOME") + "/.cache/atoll") + "/desktop_thumbnails/" + fileName + ".jpg";
+            return Quickshell.env("HOME") + "/.cache/atoll" + "/desktop_thumbnails/" + fileName + ".jpg";
         }
 
         return '';

@@ -13,7 +13,7 @@ FloatingWindow {
     // Window properties
     implicitWidth: 900
     implicitHeight: 650
-    title: "Ambxst Settings"
+    title: "Atoll Settings"
     visible: GlobalStates.settingsWindowVisible
 
     color: "transparent"

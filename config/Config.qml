@@ -35,9 +35,9 @@ Singleton {
         onLoaded: root.version = text().trim()
     }
 
-    property string configDir: (Quickshell.env("XDG_CONFIG_HOME") || (Quickshell.env("HOME") + "/.config")) + "/ambxst/config"
-    property string keybindsPath: (Quickshell.env("XDG_CONFIG_HOME") || (Quickshell.env("HOME") + "/.config")) + "/ambxst/binds.json"
-    property string presetDir: Qt.resolvedUrl("../assets/presets/Ambxst Default").toString().replace("file://", "")
+    property string configDir: (Quickshell.env("XDG_CONFIG_HOME") || (Quickshell.env("HOME") + "/.config")) + "/atoll/config"
+    property string keybindsPath: (Quickshell.env("XDG_CONFIG_HOME") || (Quickshell.env("HOME") + "/.config")) + "/atoll/binds.json"
+    property string presetDir: Qt.resolvedUrl("../assets/presets/Atoll Default").toString().replace("file://", "")
 
     property bool pauseAutoSave: false
 
@@ -162,7 +162,7 @@ Singleton {
             property int roundness: 16
             property string font: "Roboto Condensed"
             property int fontSize: 14
-            property string monoFont: "monospace" // Ambxst on Omarchy: follows `omarchy font set`
+            property string monoFont: "monospace" // Atoll: follows `omarchy font set`
             property int monoFontSize: 14
             property bool tintIcons: false
             property bool enableCorners: true
@@ -701,7 +701,7 @@ Singleton {
             property int hoverRegionHeight: 8
             property bool keepHidden: false
             property string noMediaDisplay: "userHost"
-            property string customText: "Ambxst"
+            property string customText: "Atoll"
             property bool disableHoverExpansion: true
         }
     }
@@ -1038,7 +1038,7 @@ Singleton {
             property bool updateServiceEnabled: true
             property JsonObject idle: JsonObject {
                 property JsonObject general: JsonObject {
-                    property string lock_cmd: "ambxst lock"
+                    property string lock_cmd: "atoll lock"
                     property string before_sleep_cmd: "loginctl lock-session"
                     property string after_sleep_cmd: "ambxst screen on"
                 }
@@ -1148,7 +1148,7 @@ Singleton {
 
     FileView {
         id: pinnedAppsLoader
-        path: (Quickshell.env("HOME") + "/.local/share/ambxst/pinnedapps.json")
+        path: (Quickshell.env("HOME") + "/.local/share/atoll/pinnedapps.json")
         atomicWrites: true
         watchChanges: true
         onLoaded: {
@@ -1313,42 +1313,42 @@ Singleton {
                 // Map old names to new names and update arguments
                 if (nested.widgets) {
                     current.ambxst.launcher = nested.widgets;
-                    current.ambxst.launcher.argument = "ambxst run launcher";
+                    current.ambxst.launcher.argument = "atoll run launcher";
                     current.ambxst.launcher.action = createAction(current.ambxst.launcher);
                 }
                 if (nested.dashboard) {
                     current.ambxst.dashboard = nested.dashboard;
-                    current.ambxst.dashboard.argument = "ambxst run dashboard";
+                    current.ambxst.dashboard.argument = "atoll run dashboard";
                     current.ambxst.dashboard.action = createAction(current.ambxst.dashboard);
                 }
                 if (nested.assistant) {
                     current.ambxst.assistant = nested.assistant;
-                    current.ambxst.assistant.argument = "ambxst run assistant";
+                    current.ambxst.assistant.argument = "atoll run assistant";
                     current.ambxst.assistant.action = createAction(current.ambxst.assistant);
                 }
                 if (nested.clipboard) {
                     current.ambxst.clipboard = nested.clipboard;
-                    current.ambxst.clipboard.argument = "ambxst run clipboard";
+                    current.ambxst.clipboard.argument = "atoll run clipboard";
                     current.ambxst.clipboard.action = createAction(current.ambxst.clipboard);
                 }
                 if (nested.emoji) {
                     current.ambxst.emoji = nested.emoji;
-                    current.ambxst.emoji.argument = "ambxst run emoji";
+                    current.ambxst.emoji.argument = "atoll run emoji";
                     current.ambxst.emoji.action = createAction(current.ambxst.emoji);
                 }
                 if (nested.notes) {
                     current.ambxst.notes = nested.notes;
-                    current.ambxst.notes.argument = "ambxst run notes";
+                    current.ambxst.notes.argument = "atoll run notes";
                     current.ambxst.notes.action = createAction(current.ambxst.notes);
                 }
                 if (nested.tmux) {
                     current.ambxst.tmux = nested.tmux;
-                    current.ambxst.tmux.argument = "ambxst run tmux";
+                    current.ambxst.tmux.argument = "atoll run tmux";
                     current.ambxst.tmux.action = createAction(current.ambxst.tmux);
                 }
                 if (nested.wallpapers) {
                     current.ambxst.wallpapers = nested.wallpapers;
-                    current.ambxst.wallpapers.argument = "ambxst run wallpapers";
+                    current.ambxst.wallpapers.argument = "atoll run wallpapers";
                     current.ambxst.wallpapers.action = createAction(current.ambxst.wallpapers);
                 }
 
@@ -1607,7 +1607,7 @@ Singleton {
                 property JsonObject bar: JsonObject {
                     property list<string> modifiers: ["SUPER", "SHIFT"]
                     property string key: "B"
-                    property var action: ({ "id": "ambxst.bar", "args": {} })
+                    property var action: ({ "id": "atoll.bar", "args": {} })
                 }
                 property JsonObject quit: JsonObject {
                     property list<string> modifiers: ["SUPER", "CTRL", "ALT"]
@@ -1638,7 +1638,7 @@ Singleton {
                     "screenrecord": { "modifiers": ["SUPER", "SHIFT"], "key": "R", "action": { "id": "ambxst.screenrecord", "args": {} } },
                     "lens": { "modifiers": ["SUPER", "SHIFT"], "key": "A", "action": { "id": "ambxst.lens", "args": {} } },
                     "reload": { "modifiers": ["SUPER", "ALT"], "key": "B", "action": { "id": "ambxst.reload", "args": {} } },
-                    "bar": { "modifiers": ["SUPER", "SHIFT"], "key": "B", "action": { "id": "ambxst.bar", "args": {} } },
+                    "bar": { "modifiers": ["SUPER", "SHIFT"], "key": "B", "action": { "id": "atoll.bar", "args": {} } },
                     "quit": { "modifiers": ["SUPER", "CTRL", "ALT"], "key": "B", "action": { "id": "ambxst.quit", "args": {} } }
                 }
             }
@@ -3525,7 +3525,7 @@ Singleton {
                     Services.Notifications.notifyInternal({
                         summary: "Config error",
                         body: name + ".json is invalid. A backup was saved to " + backupPath + ". Defaults restored.",
-                        appName: "Ambxst",
+                        appName: "Atoll",
                         urgency: "critical"
                     });
                 } catch (notifError) {

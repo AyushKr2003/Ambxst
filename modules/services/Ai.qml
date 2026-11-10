@@ -15,8 +15,8 @@ Singleton {
     // PROPERTIES
     // ============================================
 
-    property string chatDir: Quickshell.env("HOME") + "/.local/share/ambxst/chats"
-    property string tmpDir: "/tmp/ambxst-ai"
+    property string chatDir: Quickshell.env("HOME") + "/.local/share/atoll/chats"
+    property string tmpDir: "/tmp/atoll-ai"
 
     property list<AiModel> models: []
 
@@ -629,9 +629,9 @@ Singleton {
     }
 
     function reloadHistory() {
-        // Ambxst on Omarchy: `ambxst chatlist` as a shell snippet -- chats by
+        // Atoll: `ambxst chatlist` as a shell snippet -- chats by
         // newest first, one "id|title" line each (title: first user message).
-        listHistoryProcess.command = ["bash", "-c", 'mkdir -p "$1"; cd "$1" || exit 1; ' + 'for f in $(ls -t -- *.json 2>/dev/null); do ' + 't=$(jq -r \'first(.[]? | select(.role == "user") | .content) // "New Chat" | gsub("\\n"; " ") | if length > 40 then .[0:40] + "..." else . end\' "$f" 2>/dev/null); ' + 'printf "%s|%s\\n" "${f%.json}" "${t:-New Chat}"; done', "ambxst", chatDir];
+        listHistoryProcess.command = ["bash", "-c", 'mkdir -p "$1"; cd "$1" || exit 1; ' + 'for f in $(ls -t -- *.json 2>/dev/null); do ' + 't=$(jq -r \'first(.[]? | select(.role == "user") | .content) // "New Chat" | gsub("\\n"; " ") | if length > 40 then .[0:40] + "..." else . end\' "$f" 2>/dev/null); ' + 'printf "%s|%s\\n" "${f%.json}" "${t:-New Chat}"; done', "atoll", chatDir];
         listHistoryProcess.running = true;
     }
 

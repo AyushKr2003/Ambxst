@@ -1121,7 +1121,7 @@ Item {
                         TextInputRow {
                             label: I18n.t("shell.notch.custom_text")
                             visible: Config.notch.noMediaDisplay === "custom"
-                            value: Config.notch.customText ?? "Ambxst"
+                            value: Config.notch.customText ?? "Atoll"
                             placeholder: I18n.t("shell.notch.enter_text")
                             onValueEdited: newValue => {
                                 if (newValue !== Config.notch.customText) {
@@ -1766,6 +1766,13 @@ Item {
 
                         ActionButton {
                             text: I18n.t("shell.system.about_ambxst").arg(Config.version)
+                            icon: Icons.info
+                            onClicked: Quickshell.execDetached(["xdg-open", "https://github.com/AyushKr2003/Ambxst"])
+                        }
+
+                        // Atoll: credit to the shell Atoll is built from.
+                        ActionButton {
+                            text: "Based on Ambxst by Axenide"
                             icon: Icons.info
                             onClicked: Quickshell.execDetached(["xdg-open", "https://axeni.de/ambxst"])
                         }

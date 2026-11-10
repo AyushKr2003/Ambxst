@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Ambxst on Omarchy: the system monitor half of Ambxst's Go backend
+# Atoll: the system monitor half of Ambxst's Go backend
 # (backend/pkg/svc/systemmonitor). Omarchy has no streaming resource monitor
 # (omarchy-system-stats prints once, for humans), so this streams the same
 # payload the dashboard's Metrics tab reads. It only runs while that tab is

@@ -158,8 +158,8 @@ Singleton {
 
     FileView {
         id: notifFileView
-        // QUICKSHELL-GIT: path: (Quickshell.env("HOME") + "/.cache/ambxst/notifications.json")
-        path: Quickshell.env("HOME") + "/.cache/ambxst/notifications.json"
+        // QUICKSHELL-GIT: path: (Quickshell.env("HOME") + "/.cache/atoll/notifications.json")
+        path: Quickshell.env("HOME") + "/.cache/atoll/notifications.json"
         onLoaded: loadNotifications()
     }
 
@@ -364,7 +364,7 @@ Singleton {
             "id": notificationId,
             "actions": options.actions || [],
             "appIcon": options.appIcon || "",
-            "appName": options.appName || "Ambxst",
+            "appName": options.appName || "Atoll",
             "body": options.body || "",
             "image": options.image || "",
             "summary": options.summary || "",
@@ -645,7 +645,7 @@ Singleton {
                 top: true
                 left: true
             }
-            WlrLayershell.namespace: "ambxst:notification-cache"
+            WlrLayershell.namespace: "atoll:notification-cache"
 
             Rectangle {
                 width: 1
@@ -747,7 +747,7 @@ Singleton {
     }
 
     function cacheTmpPath() {
-        return "/tmp/ambxst-notif-cache-" + root.cacheJobCounter++ + ".png";
+        return "/tmp/atoll-notif-cache-" + root.cacheJobCounter++ + ".png";
     }
 
     function cacheProviderImage(imageUrl, callback) {
@@ -812,7 +812,7 @@ Singleton {
         const opts = {
             summary: data.summary || "",
             body: data.body || "",
-            appName: data.appName || "Ambxst",
+            appName: data.appName || "Atoll",
             appIcon: data.appIcon || "",
             image: data.image || "",
             urgency: data.urgency || "normal",
@@ -833,7 +833,7 @@ Singleton {
         onTriggered: notifFileView.reload()
     }
 
-    // Ambxst on Omarchy: when Ambxst is the notification daemon (Omarchy's
+    // Atoll: when Ambxst is the notification daemon (Omarchy's
     // omarchy.notifications switched off), answer the same IPC target so
     // Omarchy's own commands keep working: the do-not-disturb toggle
     // (omarchy-toggle-notification-silencing), omarchy-notification-dismiss

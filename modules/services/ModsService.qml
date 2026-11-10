@@ -362,6 +362,6 @@ Singleton {
 
     function restart() {
         root.restartRequired = false;
-        Quickshell.execDetached(["omarchy-restart-shell"]); // Ambxst on Omarchy: was `ambxst reload`
+        Quickshell.execDetached(["omarchy-restart-shell"]); // Atoll: was `atoll reload`
     }
 }

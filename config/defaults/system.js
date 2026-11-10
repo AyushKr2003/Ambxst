@@ -6,7 +6,7 @@ var data = {
     "updateServiceEnabled": true,
     "idle": {
         "general": {
-            "lock_cmd": "ambxst lock",
+            "lock_cmd": "atoll lock",
             "before_sleep_cmd": "loginctl lock-session",
             "after_sleep_cmd": "ambxst screen on"
         },

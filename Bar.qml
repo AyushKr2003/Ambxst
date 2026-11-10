@@ -22,14 +22,15 @@ import "config"
 import "modules/shell/osd"
 import "modules/tools"
 
-// Ambxst for Omarchy -- the entry point of the `ambxst.bar` plugin.
+// Atoll for Omarchy -- the entry point of the `atoll.bar` plugin.
 //
-// This is Ambxst's shell.qml as an Omarchy full-bar plugin: it runs inside
+// Atoll is based on Ambxst by Axenide: this is upstream Ambxst's shell.qml
+// as an Omarchy full-bar plugin: it runs inside
 // the one omarchy-shell process (no second Quickshell, no Go daemon) and
 // builds the same windows -- the unified panel (bar, notch, dock, frame),
 // screen corners, overview, presets, tools, settings and OSD. Omarchy is
-// the engine: modules/services/BackendService.qml answers Ambxst's backend
-// calls with Omarchy commands, and OmarchyTheme keeps Ambxst's colours in
+// the engine: modules/services/BackendService.qml answers Atoll's backend
+// calls with Omarchy commands, and OmarchyTheme keeps Atoll's colours in
 // the Omarchy theme.
 //
 // The host injects the properties below, as it does for its own bar, and
@@ -77,7 +78,7 @@ Item {
     //
     // Omarchy routes its panel hotkeys through the active bar: SUPER+CTRL+W
     // (Wi-Fi), +B (Bluetooth), +A (audio), +P (power) and so on arrive here
-    // with Omarchy's widget ids. Each opens the Ambxst surface for that job.
+    // with Omarchy's widget ids. Each opens the Atoll surface for that job.
 
     readonly property var widgetTargets: ({
             "omarchy.network": {
@@ -160,13 +161,13 @@ Item {
         return Visibilities.currentActiveModule === t.run;
     }
 
-    // SUPER+CTRL+1..9 count hosted bar widgets; Ambxst's bar hosts none.
+    // SUPER+CTRL+1..9 count hosted bar widgets; Atoll's bar hosts none.
     function panelWidgetIdAt(section, index) {
         return "";
     }
 
     // Omarchy's bar API for hosted widgets (tooltips, popouts); unused by
-    // Ambxst's own bar but answered so callers never hit a missing method.
+    // Atoll's own bar but answered so callers never hit a missing method.
     function requestPopout(owner) {}
     function releasePopout(owner) {}
     function showTooltip(target, text) {}
@@ -174,9 +175,9 @@ Item {
 
     // ------------------------------------------------------- the shell
 
-    // Ambxst's own fonts, bundled so the look needs no extra packages:
+    // Atoll's own fonts, bundled so the look needs no extra packages:
     // Phosphor (its icon font), Roboto Condensed (its UI font) and League
-    // Gothic (the big clock). Application fonts: every Ambxst file sees them.
+    // Gothic (the big clock). Application fonts: every Atoll file sees them.
     FontLoader {
         source: Qt.resolvedUrl("assets/fonts/Phosphor-Bold.ttf")
     }
@@ -196,8 +197,8 @@ Item {
         Component.onCompleted: Visibilities.setContextMenu(contextMenu)
     }
 
-    // Ambxst's wallpaper manager (one per screen). It only draws when
-    // chosen in ~/.config/ambxst/omarchy.json; otherwise Omarchy draws
+    // Atoll's wallpaper manager (one per screen). It only draws when
+    // chosen in ~/.config/atoll/omarchy.json; otherwise Omarchy draws
     // the background and these just drive the dashboard's Wallpapers tab.
     Variants {
         model: Quickshell.screens
@@ -325,7 +326,7 @@ Item {
     }
 
     // The session lock is Omarchy's (omarchy.lock): LockscreenService asks
-    // it to lock. Ambxst's look applied to the compositor only on request.
+    // it to lock. Atoll's look applied to the compositor only on request.
     Loader {
         active: OmarchyBridge.manageHyprland
         sourceComponent: CompositorConfig {}
@@ -399,7 +400,7 @@ Item {
         source: "modules/widgets/config/SettingsWindow.qml"
     }
 
-    // Ambxst's OSD, once Omarchy's own (omarchy.osd) is switched off, so
+    // Atoll's OSD, once Omarchy's own (omarchy.osd) is switched off, so
     // there is never a second OSD on screen.
     Variants {
         model: Quickshell.screens
@@ -417,7 +418,7 @@ Item {
     // ------------------------------------------------------ omarchy bar hide
     //
     // `omarchy toggle bar` (SUPER+SHIFT+SPACE) flips its flag and pings the
-    // omarchy.bar target; Ambxst's bar follows by unpinning (auto-hide).
+    // omarchy.bar target; Atoll's bar follows by unpinning (auto-hide).
 
     IpcHandler {
         target: "omarchy.bar"
@@ -446,7 +447,7 @@ Item {
         Component.onCompleted: {
             Qt.callLater(() => {
                 let _ = OmarchyTheme.active; // colours from the Omarchy theme
-                _ = GlobalShortcuts.appId; // the `ambxst` IPC target
+                _ = GlobalShortcuts.appId; // the `atoll` IPC target
                 _ = WallpaperCommandService;
                 _ = PresetCommandService;
                 _ = Notifications.silent; // the notification daemon

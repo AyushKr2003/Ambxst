@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Ambxst for Omarchy — installer.
+# Atoll for Omarchy — installer.
 #
-# Puts the `ambxst.bar` plugin into Omarchy's plugins folder, installs what
-# Ambxst needs that Omarchy doesn't ship (with Omarchy's own package
+# Puts the `atoll.bar` plugin into Omarchy's plugins folder, installs what
+# Atoll needs that Omarchy doesn't ship (with Omarchy's own package
 # helpers), and makes it Omarchy's bar. Everything it changes is recorded in
-# ~/.local/state/ambxst/omarchy-install.json so ./uninstall.sh puts it back.
+# ~/.local/state/atoll/omarchy-install.json so ./uninstall.sh puts it back.
 #
 #   ./install.sh [--yes] [--dev] [--dry-run]
 #                [--no-packages] [--no-keybinds]
@@ -16,23 +16,23 @@
 #   --dry-run         print what would happen, change nothing
 #   --no-packages     skip package installation
 #   --no-keybinds     don't load keybinds.lua from ~/.config/hypr/bindings.lua
-#   --[no-]notifications  Ambxst is the notification daemon (default: yes)
-#   --[no-]osd            Ambxst draws the volume/brightness OSD (default: yes)
-#   --[no-]dock           Ambxst's dock replaces Omarchy's (default: yes)
+#   --[no-]notifications  Atoll is the notification daemon (default: yes)
+#   --[no-]osd            Atoll draws the volume/brightness OSD (default: yes)
+#   --[no-]dock           Atoll's dock replaces Omarchy's (default: yes)
 
 set -euo pipefail
 
-PLUGIN_ID="ambxst.bar"
+PLUGIN_ID="atoll.bar"
 SRC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PLUGINS_DIR="$HOME/.config/omarchy/plugins"
 DEST="$PLUGINS_DIR/$PLUGIN_ID"
-STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/ambxst"
+STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/atoll"
 STATE_FILE="$STATE_DIR/omarchy-install.json"
 SHELL_JSON="$HOME/.config/omarchy/shell.json"
 BINDINGS="$HOME/.config/hypr/bindings.lua"
 BIN_DIR="$HOME/.local/bin"
-MARK_BEGIN="-- >>> ambxst.bar keybinds (managed by Ambxst's installer)"
-MARK_END="-- <<< ambxst.bar keybinds"
+MARK_BEGIN="-- >>> atoll.bar keybinds (managed by Atoll's installer)"
+MARK_END="-- <<< atoll.bar keybinds"
 
 YES=false
 DEV=false
@@ -97,24 +97,28 @@ ask() {
   esac
 }
 
+is_in() {
+  jq -e --arg id "$1" 'index($id) != null' <<<"$2" >/dev/null
+}
+
 shell_running() {
   omarchy-shell shell ping >/dev/null 2>&1
 }
 
 # ------------------------------------------------------------------ checks
 
-command -v omarchy-shell >/dev/null || die "Omarchy's shell (omarchy-shell) was not found. Ambxst for Omarchy runs inside it."
+command -v omarchy-shell >/dev/null || die "Omarchy's shell (omarchy-shell) was not found. Atoll for Omarchy runs inside it."
 command -v jq >/dev/null || die "jq is required."
-[[ -f $SRC_DIR/manifest.json ]] || die "Run this from the Ambxst checkout (manifest.json not found)."
+[[ -f $SRC_DIR/manifest.json ]] || die "Run this from the Atoll checkout (manifest.json not found)."
 
-say "Ambxst for Omarchy $(jq -r .version "$SRC_DIR/manifest.json")"
+say "Atoll for Omarchy $(jq -r .version "$SRC_DIR/manifest.json")"
 
 # ---------------------------------------------------------------- packages
 #
 # Omarchy's base install already has grim, slurp, imagemagick, ffmpeg,
 # tesseract (English), zbar, wl-clipboard, wtype, jq, curl, brightnessctl,
 # ddcutil, hyprsunset, gpu-screen-recorder, power-profiles-daemon, tmux.
-# Ambxst's own fonts ship inside the plugin (assets/fonts).
+# Atoll's own fonts ship inside the plugin (assets/fonts).
 
 OFFICIAL=(
   qt6-multimedia               # QtMultimedia: video wallpapers, sounds, media
@@ -123,20 +127,20 @@ OFFICIAL=(
   qt6-imageformats             # webp/avif thumbnails
   qt6-svg
   ttf-nerd-fonts-symbols-mono  # "Symbols Nerd Font Mono" glyphs
-  tesseract-data-spa           # Ambxst's default OCR languages: eng + spa
+  tesseract-data-spa           # Atoll's default OCR languages: eng + spa
   libnotify
 )
 OPTIONAL=(
-  matugen                      # Ambxst's own colour mode (colours from the wallpaper)
+  matugen                      # Atoll's own colour mode (colours from the wallpaper)
 )
 
 if [[ $PACKAGES == "true" ]]; then
-  say "Installing packages Ambxst needs (omarchy-pkg-add)"
+  say "Installing packages Atoll needs (omarchy-pkg-add)"
   pkgs=()
   for entry in "${OFFICIAL[@]}"; do
     pkgs+=("${entry%% *}")
   done
-  run omarchy-pkg-add "${pkgs[@]}" || warn "Some packages failed to install; Ambxst may miss features."
+  run omarchy-pkg-add "${pkgs[@]}" || warn "Some packages failed to install; Atoll may miss features."
 
   for pkg in "${OPTIONAL[@]}"; do
     if ! pacman -Q "$pkg" >/dev/null 2>&1; then
@@ -157,7 +161,7 @@ if [[ -e $DEST || -L $DEST ]]; then
   if [[ -L $DEST ]]; then
     run rm -f "$DEST"
   else
-    # Keep nothing but the plugin itself: settings live in ~/.config/ambxst.
+    # Keep nothing but the plugin itself: settings live in ~/.config/atoll.
     run rm -rf "$DEST"
   fi
 fi
@@ -175,11 +179,11 @@ if [[ $DRY == "false" ]] && command -v omarchy-plugin-validate >/dev/null; then
   omarchy-plugin-validate "$DEST" >/dev/null || die "Omarchy rejected the plugin (omarchy plugin validate $DEST)."
 fi
 
-# The `ambxst` command (forwards to the shell; see bin/ambxst).
-if [[ -e $BIN_DIR/ambxst ]] && ! grep -q "Ambxst for Omarchy" "$BIN_DIR/ambxst" 2>/dev/null; then
-  warn "$BIN_DIR/ambxst exists and is not ours; leaving it alone."
+# The `atoll` command (forwards to the shell; see bin/atoll).
+if [[ -e $BIN_DIR/atoll ]] && ! grep -q "Atoll for Omarchy" "$BIN_DIR/atoll" 2>/dev/null; then
+  warn "$BIN_DIR/atoll exists and is not ours; leaving it alone."
 else
-  run install -m 755 "$SRC_DIR/bin/ambxst" "$BIN_DIR/ambxst"
+  run install -m 755 "$SRC_DIR/bin/atoll" "$BIN_DIR/atoll"
 fi
 
 # ---------------------------------------------------------------- state
@@ -191,25 +195,26 @@ if [[ -f $SHELL_JSON ]]; then
   prior_disabled=$(jq -c '.disabledPlugins // []' "$SHELL_JSON" 2>/dev/null || echo "[]")
 fi
 # A reinstall keeps the state of the first install: the bar from before,
-# and which Omarchy services were Ambxst's doing (they look "already off"
-# now, but they are still Ambxst's to turn back on).
+# and which Omarchy services were Atoll's doing (they look "already off"
+# now, but they are still Atoll's to turn back on).
 previously_ours="[]"
 if [[ -f $STATE_FILE ]]; then
   prior_bar=$(jq -r '.priorBar // "omarchy.bar"' "$STATE_FILE")
-  previously_ours=$(jq -c '.disabledByAmbxst // []' "$STATE_FILE")
+  previously_ours=$(jq -c '.disabledByAtoll // []' "$STATE_FILE")
+  # An update (`atoll update`, or a rerun without flags) keeps the earlier answers.
+  [[ -z $NOTIFICATIONS ]] && NOTIFICATIONS=$(jq -r '.choices.notifications | values' "$STATE_FILE")
+  [[ -z $OSD ]] && OSD=$(jq -r '.choices.osd | values' "$STATE_FILE")
+  [[ -z $DOCK ]] && DOCK=$(jq -r '.choices.dock | values' "$STATE_FILE")
+  [[ $(jq -r '.keybinds' "$STATE_FILE") == "false" ]] && KEYBINDS=false
 fi
 [[ $prior_bar == "$PLUGIN_ID" ]] && prior_bar="omarchy.bar"
 
 disabled_by_us=()
 
-is_in() {
-  jq -e --arg id "$1" 'index($id) != null' <<<"$2" >/dev/null
-}
-
 disable_plugin() {
   local id=$1
   if is_in "$id" "$prior_disabled" && ! is_in "$id" "$previously_ours"; then
-    return # already off before Ambxst; not ours to turn back on
+    return # already off before Atoll; not ours to turn back on
   fi
   disabled_by_us+=("$id")
   if shell_running; then
@@ -224,27 +229,27 @@ disable_plugin() {
 
 # ------------------------------------------------------- handovers
 
-say "Choosing what Ambxst takes over from Omarchy"
+say "Choosing what Atoll takes over from Omarchy"
 
 if [[ -z $NOTIFICATIONS ]]; then
-  ask "Use Ambxst's notifications (notch, history, popups) instead of Omarchy's?" true
+  ask "Use Atoll's notifications (notch, history, popups) instead of Omarchy's?" true
   NOTIFICATIONS=$REPLY_BOOL
 fi
 [[ $NOTIFICATIONS == "true" ]] && disable_plugin omarchy.notifications
 
 if [[ -z $OSD ]]; then
-  ask "Use Ambxst's volume/brightness OSD instead of Omarchy's?" true
+  ask "Use Atoll's volume/brightness OSD instead of Omarchy's?" true
   OSD=$REPLY_BOOL
 fi
 [[ $OSD == "true" ]] && disable_plugin omarchy.osd
 
 if [[ -z $DOCK ]]; then
-  ask "Use Ambxst's dock instead of Omarchy's floating-workspace dock?" true
+  ask "Use Atoll's dock instead of Omarchy's floating-workspace dock?" true
   DOCK=$REPLY_BOOL
 fi
 [[ $DOCK == "true" ]] && disable_plugin omarchy.dock
 
-# A reinstall that no longer hands a service to Ambxst gives it back.
+# A reinstall that no longer hands a service to Atoll gives it back.
 for id in $(jq -r '.[]' <<<"$previously_ours"); do
   is_in "$id" "$(printf '%s\n' "${disabled_by_us[@]}" | jq -Rsc 'split("\n") | map(select(length > 0))')" && continue
   if shell_running; then
@@ -259,10 +264,10 @@ done
 
 keybinds_added=false
 if [[ $KEYBINDS == "true" ]]; then
-  ask "Add Ambxst's keybindings (SUPER+R launcher, SUPER+D dashboard, ...) to $BINDINGS?" true
+  ask "Add Atoll's keybindings (SUPER+R launcher, SUPER+D dashboard, ...) to $BINDINGS?" true
   if [[ $REPLY_BOOL == "true" ]]; then
     if [[ $DRY == "true" ]]; then
-      echo "   would append the Ambxst keybinds block to $BINDINGS"
+      echo "   would append the Atoll keybinds block to $BINDINGS"
       keybinds_added=true
     else
       mkdir -p "$(dirname "$BINDINGS")"
@@ -279,9 +284,9 @@ if [[ $KEYBINDS == "true" ]]; then
       {
         echo ""
         echo "$MARK_BEGIN"
-        echo 'pcall(dofile, os.getenv("HOME") .. "/.config/omarchy/plugins/ambxst.bar/keybinds.lua")'
+        echo 'pcall(dofile, os.getenv("HOME") .. "/.config/omarchy/plugins/atoll.bar/keybinds.lua")'
         if [[ $OSD == "true" ]]; then
-          echo 'pcall(dofile, os.getenv("HOME") .. "/.config/omarchy/plugins/ambxst.bar/keybinds-osd.lua")'
+          echo 'pcall(dofile, os.getenv("HOME") .. "/.config/omarchy/plugins/atoll.bar/keybinds-osd.lua")'
         fi
         echo "$MARK_END"
       } >>"$BINDINGS"
@@ -294,13 +299,15 @@ fi
 
 if [[ $DRY == "false" ]]; then
   jq -n --arg bar "$prior_bar" --argjson keybinds "$keybinds_added" --argjson dev "$DEV" \
-    --args '{priorBar: $bar, disabledByAmbxst: $ARGS.positional, keybinds: $keybinds, dev: $dev,
+    --argjson n "$NOTIFICATIONS" --argjson o "$OSD" --argjson d "$DOCK" \
+    --args '{priorBar: $bar, disabledByAtoll: $ARGS.positional, keybinds: $keybinds, dev: $dev,
+      choices: {notifications: $n, osd: $o, dock: $d},
       installedAt: (now | todate)}' "${disabled_by_us[@]}" >"$STATE_FILE"
 fi
 
 # ------------------------------------------------------------- activate
 
-say "Making Ambxst Omarchy's bar"
+say "Making Atoll Omarchy's bar"
 if shell_running; then
   run omarchy-shell -q shell rescanPlugins || true
 fi
@@ -311,16 +318,16 @@ fi
 
 cat <<EOF
 
-  Ambxst is installed.
+  Atoll is installed.
 
-    ambxst run launcher       open the launcher (SUPER+R)
-    ambxst run dashboard      open the dashboard (SUPER+D)
-    ambxst disable            go back to Omarchy's bar
-    ./uninstall.sh            remove Ambxst and restore what it changed
+    atoll run launcher       open the launcher (SUPER+R)
+    atoll run dashboard      open the dashboard (SUPER+D)
+    atoll disable            go back to Omarchy's bar
+    ./uninstall.sh            remove Atoll and restore what it changed
 
-  Settings: Ambxst's own (SUPER+ALT+C) in ~/.config/ambxst/config,
-  plus Omarchy-specific choices in ~/.config/ambxst/omarchy.json.
+  Settings: Atoll's own (SUPER+ALT+C) in ~/.config/atoll/config,
+  plus Omarchy-specific choices in ~/.config/atoll/omarchy.json.
   If the bar doesn't appear: omarchy-restart-shell, then check the log with
-    journalctl --user -t omarchy-shell -n 100 | grep -iE "ambxst|error"
+    journalctl --user -t omarchy-shell -n 100 | grep -iE "atoll|error"
 
 EOF

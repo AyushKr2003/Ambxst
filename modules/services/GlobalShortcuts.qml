@@ -11,13 +11,13 @@ import Quickshell.Io
 QtObject {
     id: root
 
-    readonly property string appId: "ambxst"
+    readonly property string appId: "atoll"
     // Per-user runtime dir instead of /tmp: /tmp is world-shared and its
     // sticky bit lets a second local account permanently squat the FIFO.
     // The shell expression keeps this working even when XDG_RUNTIME_DIR
     // is not exported to the compositor session.
     readonly property string ipcDir: "${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
-    readonly property string ipcName: "ambxst_ipc.pipe"
+    readonly property string ipcName: "atoll_ipc.pipe"
 
     // High-performance Pipe Listener (Daemon mode)
     property Process pipeListener: Process {
@@ -79,7 +79,7 @@ QtObject {
                 Screenshot.captureMode = "lens";
                 GlobalStates.screenshotToolVisible = true;
                 break;
-            case "lockscreen": LockscreenService.lock(); break; // Ambxst on Omarchy: Omarchy's lock
+            case "lockscreen": LockscreenService.lock(); break; // Atoll: Omarchy's lock
             
             // Media
             case "media-seek-backward": seekActivePlayer(-mediaSeekStepMs); break;
@@ -100,12 +100,12 @@ QtObject {
     }
 
     property IpcHandler ipcHandler: IpcHandler {
-        target: "ambxst"
+        target: "atoll"
 
         function run(command: string): void {
             root.run(command);
         }
-        // Ambxst on Omarchy: what the Go daemon's `ambxst toggle` and
+        // Atoll: what the Go daemon's `atoll toggle` and
         // `ambxst preset load` pushed, for the bin/ambxst wrapper.
         function toggle(target: string): void {
             root.toggle(target);
@@ -118,9 +118,9 @@ QtObject {
         }
     }
 
-    // Commands sent via `ambxst run <cmd>` go through the Go daemon now.
+    // Commands sent via `atoll run <cmd>` go through the Go daemon now.
     // The daemon pushes a "ui.command" event on the "ui" service stream;
-    // route it into the same runner. `ambxst toggle <target>` pushes a
+    // route it into the same runner. `atoll toggle <target>` pushes a
     // separate "ui.toggle" event with its own state-flipping switch.
     Component.onCompleted: {
         BackendService.addSubscription(["ui"], (service, data) => {

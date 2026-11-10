@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Ambxst on Omarchy: square thumbnails for the Wallpapers tab and the
-# desktop, as Ambxst's `ambxst thumbs` / `ambxst dthumbs` made them. Images
+# Atoll: square thumbnails for the Wallpapers tab and the
+# desktop, as upstream Ambxst's `ambxst thumbs` / `ambxst dthumbs` made them. Images
 # go through ImageMagick and videos through ffmpeg (both Omarchy base
 # packages). A thumbnail is only rebuilt when its source is newer.
 #

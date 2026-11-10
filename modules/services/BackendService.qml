@@ -5,13 +5,13 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Services.UPower
 
-// Ambxst on Omarchy: the backend, in process.
+// Atoll: the backend, in process.
 //
 // Upstream Ambxst talks JSON-RPC to its Go daemon (`ambxst`) over a Unix
 // socket. Inside Omarchy's shell there is no such daemon; Omarchy is the
 // engine. This singleton keeps upstream's API -- call(method, params, cb),
 // notify(), addSubscription(services, cb), setSubscriptionActive(),
-// removeSubscription() -- so every Ambxst consumer runs unchanged, and
+// removeSubscription() -- so every Atoll consumer runs unchanged, and
 // answers each method with, in order of preference:
 //
 //   1. an Omarchy command or state file (omarchy-toggle-idle, the
@@ -178,7 +178,7 @@ Singleton {
     // Runs a bash snippet with its arguments passed positionally ($1, $2...):
     // values are never spliced into the script text.
     function sh(script, args, done) {
-        root.run(["bash", "-c", script, "ambxst"].concat(args || []), done);
+        root.run(["bash", "-c", script, "atoll"].concat(args || []), done);
     }
 
     function runJson(argv, reply) {
@@ -220,7 +220,7 @@ Singleton {
                     inhibit: root.stayAwake
                 }, null),
             "caffeine.set": (p, reply) => {
-                root.run(["bash", "-c", "omarchy-toggle-idle \"$1\" >/dev/null 2>&1", "ambxst", p.inhibit ? "stay-awake" : "allow-idle"], () => {
+                root.run(["bash", "-c", "omarchy-toggle-idle \"$1\" >/dev/null 2>&1", "atoll", p.inhibit ? "stay-awake" : "allow-idle"], () => {
                     root.probeStayAwake();
                     reply({
                         inhibit: p.inhibit === true
@@ -402,7 +402,7 @@ Singleton {
                 }, null);
             },
             "clipboard.copyFile": (p, reply) => {
-                Quickshell.execDetached(["bash", "-c", 'wl-copy --type "$2" < "$1"', "ambxst", String(p.path || ""), String(p.mime || "application/octet-stream")]);
+                Quickshell.execDetached(["bash", "-c", 'wl-copy --type "$2" < "$1"', "atoll", String(p.path || ""), String(p.mime || "application/octet-stream")]);
                 reply({
                     ok: true
                 }, null);
@@ -504,7 +504,7 @@ Singleton {
             return;
         root.gameMode = on;
         Quickshell.execDetached(on ? ["touch", OmarchyBridge.stateDir + "/gamemode"] : ["rm", "-f", OmarchyBridge.stateDir + "/gamemode"]);
-        // With Ambxst managing Hyprland, CompositorConfig applies (and
+        // With Atoll managing Hyprland, CompositorConfig applies (and
         // undoes) the overrides itself when it sees the state change.
         if (!OmarchyBridge.manageHyprland) {
             if (on)
@@ -662,7 +662,7 @@ Singleton {
     // Screenshots, OCR, QR
     // =================================================================
 
-    readonly property string framesDir: OmarchyBridge.runtimeDir + "/ambxst-frames"
+    readonly property string framesDir: OmarchyBridge.runtimeDir + "/atoll-frames"
     property string screenshotDir: home + "/Pictures/Screenshots"
     Process {
         running: true
@@ -720,7 +720,7 @@ Singleton {
                 return;
             }
             if (p.clipboard)
-                Quickshell.execDetached(["bash", "-c", 'wl-copy --type image/png < "$1"', "ambxst", dest]);
+                Quickshell.execDetached(["bash", "-c", 'wl-copy --type image/png < "$1"', "atoll", dest]);
             reply({
                 path: dest
             }, null);
@@ -885,7 +885,7 @@ Singleton {
             }, null);
             return;
         }
-        root.run(["curl", "-fsL", "--max-time", String(timeout), "--max-filesize", "2000000", "-A", "Mozilla/5.0 (Ambxst link preview)", url], (code, html) => {
+        root.run(["curl", "-fsL", "--max-time", String(timeout), "--max-filesize", "2000000", "-A", "Mozilla/5.0 (Atoll link preview)", url], (code, html) => {
             if (code !== 0 || !html) {
                 reply({
                     error: "fetch failed",
@@ -931,10 +931,10 @@ Singleton {
     }
 
     // =================================================================
-    // Clipboard: Omarchy's history + Ambxst's pins, aliases and order
+    // Clipboard: Omarchy's history + Atoll's pins, aliases and order
     // =================================================================
 
-    // Omarchy's clipboard plugin records the clipboard here; Ambxst reads
+    // Omarchy's clipboard plugin records the clipboard here; Atoll reads
     // it and never runs a second watcher.
     property var clipHistory: []
     property var clipMetaData: ({
@@ -1125,7 +1125,7 @@ Singleton {
     }
 
     function clipClear(reply) {
-        // Pinned entries survive a clear, as in Ambxst.
+        // Pinned entries survive a clear, as in Atoll.
         const pins = root.clipMetaData.pins;
         const kept = root.clipHistory.filter(e => pins[root.clipKey(e)]);
         root.clipMetaData.order = root.clipMetaData.order.filter(k => pins[k]);

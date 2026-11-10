@@ -132,7 +132,7 @@ ActionGrid {
              root.itemSelected();
         } else if (action.tooltip === I18n.t("tools.color_picker")) {
             // Run detached so it survives when the menu closes
-            colorPickerProc.command = ["bash", "-c", "nohup ambxst colorpicker > /dev/null 2>&1 &"];
+            colorPickerProc.command = ["bash", "-c", "nohup hyprpicker -a > /dev/null 2>&1 &"];
             colorPickerProc.running = true;
             root.itemSelected();
         } else if (action.tooltip === I18n.t("tools.ocr")) {

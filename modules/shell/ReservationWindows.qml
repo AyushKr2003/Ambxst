@@ -53,7 +53,7 @@ Item {
         }
         WlrLayershell.layer: WlrLayer.Top
         WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
-        WlrLayershell.namespace: "ambxst:reservation:top"
+        WlrLayershell.namespace: "atoll:reservation:top"
         
         exclusiveZone: {
             if (!Config.barReady) return 0;
@@ -85,7 +85,7 @@ Item {
         }
         WlrLayershell.layer: WlrLayer.Top
         WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
-        WlrLayershell.namespace: "ambxst:reservation:bottom"
+        WlrLayershell.namespace: "atoll:reservation:bottom"
 
         exclusiveZone: {
             if (!Config.barReady) return 0;
@@ -117,7 +117,7 @@ Item {
         }
         WlrLayershell.layer: WlrLayer.Top
         WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
-        WlrLayershell.namespace: "ambxst:reservation:left"
+        WlrLayershell.namespace: "atoll:reservation:left"
 
         exclusiveZone: {
             if (!Config.barReady) return 0;
@@ -153,7 +153,7 @@ Item {
         }
         WlrLayershell.layer: WlrLayer.Top
         WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
-        WlrLayershell.namespace: "ambxst:reservation:right"
+        WlrLayershell.namespace: "atoll:reservation:right"
 
         exclusiveZone: {
             if (!Config.barReady) return 0;

@@ -9,7 +9,7 @@ import "."
 /**
  * CompositorTomlWriter - Thin IPC client.
  *
- * Renders ~/.local/share/ambxst/axctl.toml by delegating to the
+ * Renders ~/.local/share/atoll/axctl.toml by delegating to the
  * compositor service in the ambxst backend. The TOML generation logic,
  * the KeybindActions catalog and all keybind resolution live in
  * `backend/pkg/svc/compositor/` (see compositor.Render, compositor.ResolveAction).
@@ -22,7 +22,7 @@ import "."
 Singleton {
     id: root
 
-    property string outputPath: (Quickshell.env("XDG_DATA_HOME") || (Quickshell.env("HOME") + "/.local/share")) + "/ambxst/axctl.toml"
+    property string outputPath: (Quickshell.env("XDG_DATA_HOME") || (Quickshell.env("HOME") + "/.local/share")) + "/atoll/axctl.toml"
 
     property Process ipcProcess: Process {
         stdout: SplitParser {}
@@ -296,7 +296,7 @@ Singleton {
     }
 
     function callWrite() {
-        // Ambxst on Omarchy: there is no axctl to read a TOML. Hyprland's
+        // Atoll: there is no axctl to read a TOML. Hyprland's
         // config is Omarchy's (looknfeel.lua, bindings.lua); with
         // manageHyprland on, CompositorConfig applies Ambxst's look live
         // through `hyprctl eval` instead.

@@ -79,7 +79,7 @@ QtObject {
 `
 
         const home = Quickshell.env("HOME")
-        const vesktopPath = home + "/.config/vesktop/themes/ambxst.css"
+        const vesktopPath = home + "/.config/vesktop/themes/atoll.css"
         
         const escape = (str) => {
             if (!str) return ""

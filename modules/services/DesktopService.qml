@@ -9,7 +9,7 @@ Singleton {
 
     property string desktopDir: ""
     property bool initialLoadComplete: false
-    property string positionsFile: (Quickshell.env("HOME") + "/.local/share/ambxst/desktop-positions.json")
+    property string positionsFile: (Quickshell.env("HOME") + "/.local/share/atoll/desktop-positions.json")
     property int maxRowsHint: 15
     property int maxColumnsHint: 10
     property bool gridReady: false
@@ -613,7 +613,7 @@ Singleton {
     Process {
         id: thumbnailProcess
         running: false
-        command: [/* Ambxst on Omarchy: was `ambxst dthumbs` */ OmarchyBridge.scriptsDir + "/thumbs.sh", "desktop", desktopDir, Quickshell.env("HOME") + "/.cache/ambxst" + "/desktop_thumbnails"]
+        command: [/* Atoll: was `ambxst dthumbs` */ OmarchyBridge.scriptsDir + "/thumbs.sh", "desktop", desktopDir, Quickshell.env("HOME") + "/.cache/atoll" + "/desktop_thumbnails"]
 
         stdout: StdioCollector {
             onStreamFinished: {

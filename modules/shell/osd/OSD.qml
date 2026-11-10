@@ -16,7 +16,7 @@ PanelWindow {
     screen: targetScreen
 
     WlrLayershell.layer: WlrLayer.Overlay
-    WlrLayershell.namespace: "ambxst:osd"
+    WlrLayershell.namespace: "atoll:osd"
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
     exclusionMode: ExclusionMode.Ignore
 

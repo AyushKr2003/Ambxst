@@ -41,7 +41,7 @@ QtObject {
 `
 
         const home = Quickshell.env("HOME")
-        const outputPath = home + "/.cache/ambxst/pywalzen.css"
+        const outputPath = home + "/.cache/atoll/pywalzen.css"
 
         const escape = (str) => {
             if (!str) return ""

@@ -5,7 +5,7 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Hyprland
 
-// Ambxst on Omarchy: the compositor model.
+// Atoll: the compositor model.
 //
 // Upstream Ambxst reads windows, workspaces and monitors from its Go daemon
 // (axctl). Omarchy runs Hyprland, so this keeps the same public surface --
@@ -95,7 +95,7 @@ Singleton {
         root.scheduleRefresh();
     }
 
-    // Accepts Ambxst's legacy dispatcher strings ("workspace 3",
+    // Accepts Atoll's legacy dispatcher strings ("workspace 3",
     // "focuswindow address:0x..", "movetoworkspacesilent 2, address:0x..").
     function dispatch(command) {
         if (!command)
@@ -165,7 +165,7 @@ Singleton {
             Quickshell.execDetached(["bash", "-c", rawArgs]);
             return;
         case "overview":
-            // Hyprland has no native overview: Ambxst draws its own.
+            // Hyprland has no native overview: Atoll draws its own.
             return;
         default:
             // Already a Lua dispatcher (or something Hyprland understands as is).
@@ -318,7 +318,7 @@ Singleton {
         onTriggered: root.refresh()
     }
 
-    // Events that change nothing Ambxst draws.
+    // Events that change nothing Atoll draws.
     readonly property var ignoredEvents: ["submap", "screencast", "bell", "minimized", "ignoregrouplock", "lockgroups", "configreloaded", "custom"]
 
     property Connections hyprConnections: Connections {

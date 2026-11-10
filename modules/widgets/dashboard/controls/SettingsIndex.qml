@@ -115,7 +115,7 @@ QtObject {
 
         // System > Idle
         { label: I18n.t("settings.system.idle_settings"), keywords: "screen lock timeout sleep suspend", section: 6, subSection: "idle", subLabel: I18n.t("settings.system") + " > " + I18n.t("settings.system.idle"), icon: Icons.moon, isIcon: true },
-        { label: I18n.t("settings.system.lock_command"), keywords: "ambxst lock screen idle", section: 6, subSection: "idle", subLabel: I18n.t("settings.system") + " > " + I18n.t("settings.system.idle"), icon: Icons.moon, isIcon: true },
+        { label: I18n.t("settings.system.lock_command"), keywords: "atoll lock screen idle", section: 6, subSection: "idle", subLabel: I18n.t("settings.system") + " > " + I18n.t("settings.system.idle"), icon: Icons.moon, isIcon: true },
         { label: I18n.t("settings.system.before_sleep"), keywords: "loginctl lock-session idle", section: 6, subSection: "idle", subLabel: I18n.t("settings.system") + " > " + I18n.t("settings.system.idle"), icon: Icons.moon, isIcon: true },
         { label: I18n.t("settings.system.after_sleep"), keywords: "screen on resume idle", section: 6, subSection: "idle", subLabel: I18n.t("settings.system") + " > " + I18n.t("settings.system.idle"), icon: Icons.moon, isIcon: true },
         { label: I18n.t("settings.system.idle_listener"), keywords: "timeout brightness screen off suspend", section: 6, subSection: "idle", subLabel: I18n.t("settings.system") + " > " + I18n.t("settings.system.idle"), icon: Icons.moon, isIcon: true },

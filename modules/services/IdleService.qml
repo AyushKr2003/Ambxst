@@ -9,7 +9,7 @@ Singleton {
     id: root
 
     // General Idle Settings
-    property string lockCmd: Config.system.idle.general.lock_cmd ?? "ambxst lock"
+    property string lockCmd: Config.system.idle.general.lock_cmd ?? "atoll lock"
     property string beforeSleepCmd: Config.system.idle.general.before_sleep_cmd ?? "loginctl lock-session"
     property string afterSleepCmd: Config.system.idle.general.after_sleep_cmd ?? "ambxst screen on"
 
@@ -99,7 +99,7 @@ Singleton {
         const cmd = (root.beforeSleepCmd || "").trim();
         return cmd === "loginctl lock-session"
             || cmd === "loginctl lock-sessions"
-            || cmd === "ambxst lock";
+            || cmd === "atoll lock";
     }
 
     function lockBeforeSleep() {

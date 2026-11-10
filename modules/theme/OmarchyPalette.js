@@ -1,8 +1,8 @@
 .pragma library
 
-// Ambxst on Omarchy: turns an Omarchy theme (colors.toml) into the colour
-// roles Ambxst reads from ~/.cache/ambxst/colors.json (the file matugen
-// writes upstream), so every Ambxst surface is drawn in the Omarchy theme.
+// Atoll: turns an Omarchy theme (colors.toml) into the colour
+// roles Atoll reads from ~/.cache/atoll/colors.json (the file matugen
+// writes upstream), so every Atoll surface is drawn in the Omarchy theme.
 //
 // Base roles come straight from the theme (background, foreground, accent,
 // the six hues and their bright variants); the Material-style tonal roles
@@ -172,7 +172,7 @@ function build(theme) {
         if (bright[hue])
             c["light" + HCap] = bright[hue];
     }
-    // Keep Ambxst's readable-on-everything tones for white in light themes.
+    // Keep Atoll's readable-on-everything tones for white in light themes.
     if (!dark)
         c.white = mix(fg, toward, 0.1);
 

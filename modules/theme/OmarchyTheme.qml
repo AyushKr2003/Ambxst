@@ -7,9 +7,9 @@ import qs.Commons as Commons
 import "../services"
 import "OmarchyPalette.js" as Palette
 
-// Ambxst on Omarchy: keeps Ambxst's colour file in the Omarchy theme.
+// Atoll: keeps Atoll's colour file in the Omarchy theme.
 //
-// Ambxst draws every surface from ~/.cache/ambxst/colors.json (Colors.qml
+// Atoll draws every surface from ~/.cache/atoll/colors.json (Colors.qml
 // watches it). While the colour source is "omarchy" (the default) this
 // writes that file from the current Omarchy theme's colors.toml, and again
 // whenever `omarchy theme set` pushes a new theme into the shell -- Omarchy's

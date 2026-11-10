@@ -9,7 +9,7 @@ import "../globals"
 QtObject {
     id: root
 
-    // Ambxst on Omarchy: the session lock belongs to Omarchy's own lock service
+    // Atoll: the session lock belongs to Omarchy's own lock service
     // (omarchy.lock: WlSessionLock, PAM, fingerprint, idle timers). Ambxst
     // asks it to lock rather than raising a second session lock.
     function toggle() {

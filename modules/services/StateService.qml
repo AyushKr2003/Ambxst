@@ -18,7 +18,7 @@ import Quickshell.Io
 Singleton {
     id: root
 
-    property string stateFile: (Quickshell.env("HOME") + "/.local/state/ambxst/states.json")
+    property string stateFile: (Quickshell.env("HOME") + "/.local/state/atoll/states.json")
     property var state: ({})
     property bool initialized: false
 

@@ -19,16 +19,16 @@ PanelWindow {
     }
 
     WlrLayershell.layer: WlrLayer.Background
-    WlrLayershell.namespace: "ambxst:wallpaper"
+    WlrLayershell.namespace: "atoll:wallpaper"
     exclusionMode: ExclusionMode.Ignore
 
     color: "transparent"
 
-    // Ambxst on Omarchy: Omarchy draws the background (its background
+    // Atoll: Omarchy draws the background (its background
     // plugin, omarchy-theme-bg-set). This surface stays as Ambxst's wallpaper
     // manager for the dashboard and only draws when chosen in
-    // ~/.config/ambxst/omarchy.json (ambxstWallpaper).
-    visible: OmarchyBridge.ambxstWallpaper
+    // ~/.config/atoll/omarchy.json (ownWallpaper).
+    visible: OmarchyBridge.ownWallpaper
 
     property string wallpaperDir: expandTilde(wallpaperConfig.adapter.wallPath)
     property string fallbackDir: Quickshell.env("HOME") + "/.local/state/omarchy/current/theme/backgrounds"
@@ -89,7 +89,7 @@ PanelWindow {
         when: GlobalStates.wallpaperManager !== null && GlobalStates.wallpaperManager !== wallpaper
     }
 
-    property string colorPresetsDir: Quickshell.env("HOME") + "/.config/ambxst/colors"
+    property string colorPresetsDir: Quickshell.env("HOME") + "/.config/atoll/colors"
     property string officialColorPresetsDir: decodeURIComponent(Qt.resolvedUrl("../../../../assets/colors").toString().replace("file://", ""))
 
     onColorPresetsDirChanged: console.log("Color Presets Directory:", colorPresetsDir)
@@ -127,8 +127,8 @@ PanelWindow {
 
         var officialFile = officialColorPresetsDir + "/" + activeColorPreset + "/" + mode;
         var userFile = colorPresetsDir + "/" + activeColorPreset + "/" + mode;
-        // QUICKSHELL-GIT: var dest = (Quickshell.env("HOME") + "/.cache/ambxst/colors.json");
-        var dest = Quickshell.env("HOME") + "/.cache/ambxst/colors.json";
+        // QUICKSHELL-GIT: var dest = (Quickshell.env("HOME") + "/.cache/atoll/colors.json");
+        var dest = Quickshell.env("HOME") + "/.cache/atoll/colors.json";
 
         // Try official first, then user. Use bash conditional.
         var cmd = "if [ -f '" + officialFile + "' ]; then cp '" + officialFile + "' '" + dest + "'; else cp '" + userFile + "' '" + dest + "'; fi";
@@ -141,7 +141,7 @@ PanelWindow {
     function setColorPreset(name) {
         // Choosing an Ambxst preset hands the colours to Ambxst.
         if (name)
-            OmarchyBridge.set("colorSource", "ambxst");
+            OmarchyBridge.set("colorSource", "atoll");
         wallpaperConfig.adapter.activeColorPreset = name;
     // activeColorPreset property will update automatically via binding to adapter
     }
@@ -182,8 +182,8 @@ PanelWindow {
         var relativeDir = pathParts.join('/');
 
         // Build the proxy path
-        // QUICKSHELL-GIT: var thumbnailPath = (Quickshell.env("HOME") + "/.cache/ambxst") + "/thumbnails/" + relativeDir + "/" + thumbnailName;
-        var thumbnailPath = Quickshell.env("HOME") + "/.cache/ambxst" + "/thumbnails/" + relativeDir + "/" + thumbnailName;
+        // QUICKSHELL-GIT: var thumbnailPath = (Quickshell.env("HOME") + "/.cache/atoll") + "/thumbnails/" + relativeDir + "/" + thumbnailName;
+        var thumbnailPath = Quickshell.env("HOME") + "/.cache/atoll" + "/thumbnails/" + relativeDir + "/" + thumbnailName;
         return thumbnailPath;
     }
 
@@ -228,8 +228,8 @@ PanelWindow {
         // Para videos y GIFs, usar el frame cacheado
         if (fileType === 'video' || fileType === 'gif') {
             var fileName = filePath.split('/').pop();
-            // QUICKSHELL-GIT: var cachePath = (Quickshell.env("HOME") + "/.cache/ambxst") + "/lockscreen/" + fileName + ".jpg";
-            var cachePath = Quickshell.env("HOME") + "/.cache/ambxst" + "/lockscreen/" + fileName + ".jpg";
+            // QUICKSHELL-GIT: var cachePath = (Quickshell.env("HOME") + "/.cache/atoll") + "/lockscreen/" + fileName + ".jpg";
+            var cachePath = Quickshell.env("HOME") + "/.cache/atoll" + "/lockscreen/" + fileName + ".jpg";
             return cachePath;
         }
 
@@ -244,10 +244,10 @@ PanelWindow {
 
         console.log("Generating lockscreen frame for:", filePath);
 
-        // QUICKSHELL-GIT: var dataPath = (Quickshell.env("HOME") + "/.cache/ambxst");
-        var dataPath = Quickshell.env("HOME") + "/.cache/ambxst";
+        // QUICKSHELL-GIT: var dataPath = (Quickshell.env("HOME") + "/.cache/atoll");
+        var dataPath = Quickshell.env("HOME") + "/.cache/atoll";
 
-        // Ambxst on Omarchy: the lock screen is Omarchy's and draws the
+        // Atoll: the lock screen is Omarchy's and draws the
         // Omarchy background itself, so no lock frame is cached.
         return;
     }
@@ -317,7 +317,7 @@ PanelWindow {
         console.log("setWallpaper called with:", path, "for screen:", targetScreen);
         initialLoadCompleted = true;
         // Omarchy owns the background: hand it the choice.
-        if (!OmarchyBridge.ambxstWallpaper && path)
+        if (!OmarchyBridge.ownWallpaper && path)
             Quickshell.execDetached(["omarchy-theme-bg-set", path]);
         var pathIndex = wallpaperPaths.indexOf(path);
         if (pathIndex !== -1) {
@@ -378,7 +378,7 @@ PanelWindow {
         initialLoadCompleted = true;
         currentIndex = (currentIndex + 1) % wallpaperPaths.length;
         currentWallpaper = wallpaperPaths[currentIndex];
-        if (!OmarchyBridge.ambxstWallpaper)
+        if (!OmarchyBridge.ownWallpaper)
             Quickshell.execDetached(["omarchy-theme-bg-set", currentWallpaper]);
         wallpaperConfig.adapter.currentWall = wallpaperPaths[currentIndex];
         runMatugenForCurrentWallpaper();
@@ -396,7 +396,7 @@ PanelWindow {
         initialLoadCompleted = true;
         currentIndex = currentIndex === 0 ? wallpaperPaths.length - 1 : currentIndex - 1;
         currentWallpaper = wallpaperPaths[currentIndex];
-        if (!OmarchyBridge.ambxstWallpaper)
+        if (!OmarchyBridge.ownWallpaper)
             Quickshell.execDetached(["omarchy-theme-bg-set", currentWallpaper]);
         wallpaperConfig.adapter.currentWall = wallpaperPaths[currentIndex];
         runMatugenForCurrentWallpaper();
@@ -413,7 +413,7 @@ PanelWindow {
             initialLoadCompleted = true;
             currentIndex = index;
             currentWallpaper = wallpaperPaths[currentIndex];
-            if (!OmarchyBridge.ambxstWallpaper)
+            if (!OmarchyBridge.ownWallpaper)
                 Quickshell.execDetached(["omarchy-theme-bg-set", currentWallpaper]);
             wallpaperConfig.adapter.currentWall = wallpaperPaths[currentIndex];
             runMatugenForCurrentWallpaper();
@@ -424,7 +424,7 @@ PanelWindow {
     // Función para re-ejecutar Matugen con el wallpaper actual
     function setMatugenScheme(scheme) {
         // Choosing a matugen scheme hands the colours to Ambxst.
-        OmarchyBridge.set("colorSource", "ambxst");
+        OmarchyBridge.set("colorSource", "atoll");
         wallpaperConfig.adapter.matugenScheme = scheme;
 
         if (wallpaperConfig.adapter.activeColorPreset) {
@@ -539,8 +539,8 @@ PanelWindow {
 
     FileView {
         id: wallpaperConfig
-        // QUICKSHELL-GIT: path: (Quickshell.env("HOME") + "/.cache/ambxst/wallpapers.json")
-        path: Quickshell.env("HOME") + "/.cache/ambxst/wallpapers.json"
+        // QUICKSHELL-GIT: path: (Quickshell.env("HOME") + "/.cache/atoll/wallpapers.json")
+        path: Quickshell.env("HOME") + "/.cache/atoll/wallpapers.json"
         watchChanges: true
 
         onLoaded: {
@@ -633,8 +633,8 @@ PanelWindow {
     Process {
         id: checkWallpapersJson
         running: false
-        // QUICKSHELL-GIT: command: ["test", "-f", (Quickshell.env("HOME") + "/.cache/ambxst/wallpapers.json")]
-        command: ["test", "-f", Quickshell.env("HOME") + "/.cache/ambxst/wallpapers.json"]
+        // QUICKSHELL-GIT: command: ["test", "-f", (Quickshell.env("HOME") + "/.cache/atoll/wallpapers.json")]
+        command: ["test", "-f", Quickshell.env("HOME") + "/.cache/atoll/wallpapers.json"]
 
         onExited: function (exitCode) {
             if (exitCode !== 0) {
@@ -702,7 +702,7 @@ PanelWindow {
     Process {
         id: thumbnailGeneratorScript
         running: false
-        command: [OmarchyBridge.scriptsDir + "/thumbs.sh", "wall", Quickshell.env("HOME") + "/.cache/ambxst" + "/wallpapers.json", Quickshell.env("HOME") + "/.cache/ambxst", fallbackDir]
+        command: [OmarchyBridge.scriptsDir + "/thumbs.sh", "wall", Quickshell.env("HOME") + "/.cache/atoll" + "/wallpapers.json", Quickshell.env("HOME") + "/.cache/atoll", fallbackDir]
 
         stdout: StdioCollector {
             onStreamFinished: {
